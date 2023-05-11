@@ -30,7 +30,7 @@ require('../header.php');
                             <table class="table table-bordered" id="table_id">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>#</th>
                                         <th>Image</th>
                                         <th>Category Name</th>
                                         <th>Category Description</th>

@@ -46,6 +46,7 @@ $row = mysqli_fetch_assoc($result);
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item">Attributes</li>
+                <li class="breadcrumb-item">Edit Attributes</li>
             </ol>
         </nav>
     </div>

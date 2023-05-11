@@ -36,7 +36,7 @@ if (isset($_POST['add_variants'])) {
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Categories</h1>
+        <h1>Variants</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>

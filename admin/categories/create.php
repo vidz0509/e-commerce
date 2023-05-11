@@ -71,7 +71,7 @@ if (isset($_POST['add_category'])) {
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">File Upload</label>
+                                <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" required />
                                 </div>

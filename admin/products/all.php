@@ -9,7 +9,7 @@ require('../header.php');
         <h1>All Products</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="../dashboard.php">Home</a></li>
+                <li class="breadcrumb-item active"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item active">Products</li>
             </ol>
         </nav>

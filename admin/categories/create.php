@@ -36,7 +36,7 @@ if (isset($_POST['add_category'])) {
         <h1>Categories</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../dashboard.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item">Categories</li>
                 <li class="breadcrumb-item active">Add New</li>
             </ol>

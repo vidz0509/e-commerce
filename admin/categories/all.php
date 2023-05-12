@@ -53,7 +53,7 @@ require('../header.php');
                                                 <td><img height="120" width="120" src=" <?php echo $row['image']; ?>"></td>
                                                 <td><?php echo $row['cat_name']; ?></td>
                                                 <td><?php echo $row['cat_description']; ?></td>
-                                                <td><?php echo date('d-m-Y', strtotime($row['created_on'])); ?></td>
+                                                <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

@@ -40,7 +40,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,attribute_name,att_image,price,created_on from attributes";
+                                    $query = "SELECT id,attribute_name,att_image,price,created_on from attributes ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;

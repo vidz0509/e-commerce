@@ -39,7 +39,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,var_name,var_image,created_on from variants";
+                                    $query = "SELECT id,var_name,var_image,created_on from variants ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;

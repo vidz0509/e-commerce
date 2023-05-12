@@ -41,7 +41,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,pdt_name,stock,variants,attribute,created_on from products";
+                                    $query = "SELECT id,pdt_name,stock,variants,attribute,created_on from products ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;

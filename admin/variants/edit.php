@@ -43,7 +43,7 @@ $row = mysqli_fetch_assoc($result);
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Variants</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/variants/all.php">Variants</a></li>
                 <li class="breadcrumb-item">Edit Variants</li>
             </ol>
         </nav>

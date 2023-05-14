@@ -1,6 +1,7 @@
 <?php
 require('../config.php');
 require('../header.php');
+require('../functions.php');
 ?>
 
 <main id="main" class="main">
@@ -23,7 +24,7 @@ require('../header.php');
                     <div class="card">
                         <div class="card-body">
                             <div style="margin-bottom: 45px;">
-                                <a href="../cateories/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
+                                <a href="/e-commerce/admin/categories/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
@@ -47,12 +48,22 @@ require('../header.php');
                                         /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
                                             $i++;
-                                    ?>
+                                            ?>
+
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td><img height="120" width="120" src=" <?php echo $row['image']; ?>"></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['image'] == "")
+                                                        echo "-";
+                                                    else { ?>
+                                                        <img height="120" width="120" src=" <?php echo $row['image']; ?>">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td><?php echo $row['cat_name']; ?></td>
-                                                <td><?php echo $row['cat_description']; ?></td>
+                                                <td><?php echo limit_description($row['cat_description'],200); ?></td>
                                                 <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>

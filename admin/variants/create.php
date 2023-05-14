@@ -4,27 +4,39 @@ include("../header.php");
 
 if (isset($_POST['add_variants'])) {
 
-    $filename = $_FILES["file_upload"]["name"];
+    $is_uploaded = false;
 
-    $tempname = $_FILES["file_upload"]["tmp_name"];
+    if (isset($_FILES["file_upload"]["name"]) && $_FILES["file_upload"]["name"] != "") {
 
-    $folder = "../variants/images/" . $filename;
+        $filename = $_FILES["file_upload"]["name"];
 
-    if (move_uploaded_file($tempname, $folder)) {
+        $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        echo "<h3>  Image uploaded successfully!</h3>";
+        $folder = "../variants/images/" . $filename;
 
-    } else {
+        if (move_uploaded_file($tempname, $folder)) {
 
-        echo "<h3>  Failed to upload image!</h3>";
-        
+            $is_uploaded = true;
+
+            echo "<h3>  Image uploaded successfully!</h3>";
+        } else {
+            echo "<h3>  Failed to upload image!</h3>";
+        }
     }
+
 
     $var_name =  $_POST['var_name'];
 
     $current_user_id = $_SESSION['id'];
 
-    $sql = "insert into variants (var_name,var_image,created_by,created_on,is_active) values('$var_name','$folder',$current_user_id,now(),true)";
+    if ($is_uploaded == true)
+    {
+        $sql = "insert into variants (var_name,var_image,created_by,created_on,is_active) values('$var_name','$folder',$current_user_id,now(),true)"; 
+    }
+    else{
+        $sql = "insert into variants (var_name,created_by,created_on,is_active) values('$var_name'',$current_user_id,now(),true)";
+    }
+        
 
     if (mysqli_query($conn, $sql)) {
         $message = 'Variants added successfully!';
@@ -40,7 +52,7 @@ if (isset($_POST['add_variants'])) {
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Variants</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/variants/all.php">Variants</a></li>
                 <li class="breadcrumb-item active">Add New</li>
             </ol>
         </nav>

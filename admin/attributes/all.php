@@ -23,7 +23,7 @@ require('../header.php');
                     <div class="card">
                         <div class="card-body">
                             <div style="margin-bottom: 45px;">
-                                <a href="../cateories/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
+                                <a href="/e-commerce/admin/attributes/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
@@ -50,7 +50,16 @@ require('../header.php');
                                     ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td><img height="120" width="120" src=" <?php echo $row['att_image']; ?>"></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['att_image'] == "")
+                                                        echo "-";
+                                                    else { ?>
+                                                        <img height="120" width="120" src=" <?php echo $row['att_image']; ?>">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td><?php echo $row['attribute_name']; ?></td>
                                                 <td><?php echo $row['price']; ?></td>
                                                 <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>

@@ -4,18 +4,25 @@ include("../header.php");
 
 if (isset($_POST['add_attributes'])) {
 
-    $filename = $_FILES["file_upload"]["name"];
+    $is_uploaded = false;
 
-    $tempname = $_FILES["file_upload"]["tmp_name"];
+    if (isset($_FILES["file_upload"]["name"]) && $_FILES["file_upload"]["name"] != "") {
 
-    $folder = "../attributes/images/" . $filename;
+        $filename = $_FILES["file_upload"]["name"];
 
-    if (move_uploaded_file($tempname, $folder)) {
+        $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        echo "<h3>  Image uploaded successfully!</h3>";
-    } else {
+        $folder = "../attributes/images/" . $filename;
 
-        echo "<h3>  Failed to upload image!</h3>";  
+        if (move_uploaded_file($tempname, $folder)) {
+
+            $is_uploaded = true;
+
+            echo "<h3>  Image uploaded successfully!</h3>";
+        } else {
+
+            echo "<h3>  Failed to upload image!</h3>";
+        }
     }
 
     $attribute_name =  $_POST['attribute_name'];
@@ -26,7 +33,11 @@ if (isset($_POST['add_attributes'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $sql = "insert into attributes (attribute_name,variants_id,att_image,price,created_by,created_on,is_active) values('$attribute_name','$variants','$folder','$price',$current_user_id,now(),true)";
+    if ($is_uploaded == true) {
+        $sql = "insert into attributes (attribute_name,variants_id,att_image,price,created_by,created_on,is_active) values('$attribute_name','$variants','$folder','$price',$current_user_id,now(),true)";
+    } else {
+        $sql = "insert into attributes (attribute_name,variants_id,price,created_by,created_on,is_active) values('$attribute_name','$variants','$price',$current_user_id,now(),true)";
+    }
 
     if (mysqli_query($conn, $sql)) {
         $message = 'Attribute added successfully!';
@@ -42,7 +53,7 @@ if (isset($_POST['add_attributes'])) {
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Attributes</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/attributes/all.php">Attributes</a></li>
                 <li class="breadcrumb-item active">Add New</li>
             </ol>
         </nav>
@@ -85,12 +96,12 @@ if (isset($_POST['add_attributes'])) {
                                         $i = 0;
                                         /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
-                                           ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option><?php
-                                            $i++;
-                                        }
-                                        $result->free();
-                                    }
-                                    ?>
+                                    ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option><?php
+                                                                                                                                $i++;
+                                                                                                                            }
+                                                                                                                            $result->free();
+                                                                                                                        }
+                                                                                                                                ?>
                                 </select>
                             </div>
 

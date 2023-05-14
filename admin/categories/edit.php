@@ -45,7 +45,7 @@ $row = mysqli_fetch_assoc($result);
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Categories</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/categories/all.php">Categories</a></li>
                 <li class="breadcrumb-item">Edit Categories</li>
             </ol>
         </nav>

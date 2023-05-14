@@ -6,11 +6,11 @@ require('../header.php');
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>All Categories</h1>
+        <h1>All Variants</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item active">varinats</li>
+                <li class="breadcrumb-item active">Varinats</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,7 +23,7 @@ require('../header.php');
                     <div class="card">
                         <div class="card-body">
                             <div style="margin-bottom: 45px;">
-                                <a href="../variants/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
+                                <a href="/e-commerce/admin/variants/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
@@ -46,10 +46,21 @@ require('../header.php');
                                         /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
                                             $i++;
+
                                     ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td><img height="120" width="120" src=" <?php echo $row['var_image']; ?>"></td>
+
+                                                <td>
+                                                    <?php
+                                                    if ($row['var_image'] == "")
+                                                        echo "-";
+                                                    else { ?>
+                                                        <img height="120" width="120" src=" <?php echo $row['var_image']; ?>">
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td><?php echo $row['var_name']; ?></td>
                                                 <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>

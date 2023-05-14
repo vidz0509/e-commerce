@@ -3,16 +3,25 @@ include("../header.php");
 // require("session.php");
 
 if (isset($_POST['add_category'])) {
-    $filename = $_FILES["file_upload"]["name"];
 
-    $tempname = $_FILES["file_upload"]["tmp_name"];
+    $is_uploaded = false;
 
-    $folder = "../categories/images/" . $filename;
+    if (isset($_FILES["file_upload"]["name"]) && $_FILES["file_upload"]["name"] != "") {
 
-    if (move_uploaded_file($tempname, $folder)) {
-        echo "<h3>  Image uploaded successfully!</h3>";
-    } else {
-        echo "<h3>  Failed to upload image!</h3>";
+        $filename = $_FILES["file_upload"]["name"];
+
+        $tempname = $_FILES["file_upload"]["tmp_name"];
+
+        $folder = "../categories/images/" . $filename;
+
+        if (move_uploaded_file($tempname, $folder)) {
+
+            $is_uploaded = true;
+            
+            echo "<h3>  Image uploaded successfully!</h3>";
+        } else {
+            echo "<h3>  Failed to upload image!</h3>";
+        }
     }
 
     $cat_name =  $_POST['cat_name'];
@@ -21,7 +30,11 @@ if (isset($_POST['add_category'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $sql = "insert into categories (cat_name,image,cat_description,created_by,created_on) values('$cat_name','$folder','$cat_desc',$current_user_id,now())";
+    if ($is_uploaded == true) {
+        $sql = "insert into categories (cat_name,image,cat_description,created_by,created_on) values('$cat_name','$folder','$cat_desc',$current_user_id,now())";
+    } else {
+        $sql = "insert into categories (cat_name,cat_description,created_by,created_on) values('$cat_name','$cat_desc',$current_user_id,now())";
+    }
 
     if (mysqli_query($conn, $sql)) {
         $message = 'Category added successfully!';
@@ -37,7 +50,7 @@ if (isset($_POST['add_category'])) {
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Categories</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/categories/all.php">Categories</a></li>
                 <li class="breadcrumb-item active">Add New</li>
             </ol>
         </nav>
@@ -73,7 +86,7 @@ if (isset($_POST['add_category'])) {
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="file_upload" type="file" id="formFile" required />
+                                    <input class="form-control" name="file_upload" type="file" id="formFile"/>
                                 </div>
                             </div>
                             <div class="row mb-3">

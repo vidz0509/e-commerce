@@ -96,12 +96,13 @@ if (isset($_POST['add_attributes'])) {
                                         $i = 0;
                                         /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
-                                    ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option><?php
-                                                                                                                                $i++;
-                                                                                                                            }
-                                                                                                                            $result->free();
-                                                                                                                        }
-                                                                                                                                ?>
+                                    ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
+                                    <?php
+                                            $i++;
+                                        }
+                                        $result->free();
+                                    }
+                                    ?>
                                 </select>
                             </div>
 

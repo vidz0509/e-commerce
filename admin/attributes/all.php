@@ -44,7 +44,6 @@ require('../header.php');
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
-                                        /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
                                             $i++;
                                     ?>
@@ -61,7 +60,7 @@ require('../header.php');
                                                     ?>
                                                 </td>
                                                 <td><?php echo $row['attribute_name']; ?></td>
-                                                <td><?php echo $row['price']; ?></td>
+                                                <td><?php echo $row['price']; ?></td>                                                
                                                 <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>

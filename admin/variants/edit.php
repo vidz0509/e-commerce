@@ -71,7 +71,7 @@ $row = mysqli_fetch_assoc($result);
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">File Upload</label>
+                                <label class="col-sm-2 col-form-label">Variant Image</label>
                                 <div class="col-sm-10">
                                     <img height="120" width="120" src=" <?php echo $row['var_image']; ?>">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />

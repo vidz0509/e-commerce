@@ -10,6 +10,8 @@ if (isset($_POST['edit'])) {
 
     $price =  $_POST['price'];
 
+    $variants =  $_POST['variants'];
+
     if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
 
         $filename = $_FILES["file_upload"]["name"];
@@ -19,13 +21,13 @@ if (isset($_POST['edit'])) {
         $folder = "../attributes/images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
-            $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price', att_image='$folder',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
+            $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price',variants_id = '$variants',att_image='$folder',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
             // echo "<h3>  Image uploaded successfully!</h3>";
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
-        $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
+        $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price',variants_id = '$variants',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
     }
 
     if (mysqli_query($conn, $att_query)) {
@@ -74,17 +76,43 @@ $row = mysqli_fetch_assoc($result);
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="price" value="<?php echo $row['price']; ?>" 
-                                    class="form-control" required />
+                                    <input type="text" name="price" value="<?php echo $row['price']; ?>" class="form-control" required />
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">File Upload</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
+                                <select class="col-sm-10" name="variants" id="variants">
+                                    <option value = "">-- Select Variant --</option>
+                                    <?php
+                                    $query = "SELECT *  from variants";
+                                    if ($var_result = $conn->query($query)) {
+                                        $i = 0;
+                                        while ($var_row = $var_result->fetch_assoc()) {
+                                    ?>
+                                            <option value="<?php echo $var_row['id']; ?>" <?php if($var_row['id'] == $row['variants_id']) echo "selected"; ?> ><?php echo $var_row['var_name']; ?></option>
+                                    <?php
+                                            $i++;
+                                        }
+                                        $var_result->free();
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Attribute Image</label>
                                 <div class="col-sm-10">
-                                    <img height="120" width="120" src=" <?php echo $row['att_image']; ?>">
+                                    <?php
+                                    if (!is_null($row['att_image'])) {
+                                    ?>
+                                        <img height="120" width="120" src=" <?php echo $row['att_image']; ?>">
+                                    <?php
+                                    }
+                                    ?>
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="edit" class="btn btn-primary">edit Attribute</button>

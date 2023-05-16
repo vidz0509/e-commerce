@@ -86,26 +86,28 @@ if (isset($_POST['add_attributes'])) {
                                     <input type="text" name="price" class="form-control" required />
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
-                                <select class="col-sm-10" name="variants" id="variants">
-                                    <?php
-                                    $query = "SELECT *  from variants";
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="variants" id="variants">
+                                        <?php
+                                        $query = "SELECT *  from variants";
 
-                                    if ($result = $conn->query($query)) {
-                                        $i = 0;
-                                        /* fetch associative array */
-                                        while ($row = $result->fetch_assoc()) {
-                                    ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
-                                    <?php
-                                            $i++;
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
                                         }
-                                        $result->free();
-                                    }
-                                    ?>
-                                </select>
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
-
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Attribute Image</label>
@@ -113,6 +115,7 @@ if (isset($_POST['add_attributes'])) {
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
+                            
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="add_attributes" class="btn btn-primary">Add Attributes</button>

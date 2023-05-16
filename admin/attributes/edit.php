@@ -81,22 +81,24 @@ $row = mysqli_fetch_assoc($result);
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
-                                <select class="col-sm-10" name="variants" id="variants">
-                                    <option value = "">-- Select Variant --</option>
-                                    <?php
-                                    $query = "SELECT *  from variants";
-                                    if ($var_result = $conn->query($query)) {
-                                        $i = 0;
-                                        while ($var_row = $var_result->fetch_assoc()) {
-                                    ?>
-                                            <option value="<?php echo $var_row['id']; ?>" <?php if($var_row['id'] == $row['variants_id']) echo "selected"; ?> ><?php echo $var_row['var_name']; ?></option>
-                                    <?php
-                                            $i++;
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="variants" id="variants">
+                                        <option value="">-- Select Variant --</option>
+                                        <?php
+                                        $query = "SELECT *  from variants";
+                                        if ($var_result = $conn->query($query)) {
+                                            $i = 0;
+                                            while ($var_row = $var_result->fetch_assoc()) {
+                                        ?>
+                                                <option value="<?php echo $var_row['id']; ?>" <?php if ($var_row['id'] == $row['variants_id']) echo "selected"; ?>><?php echo $var_row['var_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $var_result->free();
                                         }
-                                        $var_result->free();
-                                    }
-                                    ?>
-                                </select>
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="row mb-3">

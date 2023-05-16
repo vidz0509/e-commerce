@@ -23,25 +23,24 @@ require('../header.php');
                     <div class="card">
                         <div class="card-body">
                             <div style="margin-bottom: 45px;">
-                                <a href="../cateories/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
+                                <a href="/e-commerce/admin/products/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
-                            <table class="table table-bordered" id="table_id">
+                            <table class="table table-bordered datatable"  id="table_id">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
+                                        <th>Price</th>
                                         <th>Stock</th>
-                                        <th>Variants</th>
-                                        <th>Attributes</th>
                                         <th>Created on</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,pdt_name,stock,variants,attribute,created_on from products ORDER BY id DESC";
+                                    $query = "SELECT id,pdt_name,stock,price,created_on from products ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -52,10 +51,9 @@ require('../header.php');
                                             <tr>
                                                 <td><?php echo $i; ?></td>
                                                 <td><?php echo $row['pdt_name']; ?></td>
+                                                <td><?php echo $row['price']; ?></td>
                                                 <td><?php echo $row['stock']; ?></td>
-                                                <td><?php echo $row['variants']; ?></td>
-                                                <td><?php echo $row['attribute']; ?></td>
-                                                <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
+                                                <td><?php echo date('d-M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

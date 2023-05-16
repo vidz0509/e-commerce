@@ -8,13 +8,17 @@ if (isset($_POST['edit'])) {
 
     $p_name =  $_POST['p_name'];
 
+    $price =  $_POST['price'];
+
     $stock =  $_POST['stock'];
+
+    $category =  $_POST['categories'];
 
     $variants =  $_POST['variants'];
 
     $attributes =  $_POST['attributes'];
     
-        $ptd_query = "Update products Set pdt_name='$p_name',stock='$stock',variants='$variants',attribute='$attributes',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
+        $ptd_query = "Update products Set pdt_name='$p_name',stock='$stock',price='$price',category='$category',variant='$variants',attribute='$attributes',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
 
     if (mysqli_query($conn, $ptd_query)) {
         $message = '<div class="alert alert-success">Product updated successfully!</div>';
@@ -33,7 +37,7 @@ $row = mysqli_fetch_assoc($result);
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Products</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/products/all.php">Products</a></li>
                 <li class="breadcrumb-item">Edit Products</li>
             </ol>
         </nav>
@@ -60,7 +64,7 @@ $row = mysqli_fetch_assoc($result);
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Stock</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Stock</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="stock" value="<?php echo $row['stock']; ?>" 
                                     class="form-control" required />
@@ -68,18 +72,76 @@ $row = mysqli_fetch_assoc($result);
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Variants</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="variants" value="<?php echo $row['variants']; ?>" 
+                                    <input type="text" name="price" value="<?php echo $row['price']; ?>" 
                                     class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Attributes</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Categories</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="attributes" value="<?php echo $row['attribute']; ?>" 
-                                    class="form-control" required />
+                                    <select class="form-select" name="categories" id="categories">
+                                        <?php
+                                        $query = "SELECT *  from categories";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option class="form-control" value="<?php echo $row['id']; ?>"><?php echo $row['cat_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="variants" id="variants">
+                                        <?php
+                                        $query = "SELECT *  from variants";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Attributes</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="attributes" id="attributes">
+                                        <?php
+                                        $query = "SELECT *  from attributes";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['attribute_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 

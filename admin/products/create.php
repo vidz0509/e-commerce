@@ -4,18 +4,46 @@ include("../header.php");
 
 if (isset($_POST['add_products'])) {
 
+    $is_uploaded = false;
+
+    if (isset($_FILES["file_upload"]["name"]) && $_FILES["file_upload"]["name"] != "") {
+
+        $filename = $_FILES["file_upload"]["name"];
+
+        $tempname = $_FILES["file_upload"]["tmp_name"];
+
+        $folder = "../products/images/" . $filename;
+
+        if (move_uploaded_file($tempname, $folder)) {
+
+            $is_uploaded = true;
+
+            echo "<h3>  Image uploaded successfully!</h3>";
+        } else {
+
+            echo "<h3>  Failed to upload image!</h3>";
+        }
+    }
+
     $p_name =  $_POST['p_name'];
 
     $stock = $_POST['stock'];
+
+    $price = $_POST['price'];
+
+    $categories = $_POST['categories'];
 
     $variants = $_POST['variants'];
 
     $attributes = $_POST['attributes'];
 
     $current_user_id = $_SESSION['id'];
-
-    $sql = "insert into products (pdt_name,stock,variants,attribute,created_by,created_on,is_active) values('$p_name','$stock','$variants','$attributes',$current_user_id,now(),true)";
-
+    if ($is_uploaded == true) {
+    $sql = "insert into products (pdt_name,price,stock,category,variant,attribute,product_image,created_by,created_on,is_active) values('$p_name','$price','$stock','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
+    }
+    else{
+        $sql = "insert into products (pdt_name,price,stock,category,variant,attribute,created_by,created_on,is_active) values('$p_name','$price','$stock','$categories','$variants','$attributes',$current_user_id,now(),true)";
+    }
     if (mysqli_query($conn, $sql)) {
         $message = 'Product added successfully!';
     } else {
@@ -30,7 +58,7 @@ if (isset($_POST['add_products'])) {
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Products</li>
+                <li class="breadcrumb-item"><a href="/e-commerce/admin/products/all.php">Products</a></li>
                 <li class="breadcrumb-item active">Add New</li>
             </ol>
         </nav>
@@ -58,23 +86,91 @@ if (isset($_POST['add_products'])) {
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Product Stock</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="price" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Stock</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="stock" class="form-control" required />
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Categories</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="categories" id="categories">
+                                        <?php
+                                        $query = "SELECT *  from categories";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option class="form-control" value="<?php echo $row['id']; ?>"><?php echo $row['cat_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="variants" class="form-control" required />
+                                    <select class="form-select" name="variants" id="variants">
+                                        <?php
+                                        $query = "SELECT *  from variants";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Attributes</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="attributes" class="form-control" required />
+                                    <select class="form-select" name="attributes" id="attributes">
+                                        <?php
+                                        $query = "SELECT *  from attributes";
+
+                                        if ($result = $conn->query($query)) {
+                                            $i = 0;
+                                            /* fetch associative array */
+                                            while ($row = $result->fetch_assoc()) {
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['attribute_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Product Image</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
 

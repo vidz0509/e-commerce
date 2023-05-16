@@ -27,7 +27,7 @@ require('../header.php');
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
-                            <table class="table table-bordered" id="table_id">
+                            <table class="table table-bordered datatable" id="table_id">
                                 <thead>
                                     <tr>
                                         <th>#</th>

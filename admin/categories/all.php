@@ -28,13 +28,13 @@ require('../functions.php');
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
-                            <table class="table table-bordered" id="table_id">
+                            <table class="table table-bordered datatable" id="table_id">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Image</th>
                                         <th>Category Name</th>
-                                        <th>Category Description</th>
+                                        <!-- <th>Category Description</th> -->
                                         <th>Created on</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,8 +63,8 @@ require('../functions.php');
                                                     ?>
                                                 </td>
                                                 <td><?php echo $row['cat_name']; ?></td>
-                                                <td><?php echo limit_description($row['cat_description'],200); ?></td>
-                                                <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
+                                                <!-- <td><?php echo limit_description($row['cat_description'],100); ?></td> -->
+                                                <td><?php echo date('d-M-Y', strtotime($row['created_on'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

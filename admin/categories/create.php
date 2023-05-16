@@ -83,6 +83,7 @@ if (isset($_POST['add_category'])) {
                                     <textarea class="tinymce-editor" name="cat_desc"></textarea>
                                 </div>
                             </div>
+                            
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">

@@ -15,24 +15,32 @@ if (isset($_POST['registration'])) {
 
     $cpass =  $_POST['c_pass'];
 
-    $phoneno =  $_POST['phone_no'];
+    $phoneno =  $_POST['phoneno'];
+
+    $address =  $_POST['address'];
+
+    $country =  $_POST['country'];
 
     $utype = 'assistant';
 
-    $sql = "insert into users (uname,fname,lname,email,password,phoneno,created_on,updated_on,last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$pass','$phoneno',now(),now(),now(),'$utype',true)";
+    $sql = "insert into users (uname,fname,lname,email,password,phoneno,address,country,created_on,updated_on,last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$pass','$phoneno','$address','$country',now(),now(),now(),'$utype',true)";
+
     if ($pass === $cpass) {
         mysqli_query($conn, $sql);
         $last_id = mysqli_insert_id($conn);
-            // var_dump($row);
-            $_SESSION['email'] = $email;
-            $_SESSION['id'] = $last_id;
-            $_SESSION['uname'] = $uname;
-            $_SESSION['fname'] = $fname;
-            $_SESSION['utype'] = $utype;
-            header("location:dashboard.php");
-        }
-    } else {
-        echo "Your password didn't match";
+        // var_dump($row);
+        $_SESSION['email'] = $email;
+        $_SESSION['id'] = $last_id;
+        $_SESSION['uname'] = $uname;
+        $_SESSION['fname'] = $fname;
+        $_SESSION['utype'] = $utype;
+        $_SESSION['address'] = $address;
+        $_SESSION['country'] = $country;
+        $_SESSION['phoneno'] = $phoneno;
+        header("location:dashboard.php");
+    }
+} else {
+    echo "Your password didn't match";
 }
 ?>
 
@@ -106,19 +114,19 @@ if (isset($_POST['registration'])) {
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">User Name</label>
                                             <input type="text" name="uname" class="form-control" id="uname" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <div class="invalid-feedback">Please, enter your User name!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">First Name</label>
                                             <input type="text" name="fname" class="form-control" id="fname" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <div class="invalid-feedback">Please, enter your First name!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Last Name</label>
                                             <input type="text" name="lname" class="form-control" id="lname" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <div class="invalid-feedback">Please, enter your Last name!</div>
                                         </div>
 
                                         <div class="col-12">
@@ -130,19 +138,32 @@ if (isset($_POST['registration'])) {
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Password</label>
                                             <input type="password" name="pass" class="form-control" id="pass" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <div class="invalid-feedback">Please, enter your Password!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Confirm Password</label>
                                             <input type="password" name="c_pass" class="form-control" id="c_pass" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <div class="invalid-feedback">Please, enter your Password Again!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Phone No.</label>
-                                            <input type="text" name="phone_no" class="form-control" id="phone_no" required>
-                                            <div class="invalid-feedback">Please, enter your name!</div>
+                                            <input type="text" name="phoneno" class="form-control" id="phoneno" required>
+                                            <div class="invalid-feedback">Please, enter your Phone no!</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="inputEmail" class="form-label">Address</label>
+                                            <div class="col-sm-12">
+                                                <textarea class="form-control" name="address"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="yourName" class="form-label">Country</label>
+                                            <input type="text" name="country" class="form-control" id="country" required>
+                                            <div class="invalid-feedback">Please, enter your Country!</div>
                                         </div>
 
                                         <!-- <div class="col-12">

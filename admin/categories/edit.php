@@ -4,6 +4,7 @@ include("../header.php");
 $id = $_GET['id'];
 
 if (isset($_POST['edit'])) {
+
     $current_user_id = $_SESSION['id'];
 
     $cat_name =  $_POST['cat_name'];
@@ -16,7 +17,7 @@ if (isset($_POST['edit'])) {
     
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "../categories/images/" . $filename;
+        $folder = "../categories/images/". $filename;
         
         if (move_uploaded_file($tempname, $folder)) {
             $cat_query = "Update categories Set cat_name='$cat_name', cat_description='$cat_desc', image='$folder',updated_by = $current_user_id,updated_on = now() where id='$id'";

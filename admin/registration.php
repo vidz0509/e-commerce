@@ -3,6 +3,26 @@ require("session.php");
 
 if (isset($_POST['registration'])) {
 
+    $is_uploaded = false;
+
+    if (isset($_FILES["file_upload"]["name"]) && $_FILES["file_upload"]["name"] != "") {
+
+        $filename = $_FILES["file_upload"]["name"];
+
+        $tempname = $_FILES["file_upload"]["tmp_name"];
+
+        $folder = "./user_images/" . $filename;
+
+        if (move_uploaded_file($tempname, $folder)) {
+
+            $is_uploaded = true;
+
+            echo "<h3>  Image uploaded successfully!</h3>";
+        } else {
+            echo "<h3>  Failed to upload image!</h3>";
+        }
+    }
+
     $uname =  $_POST['uname'];
 
     $fname =  $_POST['fname'];
@@ -23,7 +43,11 @@ if (isset($_POST['registration'])) {
 
     $utype = 'assistant';
 
-    $sql = "insert into users (uname,fname,lname,email,password,phoneno,address,country,created_on,updated_on,last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$pass','$phoneno','$address','$country',now(),now(),now(),'$utype',true)";
+    if ($is_uploaded == true) {
+        $sql = "insert into users (uname,fname,lname,email,u_image,password,phoneno,address,country,created_on,last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$folder','$pass','$phoneno','$address','$country',now(),now(),'$utype',true)";
+    } else {
+        $sql = "insert into users (uname,fname,lname,email,password,phoneno,address,country,created_on,=last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$pass','$phoneno','$address','$country',now(),now(),'$utype',true)";
+    }
 
     if ($pass === $cpass) {
         mysqli_query($conn, $sql);
@@ -105,12 +129,21 @@ if (isset($_POST['registration'])) {
 
                                 <div class="card-body">
 
+
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                                         <p class="text-center small">Enter your personal details to create account</p>
                                     </div>
 
-                                    <form method="post" class="row g-3 needs-validation" novalidate>
+                                    <form method="post" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+
+                                        <div class="col-12">
+                                            <label class="form-label">User Image</label>
+                                            <div class="col-12">
+                                                <input class="form-control" name="file_upload" type="file" id="formFile" />
+                                            </div>
+                                        </div>
+
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">User Name</label>
                                             <input type="text" name="uname" class="form-control" id="uname" required>

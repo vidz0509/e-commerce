@@ -1,5 +1,56 @@
 <?php require('config.php');
 include('header.php');
+
+$id = $_GET['id'];
+
+if (isset($_POST['edit_user'])) {
+
+    $fname =  $_POST['fname'];
+
+    $utype =  $_POST['utype'];
+
+    $country =  $_POST['country'];
+
+    $address =  $_POST['address'];
+
+    $phoneno =  $_POST['phoneno'];
+
+    $email =  $_POST['email'];
+
+    $current_user_id = $_SESSION['id'];
+
+    if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
+
+        $filename = $_FILES["file_upload"]["name"];
+
+        $tempname = $_FILES["file_upload"]["tmp_name"];
+
+        $folder = './user_images/' . $filename;
+
+        if (move_uploaded_file($tempname, $folder)) {
+            $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
+            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id='$id'";
+        } else {
+            echo '<div class="alert alert-danger">Failed to upload image!</div>';
+        }
+    } else {
+        $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
+        email='$email',updated_on = now(),last_login = now() where id='$id'";
+    }
+
+    echo $user_query;
+
+    if (mysqli_query($conn, $user_query)) {
+        $message = '<div class="alert alert-success">User updated successfully!</div>';
+    } else {
+        $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
+    }
+}
+
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
+$row = mysqli_fetch_assoc($result);
+
 ?>
 
 <main id="main" class="main">
@@ -22,7 +73,7 @@ include('header.php');
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <img src="<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
                         <h2><?php echo $_SESSION['uname']; ?></h2>
                         <h3><?php echo $_SESSION['utype']; ?></h3>
 
@@ -102,58 +153,55 @@ include('header.php');
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="assets/img/profile-img.jpg" alt="Profile">
-                                            <div class="pt-2">
-                                                <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                                            </div>
+                                            <img src="<?php echo $row['u_image']; ?>" alt="Profile">
+                                            <input class="form-control" name="file_upload" type="file" id="formFile" />
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" class="form-control" id="fullName" value="<?php echo $_SESSION['fname']; ?>">
+                                            <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fname']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">USer Type</label>
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">User Type</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="job" type="text" class="form-control" id="Job" value="<?php echo $_SESSION['utype']; ?>">
+                                            <input name="utype" type="text" class="form-control" id="Job" value="<?php echo $row['user_type']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="country" type="text" class="form-control" id="Country" value="<?php echo $_SESSION['country']; ?>">
+                                            <input name="country" type="text" class="form-control" id="Country" value="<?php echo $row['country']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="Address" value="<?php echo $_SESSION['address']; ?>">
+                                            <input name="address" type="text" class="form-control" id="Address" value="<?php echo $row['address']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text" class="form-control" id="Phone" value="<?php echo $_SESSION['phoneno']; ?>">
+                                            <input name="phoneno" type="text" class="form-control" id="Phone" value="<?php echo $row['phoneno']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="Email" value="<?php echo $_SESSION['email']; ?>">
+                                            <input name="email" type="email" class="form-control" id="Email" value="<?php echo $row['email']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="submit" name="edit_user" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form><!-- End Profile Edit Form -->
 

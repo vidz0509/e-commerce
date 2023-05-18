@@ -70,6 +70,11 @@ require("config.php");
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <?php
+                        $sql = "SELECT * FROM users where id = ".$_SESSION['id'];
+                        $result = $conn->query($sql);
+                        $row = mysqli_fetch_assoc($result);
+                        ?>
                         <img src="<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">

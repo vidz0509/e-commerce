@@ -29,13 +29,13 @@ if (isset($_POST['edit_user'])) {
 
         if (move_uploaded_file($tempname, $folder)) {
             $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
-            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id='$id'";
+            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id=".$_SESSION['id'];
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
         $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
-        email='$email',updated_on = now(),last_login = now() where id='$id'";
+        email='$email',updated_on = now(),last_login = now() where id=".$_SESSION['id'];
     }
 
     echo $user_query;
@@ -47,7 +47,7 @@ if (isset($_POST['edit_user'])) {
     }
 }
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users where id = ".$_SESSION['id'];
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 

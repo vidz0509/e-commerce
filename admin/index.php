@@ -5,7 +5,7 @@ if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
 
-    $pass = $_POST['pass'];
+    $pass = $_POST['password'];
 
     $sql =  "select * from users where email='$email' and password='$pass'";
 
@@ -16,6 +16,7 @@ if (isset($_POST['login'])) {
         $_SESSION['email'] = $row['email'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['uname'] = $row['uname'];
+        $_SESSION['password'] = $row['password'];
         $_SESSION['fname'] = $row['fname'];
         $_SESSION['utype'] = $row['user_type'];
         $_SESSION['address'] = $row['address'];
@@ -105,7 +106,7 @@ if (isset($_POST['login'])) {
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="pass" class="form-control" id="pass" required>
+                                            <input type="password" name="password" class="form-control" id="pass" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
 

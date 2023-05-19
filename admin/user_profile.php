@@ -29,15 +29,14 @@ if (isset($_POST['edit_user'])) {
 
         if (move_uploaded_file($tempname, $folder)) {
             $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
-            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id=".$_SESSION['id'];
+            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
         $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
-        email='$email',updated_on = now(),last_login = now() where id=".$_SESSION['id'];
+        email='$email',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
     }
-
     echo $user_query;
 
     if (mysqli_query($conn, $user_query)) {
@@ -47,7 +46,40 @@ if (isset($_POST['edit_user'])) {
     }
 }
 
-$sql = "SELECT * FROM users where id = ".$_SESSION['id'];
+$sql = "SELECT * FROM users where id = " . $_SESSION['id'];
+$result = $conn->query($sql);
+$row = mysqli_fetch_assoc($result);
+
+?>
+
+<?php
+
+if (isset($_POST['edit_pass'])) {
+
+    $curpass =  $_POST['curpassword'];
+
+    $newpass =  $_POST['newpassword'];
+
+    $renewpass =  $_POST['renewpassword'];
+
+    if ($curpass === $_SESSION['password']) {
+        if ($newpass === $renewpass) {
+            $pass_query = "Update users set password = '$newpass' where id = " . $_SESSION['id'];
+        } else {
+            echo "password didn't match";
+        }
+
+        echo $pass_query;
+
+        if (mysqli_query($conn, $pass_query)) {
+            $message = '<div class="alert alert-success">Password updated successfully!</div>';
+        } else {
+            $message = '<div class="alert alert-danger">Your Password is Not Matched.' . $sql . '</div>';
+        }
+    }
+}
+
+$sql = "SELECT * FROM users where id = " . $_SESSION['id'];
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -64,7 +96,11 @@ $row = mysqli_fetch_assoc($result);
                 <li class="breadcrumb-item active">Profile</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
+
+    <?php if (isset($message)) : ?>
+        <div class="alert alert-success"><?php echo $message; ?></div>
+    <?php endif; ?>
 
     <section class="section profile">
         <div class="row">
@@ -86,7 +122,7 @@ $row = mysqli_fetch_assoc($result);
 
                 <div class="card">
                     <div class="card-body pt-3">
-                        <!-- Bordered Tabs -->
+
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
@@ -148,7 +184,7 @@ $row = mysqli_fetch_assoc($result);
 
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                                <!-- Profile Edit Form -->
+
                                 <form method="post" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -203,18 +239,18 @@ $row = mysqli_fetch_assoc($result);
                                     <div class="text-center">
                                         <button type="submit" name="edit_user" class="btn btn-primary">Save Changes</button>
                                     </div>
-                                </form><!-- End Profile Edit Form -->
+                                </form>
 
                             </div>
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
-                                <!-- Change Password Form -->
+
                                 <form method="post" enctype="multipart/form-data">
 
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control" id="currentPassword">
+                                            <input name="curpassword" type="password" class="form-control" id="currentPassword">
                                         </div>
                                     </div>
 
@@ -233,13 +269,13 @@ $row = mysqli_fetch_assoc($result);
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Change Password</button>
+                                        <button type="submit" name="edit_pass" class="btn btn-primary">Change Password</button>
                                     </div>
-                                </form><!-- End Change Password Form -->
+                                </form>
 
                             </div>
 
-                        </div><!-- End Bordered Tabs -->
+                        </div>
 
                     </div>
                 </div>
@@ -248,6 +284,6 @@ $row = mysqli_fetch_assoc($result);
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 
 <?php include('footer.php'); ?>

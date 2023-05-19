@@ -31,7 +31,7 @@ if (isset($_POST['registration'])) {
 
     $email =  $_POST['email'];
 
-    $pass =  $_POST['pass'];
+    $pass =  $_POST['password'];
 
     $cpass =  $_POST['c_pass'];
 
@@ -56,6 +56,7 @@ if (isset($_POST['registration'])) {
         $_SESSION['email'] = $email;
         $_SESSION['id'] = $last_id;
         $_SESSION['uname'] = $uname;
+        $_SESSION['password'] = $pass;
         $_SESSION['fname'] = $fname;
         $_SESSION['utype'] = $utype;
         $_SESSION['address'] = $address;
@@ -170,7 +171,7 @@ if (isset($_POST['registration'])) {
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">Password</label>
-                                            <input type="password" name="pass" class="form-control" id="pass" required>
+                                            <input type="password" name="password" class="form-control" id="pass" required>
                                             <div class="invalid-feedback">Please, enter your Password!</div>
                                         </div>
 

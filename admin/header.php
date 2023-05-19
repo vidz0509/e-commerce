@@ -17,15 +17,12 @@ require("config.php");
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
     <link href="/e-commerce/admin/assets/img/favicon.png" rel="icon">
     <link href="/e-commerce/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
     <link href="https:/fonts.gstatic.com" rel="preconnect">
     <link href="https:/fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="/e-commerce/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/e-commerce/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/e-commerce/admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -34,21 +31,13 @@ require("config.php");
     <link href="/e-commerce/admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/e-commerce/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="/e-commerce/admin/assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Mar 09 2023 with Bootstrap v5.2.3
-  * Template URL: https:/bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https:/bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
 
-    <!-- ======= Header ======= -->
+
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
@@ -56,7 +45,7 @@ require("config.php");
                 <img src="/e-commerce/admin/assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">NiceAdmin</span>
             </a>
-        </div><!-- End Logo -->
+        </div>
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -65,13 +54,13 @@ require("config.php");
                     <a class="nav-link nav-icon search-bar-toggle " href="#">
                         <i class="bi bi-search"></i>
                     </a>
-                </li><!-- End Search Icon-->
+                </li>
 
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <?php
-                        $sql = "SELECT * FROM users where id = ".$_SESSION['id'];
+                        $sql = "SELECT * FROM users where id = " . $_SESSION['id'];
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
@@ -128,15 +117,13 @@ require("config.php");
                             </a>
                         </li>
 
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                    </ul>
+                </li>
 
             </ul>
-        </nav><!-- End Icons Navigation -->
+        </nav>
 
-    </header><!-- End Header -->
-
-    <!-- ======= Sidebar ======= -->
+    </header>
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
@@ -146,7 +133,7 @@ require("config.php");
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
@@ -222,4 +209,4 @@ require("config.php");
 
         </ul>
 
-    </aside><!-- End Sidebar-->
+    </aside>

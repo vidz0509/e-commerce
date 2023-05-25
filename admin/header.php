@@ -64,7 +64,7 @@ require("config.php");
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <img src="<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
+                        <img src="/e-commerce/admin/<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">
                             <?php echo $_SESSION['fname']; ?> </span>
@@ -88,13 +88,6 @@ require("config.php");
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/e-commerce/admin/user_profile.php">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

@@ -65,16 +65,11 @@ if (isset($_POST['edit_pass'])) {
     if ($curpass === $_SESSION['password']) {
         if ($newpass === $renewpass) {
             $pass_query = "Update users set password = '$newpass' where id = " . $_SESSION['id'];
-        } else {
-            echo "password didn't match";
-        }
-
-        echo $pass_query;
-
-        if (mysqli_query($conn, $pass_query)) {
-            $message = '<div class="alert alert-success">Password updated successfully!</div>';
-        } else {
-            $message = '<div class="alert alert-danger">Your Password is Not Matched.' . $sql . '</div>';
+            if (mysqli_query($conn, $pass_query)) {
+                $message = '<div class="alert alert-success">Password updated successfully!</div>';
+            } else {
+                $message = '<div class="alert alert-danger">Your Password is Not Matched.' . $sql . '</div>';
+            }
         }
     }
 }

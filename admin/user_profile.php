@@ -68,9 +68,13 @@ if (isset($_POST['edit_pass'])) {
             if (mysqli_query($conn, $pass_query)) {
                 $message = '<div class="alert alert-success">Password updated successfully!</div>';
             } else {
-                $message = '<div class="alert alert-danger">Your Password is Not Matched.' . $sql . '</div>';
+                $message = '<div class="alert alert-danger">Something went wrong!</div>';
             }
+        }else {
+            $message = '<div class="alert alert-danger">Your Password is Not Matched.</div>';
         }
+    }else {
+        $message = '<div class="alert alert-danger">Your Current Password is Incorrect!</div>';
     }
 }
 
@@ -125,7 +129,8 @@ $row = mysqli_fetch_assoc($result);
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
+                                    Profile</button>
                             </li>
 
                             <li class="nav-item">
@@ -182,7 +187,8 @@ $row = mysqli_fetch_assoc($result);
 
                                 <form method="post" enctype="multipart/form-data">
                                     <div class="row mb-3">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
+                                            Image</label>
                                         <div class="col-md-8 col-lg-9">
                                             <img src="<?php echo $row['u_image']; ?>" alt="Profile">
                                             <input class="form-control" name="file_upload" type="file" id="formFile" />
@@ -232,7 +238,8 @@ $row = mysqli_fetch_assoc($result);
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" name="edit_user" class="btn btn-primary">Save Changes</button>
+                                        <button type="submit" name="edit_user" class="btn btn-primary">Save
+                                            Changes</button>
                                     </div>
                                 </form>
 
@@ -243,28 +250,32 @@ $row = mysqli_fetch_assoc($result);
                                 <form method="post" enctype="multipart/form-data">
 
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
+                                            Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="curpassword" type="password" class="form-control" id="currentPassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
+                                            Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="newpassword" type="password" class="form-control" id="newPassword">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
+                                            Password</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="renewpassword" type="password" class="form-control" id="renewPassword">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" name="edit_pass" class="btn btn-primary">Change Password</button>
+                                        <button type="submit" name="edit_pass" class="btn btn-primary">Change
+                                            Password</button>
                                     </div>
                                 </form>
 

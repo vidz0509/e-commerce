@@ -1,8 +1,6 @@
 <?php require('config.php');
 include('header.php');
 
-$id = $_GET['id'];
-
 if (isset($_POST['edit_user'])) {
 
     $fname =  $_POST['fname'];
@@ -46,13 +44,6 @@ if (isset($_POST['edit_user'])) {
     }
 }
 
-$sql = "SELECT * FROM users where id = " . $_SESSION['id'];
-$result = $conn->query($sql);
-$row = mysqli_fetch_assoc($result);
-
-?>
-
-<?php
 
 if (isset($_POST['edit_pass'])) {
 
@@ -62,7 +53,15 @@ if (isset($_POST['edit_pass'])) {
 
     $renewpass =  $_POST['renewpassword'];
 
-    if ($curpass === $_SESSION['password']) {
+    $userid = $_SESSION['id'];
+
+    $sql =  "select * from users where id='$userid'";
+
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    echo $row['password'];
+
+    if ($curpass == trim($row['password'])) {
         if ($newpass === $renewpass) {
             $pass_query = "Update users set password = '$newpass' where id = " . $_SESSION['id'];
             if (mysqli_query($conn, $pass_query)) {
@@ -78,6 +77,7 @@ if (isset($_POST['edit_pass'])) {
     }
 }
 
+echo $sql;
 $sql = "SELECT * FROM users where id = " . $_SESSION['id'];
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);

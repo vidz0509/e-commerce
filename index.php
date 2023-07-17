@@ -1,11 +1,8 @@
 <?php
-
 require("../e-commerce/admin/config.php");
 require("header.php");
-
 ?>
 
-<!-- Carousel Start -->
 <div class="container-fluid mb-3">
     <div class="row px-xl-5">
         <div class="col-lg-8">
@@ -24,8 +21,7 @@ require("header.php");
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                     magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                    href="#">Shop Now</a>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -37,8 +33,7 @@ require("header.php");
                                     Fashion</h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                     magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                    href="#">Shop Now</a>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -50,8 +45,7 @@ require("header.php");
                                 </h1>
                                 <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                     magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                    href="#">Shop Now</a>
+                                <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -78,10 +72,7 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Carousel End -->
 
-
-<!-- Featured Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5 pb-3">
         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -110,13 +101,9 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Featured End -->
 
-
-<!-- Categories Start -->
 <div class="container-fluid pt-5">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
-            class="bg-secondary pr-3">Categories</span></h2>
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
     <div class="row px-xl-5 pb-3">
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
             <a class="text-decoration-none" href="">
@@ -125,7 +112,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-1.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Dresses</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -138,7 +125,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-2.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Shirts</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -151,7 +138,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-3.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Jeans</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -164,7 +151,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-4.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Swimwear</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -177,7 +164,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-4.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Sleepwear</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -190,7 +177,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-3.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Sportswear</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -203,7 +190,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-2.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Jumpsuits</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -216,7 +203,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-1.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Blazers</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -229,7 +216,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-2.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Jackets</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -242,7 +229,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-1.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>Shoes</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -255,7 +242,7 @@ require("header.php");
                         <img class="img-fluid" src="img/cat-4.jpg" alt="">
                     </div>
                     <div class="flex-fill pl-3">
-                        <h6>Category Name</h6>
+                        <h6>gadgets</h6>
                         <small class="text-body">100 Products</small>
                     </div>
                 </div>
@@ -276,10 +263,7 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Categories End -->
 
-
-<!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
             Products</span></h2>
@@ -304,7 +288,7 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <small class="fa fa-star text-primary mr-1"></small>
                         <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>  
+                        <small class="fa fa-star text-primary mr-1"></small>
                         <small class="fa fa-star text-primary mr-1"></small>
                         <small class="fa fa-star text-primary mr-1"></small>
                         <small>(99)</small>
@@ -510,10 +494,7 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Products End -->
 
-
-<!-- Offer Start -->
 <div class="container-fluid pt-5 pb-3">
     <div class="row px-xl-5">
         <div class="col-md-6">
@@ -538,10 +519,7 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Offer End -->
 
-
-<!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent
             Products</span></h2>
@@ -772,10 +750,7 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Products End -->
 
-
-<!-- Vendor Start -->
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
         <div class="col">
@@ -808,8 +783,6 @@ require("header.php");
         </div>
     </div>
 </div>
-<!-- Vendor End -->
-
 
 <?php
 

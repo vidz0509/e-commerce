@@ -61,7 +61,10 @@ if (isset($_POST['edit_pass'])) {
     $row = $result->fetch_assoc();
     echo $row['password'];
 
-    if ($curpass == trim($row['password'])) {
+    if ($curpass == $renewpass) {
+        $message = '<div class="alert alert-secondary">Current password and new password cannot be same!</div>';
+    } 
+    elseif ($curpass == trim($row['password'])) {
         if ($newpass === $renewpass) {
             $pass_query = "Update users set password = '$newpass' where id = " . $_SESSION['id'];
             if (mysqli_query($conn, $pass_query)) {
@@ -98,7 +101,7 @@ $row = mysqli_fetch_assoc($result);
     </div>
 
     <?php if (isset($message)) : ?>
-    <div class="alert alert-success"><?php echo $message; ?></div>
+        <?php echo $message; ?>
     <?php endif; ?>
 
     <section class="section profile">
@@ -125,8 +128,7 @@ $row = mysqli_fetch_assoc($result);
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab"
-                                    data-bs-target="#profile-overview">Overview</button>
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                             </li>
 
                             <li class="nav-item">
@@ -135,8 +137,7 @@ $row = mysqli_fetch_assoc($result);
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab"
-                                    data-bs-target="#profile-change-password">Change Password</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                             </li>
 
                         </ul>
@@ -152,7 +153,7 @@ $row = mysqli_fetch_assoc($result);
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['fname']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['fname']; ?></div>
                                     </div>
 
                                     <div class="row">
@@ -162,22 +163,22 @@ $row = mysqli_fetch_assoc($result);
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Country</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['country']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['country']; ?></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['address']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['address']; ?></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['phoneno']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['phoneno']; ?></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['email']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['email']; ?></div>
                                     </div>
 
                                 </form>
@@ -200,48 +201,42 @@ $row = mysqli_fetch_assoc($result);
                                     <div class="row mb-3">
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fname" type="text" class="form-control" id="fullName"
-                                                value="<?php echo $row['fname']; ?>">
+                                            <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fname']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">User Type</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="utype" type="text" class="form-control" id="Job"
-                                                value="<?php echo $row['user_type']; ?>">
+                                            <input name="utype" type="text" class="form-control" id="Job" value="<?php echo $row['user_type']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="country" type="text" class="form-control" id="Country"
-                                                value="<?php echo $row['country']; ?>">
+                                            <input name="country" type="text" class="form-control" id="Country" value="<?php echo $row['country']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="Address"
-                                                value="<?php echo $row['address']; ?>">
+                                            <input name="address" type="text" class="form-control" id="Address" value="<?php echo $row['address']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phoneno" type="text" class="form-control" id="Phone"
-                                                value="<?php echo $row['phoneno']; ?>">
+                                            <input name="phoneno" type="text" class="form-control" id="Phone" value="<?php echo $row['phoneno']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="Email"
-                                                value="<?php echo $row['email']; ?>">
+                                            <input name="email" type="email" class="form-control" id="Email" value="<?php echo $row['email']; ?>">
                                         </div>
                                     </div>
 
@@ -261,8 +256,7 @@ $row = mysqli_fetch_assoc($result);
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="curpassword" type="password" class="form-control"
-                                                id="currentPassword" required>
+                                            <input name="curpassword" type="password" class="form-control" id="currentPassword" required>
                                         </div>
                                     </div>
 
@@ -270,8 +264,7 @@ $row = mysqli_fetch_assoc($result);
                                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control"
-                                                id="newPassword" required>
+                                            <input name="newpassword" type="password" class="form-control" id="newPassword" required>
                                         </div>
                                     </div>
 
@@ -279,8 +272,7 @@ $row = mysqli_fetch_assoc($result);
                                         <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control"
-                                                id="renewPassword" required>
+                                            <input name="renewpassword" type="password" class="form-control" id="renewPassword" required>
                                         </div>
                                     </div>
 

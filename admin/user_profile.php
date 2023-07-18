@@ -5,8 +5,6 @@ if (isset($_POST['edit_user'])) {
 
     $fname =  $_POST['fname'];
 
-    $utype =  $_POST['utype'];
-
     $country =  $_POST['country'];
 
     $address =  $_POST['address'];
@@ -26,13 +24,13 @@ if (isset($_POST['edit_user'])) {
         $folder = './user_images/' . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
-            $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
+            $user_query = "Update users Set fname='$fname',country='$country',address='$address',phoneno='$phoneno',
             email='$email',u_image='$folder',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
-        $user_query = "Update users Set fname='$fname', user_type='$utype',country='$country',address='$address',phoneno='$phoneno',
+        $user_query = "Update users Set fname='$fname',country='$country',address='$address',phoneno='$phoneno',
         email='$email',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
     }
     echo $user_query;
@@ -202,13 +200,6 @@ $row = mysqli_fetch_assoc($result);
                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fname']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">User Type</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="utype" type="text" class="form-control" id="Job" value="<?php echo $row['user_type']; ?>">
                                         </div>
                                     </div>
 

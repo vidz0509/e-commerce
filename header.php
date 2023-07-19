@@ -44,7 +44,7 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
                             Account</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
+                            <a href="login.php"><button class="dropdown-item" type="button">Log in</button></a>
                             <button class="dropdown-item" type="button">Sign up</button>
                         </div>
                     </div>

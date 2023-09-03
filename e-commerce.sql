@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 08:10 PM
+-- Generation Time: Sep 03, 2023 at 08:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,7 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `attribute` (
   `id` int(20) NOT NULL,
   `category_id` int(20) NOT NULL,
-  `attribute_name` varchar(20) NOT NULL
+  `attribute_name` varchar(20) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `updated_by` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -41,8 +46,22 @@ CREATE TABLE `attribute` (
 
 CREATE TABLE `category` (
   `id` int(20) NOT NULL,
-  `category_name` int(20) NOT NULL
+  `category_name` varchar(20) NOT NULL,
+  `category_description` text NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `created_by` varchar(50) NOT NULL,
+  `updated_by` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 'test 1', '<p>testing</p>', '../categories/images/cool-dark-wallpapers.jpg', '1', '1', '2023-09-02 20:29:24', '2023-09-02 20:50:58', 1);
 
 -- --------------------------------------------------------
 
@@ -54,7 +73,12 @@ CREATE TABLE `product` (
   `id` int(20) NOT NULL,
   `p_name` varchar(20) NOT NULL,
   `p_image` varchar(50) NOT NULL,
-  `p_description` varchar(100) NOT NULL
+  `p_description` varchar(100) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `updated_by` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -68,7 +92,12 @@ CREATE TABLE `product_attribute` (
   `p_id` int(20) NOT NULL,
   `attribute_id` int(20) NOT NULL,
   `price` int(20) NOT NULL,
-  `image` varchar(50) NOT NULL
+  `image` varchar(50) NOT NULL,
+  `created_by` varchar(20) NOT NULL,
+  `updated_by` varchar(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88,8 +117,17 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_by` varchar(20) NOT NULL,
-  `updated_by` varchar(20) NOT NULL
+  `updated_by` varchar(20) NOT NULL,
+  `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
+(1, 'vairag_bavadiya', 'vairagbavadiya@gmail.com', '9909409153', '7607', 1, '1.jpg', '2023-09-02 16:43:07', '2023-09-02 16:44:00', '1', '1', 0),
+(16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, '', '2023-09-02 18:16:36', '2023-09-02 18:16:36', '16', '16', 1);
 
 -- --------------------------------------------------------
 
@@ -101,6 +139,15 @@ CREATE TABLE `user_type` (
   `id` int(20) NOT NULL,
   `type_name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_type`
+--
+
+INSERT INTO `user_type` (`id`, `type_name`) VALUES
+(1, 'admin'),
+(2, 'assistant'),
+(3, 'customer');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +185,7 @@ ALTER TABLE `product_attribute`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_id` (`u_type_id`);
+  ADD KEY `fk_usertype_id` (`u_type_id`);
 
 --
 -- Indexes for table `user_type`
@@ -160,7 +207,7 @@ ALTER TABLE `attribute`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -178,13 +225,13 @@ ALTER TABLE `product_attribute`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user_type`
 --
 ALTER TABLE `user_type`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -207,7 +254,7 @@ ALTER TABLE `product_attribute`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`u_type_id`) REFERENCES `user_type` (`id`);
+  ADD CONSTRAINT `fk_usertype_id` FOREIGN KEY (`u_type_id`) REFERENCES `user_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

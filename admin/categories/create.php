@@ -17,7 +17,7 @@ if (isset($_POST['add_category'])) {
         if (move_uploaded_file($tempname, $folder)) {
 
             $is_uploaded = true;
-            
+
             echo "<h3>  Image uploaded successfully!</h3>";
         } else {
             echo "<h3>  Failed to upload image!</h3>";
@@ -31,9 +31,9 @@ if (isset($_POST['add_category'])) {
     $current_user_id = $_SESSION['id'];
 
     if ($is_uploaded == true) {
-        $sql = "insert into categories (cat_name,image,cat_description,created_by,created_on) values('$cat_name','$folder','$cat_desc',$current_user_id,now())";
+        $sql = "insert into category (category_name,image,category_description,created_by,created_at,updated_by,updated_at,is_active) values('$cat_name','$folder','$cat_desc','$current_user_id',now(),'$current_user_id',now(),true)";
     } else {
-        $sql = "insert into categories (cat_name,cat_description,created_by,created_on) values('$cat_name','$cat_desc',$current_user_id,now())";
+        $sql = "insert into category (category_name,category_description,created_by,created_at,updated_by,updated_at,is_active) values('$cat_name','$cat_desc',$current_user_id,now(),'$current_user_id',now(),true)";
     }
 
     if (mysqli_query($conn, $sql)) {
@@ -83,11 +83,11 @@ if (isset($_POST['add_category'])) {
                                     <textarea class="tinymce-editor" name="cat_desc"></textarea>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="file_upload" type="file" id="formFile"/>
+                                    <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
                             <div class="row mb-3">

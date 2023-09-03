@@ -11,31 +11,31 @@ if (isset($_POST['edit'])) {
 
     $cat_desc =  $_POST['cat_desc'];
 
-    if(isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != ""){
+    if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
 
         $filename = $_FILES["file_upload"]["name"];
-    
+
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "../categories/images/". $filename;
-        
+        $folder = "../categories/images/" . $filename;
+
         if (move_uploaded_file($tempname, $folder)) {
-            $cat_query = "Update categories Set cat_name='$cat_name', cat_description='$cat_desc', image='$folder',updated_by = $current_user_id,updated_on = now() where id='$id'";
+            $cat_query = "Update category Set category_name='$cat_name', category_description='$cat_desc', image='$folder',updated_by = $current_user_id,updated_at = now() where id='$id'";
             // echo "<h3>  Image uploaded successfully!</h3>";
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
-    }else{
-        $cat_query = "Update categories Set cat_name='$cat_name', cat_description='$cat_desc',updated_by = $current_user_id,updated_on = now() where id='$id'";
+    } else {
+        $cat_query = "Update category Set category_name='$cat_name', category_description='$cat_desc',updated_by = $current_user_id,updated_at = now() where id='$id'";
     }
 
     if (mysqli_query($conn, $cat_query)) {
         $message = '<div class="alert alert-success">Category updated successfully!</div>';
     } else {
-        $message = '<div class="alert alert-danger">Something went wrong.' . $sql.'</div>';
+        $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
     }
 }
-$sql = "SELECT * FROM categories where id = " . $id;
+$sql = "SELECT * FROM category where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -68,14 +68,14 @@ $row = mysqli_fetch_assoc($result);
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Category Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="cat_name" value="<?php echo $row['cat_name']; ?>" class="form-control" required />
+                                    <input type="text" name="cat_name" value="<?php echo $row['category_name']; ?>" class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Category Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="tinymce-editor" name="cat_desc"><?php echo $row['cat_description']; ?></textarea>
+                                    <textarea class="tinymce-editor" name="cat_desc"><?php echo $row['category_description']; ?></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">

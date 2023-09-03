@@ -35,20 +35,20 @@ require('../functions.php');
                                         <th>Image</th>
                                         <th>Category Name</th>
                                         <!-- <th>Category Description</th> -->
-                                        <th>Created on</th>
+                                        <th>Created at</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,cat_name,image,cat_description,created_on from categories ORDER BY id DESC";
+                                    $query = "SELECT id,category_name,image,category_description,created_at from category ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
                                         /* fetch associative array */
                                         while ($row = $result->fetch_assoc()) {
                                             $i++;
-                                            ?>
+                                    ?>
 
                                             <tr>
                                                 <td><?php echo $i; ?></td>
@@ -62,9 +62,9 @@ require('../functions.php');
                                                     }
                                                     ?>
                                                 </td>
-                                                <td><?php echo $row['cat_name']; ?></td>
-                                                <!-- <td><?php echo limit_description($row['cat_description'],100); ?></td> -->
-                                                <td><?php echo date('d-M-Y', strtotime($row['created_on'])); ?></td>
+                                                <td><?php echo $row['category_name']; ?></td>
+                                                <!-- <td><?php echo limit_description($row['category_description'], 100); ?></td> -->
+                                                <td><?php echo date('d-M-Y', strtotime($row['created_at'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

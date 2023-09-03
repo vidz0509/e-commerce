@@ -25,10 +25,6 @@ if (isset($_POST['registration'])) {
 
     $uname =  $_POST['uname'];
 
-    $fname =  $_POST['fname'];
-
-    $lname =  $_POST['lname'];
-
     $email =  $_POST['email'];
 
     $pass =  $_POST['password'];
@@ -37,17 +33,17 @@ if (isset($_POST['registration'])) {
 
     $phoneno =  $_POST['phoneno'];
 
-    $address =  $_POST['address'];
+    $current_user_id = $_SESSION['id'];
 
-    $country =  $_POST['country'];
-
-    $utype = 'assistant';
+    $u_type_id = 2;
 
     if ($is_uploaded == true) {
-        $sql = "insert into users (uname,fname,lname,email,u_image,password,phoneno,address,country,created_on,last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$folder','$pass','$phoneno','$address','$country',now(),now(),'$utype',true)";
+        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$user_type_id',now(),'$last_id',now(),'$last_id',true)";
     } else {
-        $sql = "insert into users (uname,fname,lname,email,password,phoneno,address,country,created_on,=last_login,user_type,is_active) values ('$uname','$fname','$lname','$email','$pass','$phoneno','$address','$country',now(),now(),'$utype',true)";
+        $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),'$last_id',now(),'$last_id',true)";
     }
+
+    echo $sql;
 
     if ($pass === $cpass) {
         mysqli_query($conn, $sql);
@@ -57,15 +53,10 @@ if (isset($_POST['registration'])) {
         $_SESSION['id'] = $last_id;
         $_SESSION['uname'] = $uname;
         $_SESSION['password'] = $pass;
-        $_SESSION['fname'] = $fname;
         $_SESSION['utype'] = $utype;
-        $_SESSION['address'] = $address;
-        $_SESSION['country'] = $country;
         $_SESSION['phoneno'] = $phoneno;
         header("location:dashboard.php");
     }
-} else {
-    echo "Your password didn't match";
 }
 ?>
 
@@ -130,7 +121,6 @@ if (isset($_POST['registration'])) {
 
                                 <div class="card-body">
 
-
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                                         <p class="text-center small">Enter your personal details to create account</p>
@@ -138,29 +128,17 @@ if (isset($_POST['registration'])) {
 
                                     <form method="post" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
 
-                                        <div class="col-12">
+                                        <!-- <div class="col-12">
                                             <label class="form-label">User Image</label>
                                             <div class="col-12">
                                                 <input class="form-control" name="file_upload" type="file" id="formFile" />
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-12">
                                             <label for="yourName" class="form-label">User Name</label>
                                             <input type="text" name="uname" class="form-control" id="uname" required>
                                             <div class="invalid-feedback">Please, enter your User name!</div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="yourName" class="form-label">First Name</label>
-                                            <input type="text" name="fname" class="form-control" id="fname" required>
-                                            <div class="invalid-feedback">Please, enter your First name!</div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="yourName" class="form-label">Last Name</label>
-                                            <input type="text" name="lname" class="form-control" id="lname" required>
-                                            <div class="invalid-feedback">Please, enter your Last name!</div>
                                         </div>
 
                                         <div class="col-12">
@@ -187,19 +165,6 @@ if (isset($_POST['registration'])) {
                                             <div class="invalid-feedback">Please, enter your Phone no!</div>
                                         </div>
 
-                                        <div class="col-12">
-                                            <label for="inputEmail" class="form-label">Address</label>
-                                            <div class="col-sm-12">
-                                                <textarea class="form-control" name="address"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="yourName" class="form-label">Country</label>
-                                            <input type="text" name="country" class="form-control" id="country" required>
-                                            <div class="invalid-feedback">Please, enter your Country!</div>
-                                        </div>
-
                                         <!-- <div class="col-12">
                                             <label for="yourName" class="form-label">User Type</label>
                                             <select name="utype" class="form-control" id="utype" required>
@@ -208,6 +173,7 @@ if (isset($_POST['registration'])) {
                                                 <option value="Vendor">Vendor</option>
                                             </select>
                                         </div> -->
+
                                         <div class="col-12">
                                             <button name="registration" class="btn btn-primary w-100" type="submit">Create Account</button>
                                         </div>

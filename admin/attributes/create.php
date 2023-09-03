@@ -29,14 +29,14 @@ if (isset($_POST['add_attributes'])) {
 
     $price = $_POST['price'];
 
-    $variants = $_POST['variants'];
-
     $current_user_id = $_SESSION['id'];
 
+    $category_id = 1;
+
     if ($is_uploaded == true) {
-        $sql = "insert into attributes (attribute_name,variants_id,att_image,price,created_by,created_on,is_active) values('$attribute_name','$variants','$folder','$price',$current_user_id,now(),true)";
+        $sql = "insert into attribute (attribute_name,category_id,created_by,attribute_image,created_at,is_active) values('$attribute_name','$category_id','$current_user_id','$folder',now(),true)";
     } else {
-        $sql = "insert into attributes (attribute_name,variants_id,price,created_by,created_on,is_active) values('$attribute_name','$variants','$price',$current_user_id,now(),true)";
+        $sql = "insert into attribute (attribute_name,category_id,created_by,created_at,is_active) values('$attribute_name','$category_id', '$current_user_id',now(),true)";
     }
 
     if (mysqli_query($conn, $sql)) {
@@ -92,13 +92,13 @@ if (isset($_POST['add_attributes'])) {
                                 <div class="col-sm-10">
                                     <select class="form-select" name="variants" id="variants">
                                         <?php
-                                        $query = "SELECT *  from variants";
+                                        $query = "SELECT *  from category";
 
                                         if ($result = $conn->query($query)) {
                                             $i = 0;
                                             /* fetch associative array */
                                             while ($row = $result->fetch_assoc()) {
-                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['category_name']; ?></option>
                                         <?php
                                                 $i++;
                                             }

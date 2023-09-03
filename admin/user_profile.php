@@ -61,8 +61,7 @@ if (isset($_POST['edit_pass'])) {
 
     if ($curpass == $renewpass) {
         $message = '<div class="alert alert-secondary">Current password and new password cannot be same!</div>';
-    } 
-    elseif ($curpass == trim($row['password'])) {
+    } elseif ($curpass == trim($row['password'])) {
         if ($newpass === $renewpass) {
             $pass_query = "Update users set password = '$newpass' where id = " . $_SESSION['id'];
             if (mysqli_query($conn, $pass_query)) {

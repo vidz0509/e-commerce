@@ -97,7 +97,7 @@ if (isset($_POST['login'])) {
                                     <form method="post" class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">email</label>
+                                            <label for="yourUsername" class="form-label">E-mail</label>
                                             <div class="input-group has-validation">
                                                 <input type="email" name="email" class="form-control" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>

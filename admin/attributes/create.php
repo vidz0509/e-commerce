@@ -115,7 +115,7 @@ if (isset($_POST['add_attributes'])) {
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="add_attributes" class="btn btn-primary">Add Attributes</button>

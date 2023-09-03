@@ -33,12 +33,10 @@ if (isset($_POST['registration'])) {
 
     $phoneno =  $_POST['phoneno'];
 
-    $current_user_id = $_SESSION['id'];
-
     $u_type_id = 2;
 
     if ($is_uploaded == true) {
-        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$user_type_id',now(),'$last_id',now(),'$last_id',true)";
+        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),'$last_id',now(),'$last_id',true)";
     } else {
         $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),'$last_id',now(),'$last_id',true)";
     }

@@ -33,14 +33,13 @@ require('../header.php');
                                         <th>#</th>
                                         <th>Image</th>
                                         <th>Attribute Name</th>
-                                        <th>Price</th>
                                         <th>Created on</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,attribute_name,att_image,price,created_on from attributes ORDER BY id DESC";
+                                    $query = "SELECT id,attribute_name,attribute_image,created_at from attribute ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -51,17 +50,16 @@ require('../header.php');
                                                 <td><?php echo $i; ?></td>
                                                 <td>
                                                     <?php
-                                                    if ($row['att_image'] == "")
+                                                    if ($row['attribute_image'] == "")
                                                         echo "-";
                                                     else { ?>
-                                                        <img height="120" width="120" src=" <?php echo $row['att_image']; ?>">
+                                                        <img height="120" width="120" src=" <?php echo $row['attribute_image']; ?>">
                                                     <?php
                                                     }
                                                     ?>
                                                 </td>
-                                                <td><?php echo $row['attribute_name']; ?></td>
-                                                <td><?php echo $row['price']; ?></td>                                                
-                                                <td><?php echo date('M-Y', strtotime($row['created_on'])); ?></td>
+                                                <td><?php echo $row['attribute_name']; ?></td>                                              
+                                                <td><?php echo Date('d-m-y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

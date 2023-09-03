@@ -21,13 +21,13 @@ if (isset($_POST['edit'])) {
         $folder = "../attributes/images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
-            $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price',variants_id = '$variants',att_image='$folder',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
+            $att_query = "Update attribute Set attribute_name='$attribute_name',category_id = '$category_id',attribute_image='$folder',updated_by = $current_user_id,updated_at = now(),is_active = true where id='$id'";
             // echo "<h3>  Image uploaded successfully!</h3>";
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
-        $att_query = "Update attributes Set attribute_name='$attribute_name', price='$price',variants_id = '$variants',updated_by = $current_user_id,updated_on = now(),is_active = true where id='$id'";
+        $att_query = "Update attribute Set attribute_name='$attribute_name',category_id = '$category_id',updated_by = $current_user_id,updated_at = now(),is_active = true where id='$id'";
     }
 
     if (mysqli_query($conn, $att_query)) {
@@ -36,7 +36,7 @@ if (isset($_POST['edit'])) {
         $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
     }
 }
-$sql = "SELECT * FROM attributes where id = " . $id;
+$sql = "SELECT * FROM attribute where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 ?>

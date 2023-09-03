@@ -3,13 +3,9 @@ include('header.php');
 
 if (isset($_POST['edit_user'])) {
 
-    $fname =  $_POST['fname'];
+    $u_name =  $_POST['u_name'];
 
-    $country =  $_POST['country'];
-
-    $address =  $_POST['address'];
-
-    $phoneno =  $_POST['phoneno'];
+    $phoneno =  $_POST['phone_no'];
 
     $email =  $_POST['email'];
 
@@ -24,14 +20,14 @@ if (isset($_POST['edit_user'])) {
         $folder = './user_images/' . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
-            $user_query = "Update users Set fname='$fname',country='$country',address='$address',phoneno='$phoneno',
-            email='$email',u_image='$folder',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
+            $user_query = "Update users Set u_name='$u_name',phone_no='$phoneno',
+            email='$email',u_profile='$folder',updated_at = now() where id=" . $_SESSION['id'];
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     } else {
-        $user_query = "Update users Set fname='$fname',country='$country',address='$address',phoneno='$phoneno',
-        email='$email',updated_on = now(),last_login = now() where id=" . $_SESSION['id'];
+        $user_query = "Update users Set u_name='$u_name',phone_no='$phoneno',
+        email='$email',updated_at = now()where id=" . $_SESSION['id'];
     }
     echo $user_query;
 
@@ -108,9 +104,9 @@ $row = mysqli_fetch_assoc($result);
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
-                        <h2><?php echo $_SESSION['uname']; ?></h2>
-                        <h3><?php echo $_SESSION['utype']; ?></h3>
+                        <img src="<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
+                        <h2><?php echo $row['u_name']; ?></h2>
+                        <h3><?php echo $row['u_type_id']; ?></h3>
 
                     </div>
                 </div>
@@ -149,28 +145,18 @@ $row = mysqli_fetch_assoc($result);
                                     <h5 class="card-title">Profile Details</h5>
 
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $row['fname']; ?></div>
+                                        <div class="col-lg-3 col-md-4 label ">User Name</div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['u_name']; ?></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">User Type</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $_SESSION['utype']; ?></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Country</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $row['country']; ?></div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $row['address']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['u_type_id']; ?></div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $row['phoneno']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['phone_no']; ?></div>
                                     </div>
 
                                     <div class="row">
@@ -190,36 +176,22 @@ $row = mysqli_fetch_assoc($result);
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                             Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="<?php echo $row['u_image']; ?>" alt="Profile">
+                                            <img src="<?php echo $row['u_profile']; ?>" alt="Profile">
                                             <input class="form-control" name="file_upload" type="file" id="formFile" />
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">User Name</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fname" type="text" class="form-control" id="fullName" value="<?php echo $row['fname']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="country" type="text" class="form-control" id="Country" value="<?php echo $row['country']; ?>">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="Address" value="<?php echo $row['address']; ?>">
+                                            <input name="u_name" type="text" class="form-control" id="username" value="<?php echo $row['u_name']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phoneno" type="text" class="form-control" id="Phone" value="<?php echo $row['phoneno']; ?>">
+                                            <input name="phone_no" type="text" class="form-control" id="Phone" value="<?php echo $row['phone_no']; ?>">
                                         </div>
                                     </div>
 

@@ -88,9 +88,9 @@ if (isset($_POST['add_attributes'])) {
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">category</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" name="variants" id="variants">
+                                    <select class="form-select" name="category" id="category">
                                         <?php
                                         $query = "SELECT *  from category";
 

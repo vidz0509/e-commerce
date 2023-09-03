@@ -63,17 +63,17 @@ require("config.php");
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        <img src="/e-commerce/admin/<?php echo $row['u_image']; ?>" alt="Profile" class="rounded-circle">
+                        <img src="/e-commerce/admin/<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">
-                            <?php echo $_SESSION['fname']; ?> </span>
+                            <?php echo $row['u_name']; ?> </span>
 
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6><?php echo $_SESSION['uname']; ?></h6>
-                            <span><?php echo $_SESSION['utype']; ?></span>
+                            <h6><?php echo $row['u_name']; ?></h6>
+                            <span><?php echo $row['u_type_id']; ?></span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

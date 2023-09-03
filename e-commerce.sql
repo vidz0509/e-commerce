@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 08:42 AM
+-- Generation Time: Sep 03, 2023 at 12:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,12 +31,20 @@ CREATE TABLE `attribute` (
   `id` int(20) NOT NULL,
   `category_id` int(20) NOT NULL,
   `attribute_name` varchar(20) NOT NULL,
+  `attribute_image` varchar(50) NOT NULL,
   `created_by` varchar(20) NOT NULL,
   `updated_by` varchar(20) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attribute`
+--
+
+INSERT INTO `attribute` (`id`, `category_id`, `attribute_name`, `attribute_image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 1, 'test', '../attributes/images/aA6XvF.webp', '1', '', '2023-09-03 14:25:23', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +134,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
-(1, 'vairag_bavadiya', 'vairagbavadiya@gmail.com', '9909409153', '7607', 1, '1.jpg', '2023-09-02 16:43:07', '2023-09-02 16:44:00', '1', '1', 0),
+(1, 'vairag_bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/1768169.webp', '2023-09-02 16:43:07', '2023-09-03 15:41:19', '1', '1', 1),
 (16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, '', '2023-09-02 18:16:36', '2023-09-02 18:16:36', '16', '16', 1);
 
 -- --------------------------------------------------------
@@ -201,7 +209,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `attribute`
 --
 ALTER TABLE `attribute`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`

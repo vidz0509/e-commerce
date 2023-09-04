@@ -63,6 +63,7 @@ require("config.php");
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
+                        
                         <img src="/e-commerce/admin/<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">

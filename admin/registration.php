@@ -36,23 +36,19 @@ if (isset($_POST['registration'])) {
     $u_type_id = 2;
 
     if ($is_uploaded == true) {
-        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),'$last_id',now(),'$last_id',true)";
+        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),now(),true)";
     } else {
-        $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,created_by,updated_at,updated_by,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),'$last_id',now(),'$last_id',true)";
+        $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),now(),true)";
     }
-
-    echo $sql;
+    mysqli_query($conn, $sql);
 
     if ($pass === $cpass) {
-        mysqli_query($conn, $sql);
+
         $last_id = mysqli_insert_id($conn);
-        // var_dump($row);
-        $_SESSION['email'] = $email;
         $_SESSION['id'] = $last_id;
-        $_SESSION['uname'] = $uname;
-        $_SESSION['password'] = $pass;
-        $_SESSION['utype'] = $utype;
-        $_SESSION['phoneno'] = $phoneno;
+        $update_user = "update users set created_by = $last_id, updated_by = $last_id where id= $last_id";
+        mysqli_query($conn, $update_user);
+        // var_dump($row);
         header("location:dashboard.php");
     }
 }

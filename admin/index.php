@@ -13,15 +13,8 @@ if (isset($_POST['login'])) {
     $row = $result->fetch_assoc();
     if ($row) {
         // var_dump($row);
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['id'] = $row['id'];
         $_SESSION['uname'] = $row['uname'];
         $_SESSION['utype'] = $row['utype'];
-        $_SESSION['fname'] = $row['fname'];
-        $_SESSION['utype'] = $row['user_type'];
-        $_SESSION['address'] = $row['address'];
-        $_SESSION['country'] = $row['country'];
-        $_SESSION['phoneno'] = $row['phoneno'];
         header("location:dashboard.php");
     } else {
         echo "Email or password is incorrect!";

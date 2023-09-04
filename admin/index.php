@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
     if ($row) {
         // var_dump($row);
         $_SESSION['id'] = $row['id'];
-        $_SESSION['utype'] = $row['utype'];
+        $_SESSION['u_type_id'] = $row['u_type_id'];
         header("location:dashboard.php");
     } else {
         echo "Email or password is incorrect!";

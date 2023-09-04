@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
     $row = $result->fetch_assoc();
     if ($row) {
         // var_dump($row);
-        $_SESSION['uname'] = $row['uname'];
+        $_SESSION['id'] = $row['id'];
         $_SESSION['utype'] = $row['utype'];
         header("location:dashboard.php");
     } else {

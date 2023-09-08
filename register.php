@@ -1,23 +1,39 @@
 <?php
 require("../e-commerce/admin/config.php");
 
-if (isset($_POST['login'])) {
+if (isset($_POST['register'])) {
 
-    $email = $_POST['email'];
+    $uname =  $_POST['uname'];
 
-    $pass = $_POST['password'];
+    $email =  $_POST['email'];
 
-    $sql =  "select * from users where email='$email' and password='$pass'";
+    $pass =  $_POST['password'];
 
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    if ($row) {
-        // var_dump($row);
-        $_SESSION['id'] = $row['id'];
-        $_SESSION['utype'] = $row['user_type'];
-        header("location:index.php");
+    $cpass =  $_POST['cpass'];
+
+    $phoneno =  $_POST['phoneno'];
+
+    $u_type_id = 3;
+
+    if ($is_uploaded == true) {
+        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),now(),true)";
     } else {
-        echo "Email or password is incorrect!";
+        $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),now(),true)";
+    }
+    mysqli_query($conn, $sql);
+
+    if ($pass === $cpass) {
+
+        $last_id = mysqli_insert_id($conn);
+        $_SESSION['id'] = $last_id;
+        $update_user = "update users set created_by = $last_id, updated_by = $last_id where id= $last_id";
+        mysqli_query($conn, $update_user);
+        // var_dump($row);
+        header("location:index.php");
+     
+    }
+    else {
+        $msg = "please enter your user id and password current password";
     }
 }
 ?>
@@ -68,14 +84,23 @@ if (isset($_POST['login'])) {
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                        <p class="text-center small">Enter your username & password to login</p>
+                                        <h5 class="card-title text-center pb-0 fs-4">Make An Account</h5>
+                                        <p class="text-center small">Fill the below fields</p>
                                     </div>
 
                                     <form method="post" class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">email</label>
+                                            <label for="yourUsername" class="form-label">Name</label>
+                                            <div class="input-group has-validation">
+                                                <input type="email" name="uname" class="form-control" id="yourUsername" required>
+                                                <div class="invalid-feedback">Please enter your username.</div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12">
+                                            <label for="yourUsername" class="form-label">Email</label>
                                             <div class="input-group has-validation">
                                                 <input type="email" name="email" class="form-control" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
@@ -89,11 +114,24 @@ if (isset($_POST['login'])) {
                                         </div>
 
                                         <div class="col-12">
-                                            <br><button name="login" class="btn btn-primary w-100" type="submit">Login</button>
+                                            <label for="yourPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" name="cpass" class="form-control" id="pass" required>
+                                            <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
+
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">Phone No.</label>
+                                            <input type="password" name="phoneno" class="form-control" id="pass" required>
+                                            <div class="invalid-feedback">Please enter your password!</div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <br><button name="register" class="btn btn-primary w-100" type="submit">Login</button>
+                                        </div>
+
                                         <div class="col-12">
                                             <br>
-                                            <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>
+                                            <p class="small mb-0">Don't have account? <a href="login.php">Already have an account</a></p>
                                         </div>
                                     </form>
 

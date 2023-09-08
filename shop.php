@@ -3,7 +3,6 @@ require("../e-commerce/admin/config.php");
 require("header.php");
 ?>
 
-
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">

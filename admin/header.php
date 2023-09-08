@@ -59,7 +59,7 @@ require("config.php");
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <?php
-                        $sql = "SELECT * FROM users where id = " . $_SESSION['id'];
+                        $sql = "SELECT u.id,u.u_name,u.email,u.phone_no,u.u_profile,u.is_active,ut.type_name FROM users as u,user_type as ut where u.id = " . $_SESSION['id'];
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
@@ -74,7 +74,7 @@ require("config.php");
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6><?php echo $row['u_name']; ?></h6>
-                            <span><?php echo $row['u_type_id']; ?></span>
+                            <span><?php echo $row['type_name']; ?></span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

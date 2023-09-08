@@ -74,7 +74,7 @@ if (isset($_POST['edit_pass'])) {
 }
 
 echo $sql;
-$sql = "SELECT * FROM users where id = " . $_SESSION['id'];
+$sql = "SELECT u.id,u.u_name,u.email,u.phone_no,u.u_profile,u.is_active,ut.type_name FROM users as u,user_type as ut where u.id = " . $_SESSION['id'];
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -106,7 +106,7 @@ $row = mysqli_fetch_assoc($result);
 
                         <img src="<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
                         <h2><?php echo $row['u_name']; ?></h2>
-                        <h3><?php echo $row['u_type_id']; ?></h3>
+                        <h3><?php echo $row['type_name']; ?></h3>
 
                     </div>
                 </div>
@@ -151,7 +151,7 @@ $row = mysqli_fetch_assoc($result);
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">User Type</div>
-                                        <div class="col-lg-9 col-md-8"><?php echo $row['u_type_id']; ?></div>
+                                        <div class="col-lg-9 col-md-8"><?php echo $row['type_name']; ?></div>
                                     </div>
 
                                     <div class="row">

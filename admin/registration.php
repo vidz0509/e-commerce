@@ -1,6 +1,8 @@
 <?php require("config.php");
 require("session.php");
 
+$msg = "";
+
 if (isset($_POST['registration'])) {
 
     $is_uploaded = false;
@@ -17,9 +19,9 @@ if (isset($_POST['registration'])) {
 
             $is_uploaded = true;
 
-            echo "<h3>  Image uploaded successfully!</h3>";
+            $msg = "image updated successfully";
         } else {
-            echo "<h3>  Failed to upload image!</h3>";
+            $msg = "please enter your user id and password current password";
         }
     }
 
@@ -50,6 +52,10 @@ if (isset($_POST['registration'])) {
         mysqli_query($conn, $update_user);
         // var_dump($row);
         header("location:dashboard.php");
+     
+    }
+    else {
+        $msg = "please enter your user id and password current password";
     }
 }
 ?>
@@ -167,6 +173,9 @@ if (isset($_POST['registration'])) {
                                                 <option value="Vendor">Vendor</option>
                                             </select>
                                         </div> -->
+                                        <?php if($msg != "") : ?>
+                                            <div class="alert alert-danger"><?php echo $msg ; ?></div>
+                                            <?php endif; ?>
 
                                         <div class="col-12">
                                             <button name="registration" class="btn btn-primary w-100" type="submit">Create Account</button>

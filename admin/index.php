@@ -1,6 +1,8 @@
 <?php require("config.php");
 require("session.php");
 
+$msg = "";
+
 if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
@@ -16,8 +18,9 @@ if (isset($_POST['login'])) {
         $_SESSION['id'] = $row['id'];
         $_SESSION['u_type_id'] = $row['u_type_id'];
         header("location:dashboard.php");
-    } else {
-        echo "Email or password is incorrect!";
+    } 
+    else {
+        $msg = "<div class=alert alert-success >Email or password is incorrect!</div>";
     }
 }
 ?>
@@ -101,10 +104,15 @@ if (isset($_POST['login'])) {
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control" id="pass" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
+                                           
                                         </div>
 
                                         <div class="col-12">
                                             <button name="login" class="btn btn-primary w-100" type="submit">Login</button>
+                                            <?php if($msg != ""):?>
+                                            <div class="alert alert-danger mt-3"><?php echo $msg; ?>
+                                            </div>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>

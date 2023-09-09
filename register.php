@@ -89,12 +89,12 @@ if (isset($_POST['register'])) {
                                         <p class="text-center small">Fill the below fields</p>
                                     </div>
 
-                                    <form method="post" class="row g-3 needs-validation" novalidate>
+                                    <form method="post" class="row g-3 needs-validation" validate>
 
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Name</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="uname" class="form-control" id="yourUsername" required>
+                                                <input type="text" name="uname" class="form-control" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@ if (isset($_POST['register'])) {
                                         </div>
 
                                         <div class="col-12">
-                                            <br><button name="register" class="btn btn-primary w-100" type="submit">Login</button>
+                                            <br><button name="register" class="btn btn-primary w-100" type="submit">Sign In</button>
                                         </div>
 
                                         <div class="col-12">

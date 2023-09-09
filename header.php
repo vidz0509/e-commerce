@@ -1,3 +1,4 @@
+<?php require("session.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +47,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="login.php"><button class="dropdown-item" type="button">Log in</button></a>
                             <button class="dropdown-item" type="button">Sign up</button>
+                            <a href="logout.php"><button class="dropdown-item" type="button">Log out</button></a>
                         </div>
                     </div>
                 </div>

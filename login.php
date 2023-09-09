@@ -1,5 +1,6 @@
 <?php
 require("../e-commerce/admin/config.php");
+require("session.php");
 
 if (isset($_POST['login'])) {
 
@@ -77,14 +78,14 @@ if (isset($_POST['login'])) {
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">email</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="email" class="form-control" id="yourUsername" required>
+                                                <input type="email" name="email" class="form-control" id="email" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="pass" required>
+                                            <input type="password" name="password" class="form-control" id="password" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
 
@@ -93,7 +94,7 @@ if (isset($_POST['login'])) {
                                         </div>
                                         <div class="col-12">
                                             <br>
-                                            <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>
+                                            <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div>
                                     </form>
 

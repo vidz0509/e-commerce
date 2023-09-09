@@ -1,5 +1,6 @@
 <?php
 require("../e-commerce/admin/config.php");
+require("session.php");
 
 if (isset($_POST['register'])) {
 
@@ -121,7 +122,7 @@ if (isset($_POST['register'])) {
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Phone No.</label>
-                                            <input type="password" name="phoneno" class="form-control" id="pass" required>
+                                            <input type="phoneno" name="phoneno" class="form-control" id="phoneno" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
 

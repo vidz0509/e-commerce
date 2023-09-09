@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2023 at 12:12 PM
+-- Generation Time: Sep 09, 2023 at 12:49 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -124,8 +124,8 @@ CREATE TABLE `users` (
   `u_profile` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  `updated_by` varchar(20) NOT NULL,
+  `created_by` int(20) DEFAULT NULL,
+  `updated_by` int(20) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -134,8 +134,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
-(1, 'vairag_bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/1768169.webp', '2023-09-02 16:43:07', '2023-09-03 15:41:19', '1', '1', 1),
-(16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, '', '2023-09-02 18:16:36', '2023-09-02 18:16:36', '16', '16', 1);
+(1, 'vairag_bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-09-08 21:55:45', 1, 1, 1),
+(16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1),
+(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,9 @@ ALTER TABLE `product_attribute`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_usertype_id` (`u_type_id`);
+  ADD KEY `fk_usertype_id` (`u_type_id`),
+  ADD KEY `fk_created_by` (`created_by`),
+  ADD KEY `fk_updated_by` (`updated_by`);
 
 --
 -- Indexes for table `user_type`
@@ -233,7 +236,7 @@ ALTER TABLE `product_attribute`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user_type`
@@ -262,6 +265,8 @@ ALTER TABLE `product_attribute`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
+  ADD CONSTRAINT `fk_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usertype_id` FOREIGN KEY (`u_type_id`) REFERENCES `user_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 

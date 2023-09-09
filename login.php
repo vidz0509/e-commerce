@@ -73,37 +73,37 @@ if (isset($_POST['login'])) {
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
-                                    <form method="post" class="row g-3 needs-validation was-validated" novalidate="">
+                                    <form method="post" class="row g-3 needs-validation" novalidate>
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">E-mail</label>
+                                            <label for="email" class="form-label">E-mail</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="email" class="form-control" id="email" required="" fdprocessedid="6hhrj">
+                                                <input type="email" name="email" class="form-control" id="email" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password" required="" fdprocessedid="qk8vr">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control" id="password" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
-
                                         </div>
 
                                         <div class="col-12">
-                                            <button name="login" class="btn btn-primary w-100" type="submit" fdprocessedid="xrwj7">Login</button>
+                                            <button name="login" class="btn btn-primary w-100" type="submit">Login</button>
+                                            <?php if ($msg != "") : ?>
+                                                <div class="alert alert-danger mt-3"><?php echo $msg; ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>
+                                            <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div>
                                     </form>
 
                                 </div>
                             </div>
-                            <?php if ($msg != "") : ?>
-                                <div class="alert alert-danger m-3"><?php echo $msg; ?>
-                                </div>
-                            <?php endif; ?>
+
                             <div class="credits">
                                 <!-- All the links in the footer should remain intact. -->
                                 <!-- You can delete the links only if you purchased the pro version. -->

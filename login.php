@@ -1,6 +1,7 @@
 <?php
 require("../e-commerce/admin/config.php");
 require("session.php");
+$msg = "";
 
 if (isset($_POST['login'])) {
 
@@ -15,10 +16,10 @@ if (isset($_POST['login'])) {
     if ($row) {
         // var_dump($row);
         $_SESSION['id'] = $row['id'];
-        $_SESSION['utype'] = $row['user_type'];
+        $_SESSION['u_type_id'] = $row['u_type_id'];
         header("location:index.php");
     } else {
-        echo "Email or password is incorrect!";
+        $msg = "Email or password is incorrect!";
     }
 }
 ?>
@@ -72,35 +73,37 @@ if (isset($_POST['login'])) {
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
-
-                                    <form method="post" class="row g-3 needs-validation" novalidate>
+                                    <form method="post" class="row g-3 needs-validation was-validated" novalidate="">
 
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">email</label>
+                                            <label for="yourUsername" class="form-label">E-mail</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="email" class="form-control" id="email" required>
+                                                <input type="email" name="email" class="form-control" id="email" required="" fdprocessedid="6hhrj">
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password" required>
+                                            <input type="password" name="password" class="form-control" id="password" required="" fdprocessedid="qk8vr">
                                             <div class="invalid-feedback">Please enter your password!</div>
+
                                         </div>
 
                                         <div class="col-12">
-                                            <br><button name="login" class="btn btn-primary w-100" type="submit">Login</button>
+                                            <button name="login" class="btn btn-primary w-100" type="submit" fdprocessedid="xrwj7">Login</button>
                                         </div>
                                         <div class="col-12">
-                                            <br>
-                                            <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
+                                            <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>
                                         </div>
                                     </form>
 
                                 </div>
                             </div>
-
+                            <?php if ($msg != "") : ?>
+                                <div class="alert alert-danger m-3"><?php echo $msg; ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="credits">
                                 <!-- All the links in the footer should remain intact. -->
                                 <!-- You can delete the links only if you purchased the pro version. -->

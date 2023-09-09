@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         header("location:dashboard.php");
     } 
     else {
-        $msg = "<div class=alert alert-success >Email or password is incorrect!</div>";
+        $msg = "Email or password is incorrect!</div>";
     }
 }
 ?>
@@ -95,14 +95,14 @@ if (isset($_POST['login'])) {
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">E-mail</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="email" class="form-control" id="yourUsername" required>
+                                                <input type="email" name="email" class="form-control" id="email" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="pass" required>
+                                            <input type="password" name="password" class="form-control" id="password" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                            
                                         </div>

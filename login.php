@@ -73,7 +73,7 @@ if (isset($_POST['login'])) {
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
-                                    <form method="post" class="row g-3 needs-validation" novalidate>
+                                    <form method="post" class="row g-3 needs-validation" validate>
 
                                         <div class="col-12">
                                             <label for="email" class="form-label">E-mail</label>

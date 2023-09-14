@@ -31,15 +31,14 @@ if (isset($_POST['add_products'])) {
 
     $price = $_POST['price'];
 
-    $categories = $_POST['categories'];
-
-    $variants = $_POST['variants'];
+    $pdt_desc = $_POST['pdt_desc'];
 
     $current_user_id = $_SESSION['id'];
+
     if ($is_uploaded == true) {
-        $sql = "insert into products (p_name,price,stock,p_description,category,variant,attribute,p_image,created_at,created_on,is_active) values('$p_name','$price','$category','$stock','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
+        $sql = "insert into product (p_name,price,stock,p_description,p_image,created_at,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
     } else {
-        $sql = "insert into products (p_name,price,stock,p_description,category,variant,attribute,created_at,created_on,is_active) values('$p_name','$price',,'$description','$stock','$categories','$variants','$attributes',$current_user_id,now(),true)";
+        $sql = "insert into product (p_name,price,stock,p_description,created_by,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$current_user_id',now(),true)";
     }
     if (mysqli_query($conn, $sql)) {
         $message = 'Product added successfully!';
@@ -81,6 +80,13 @@ if (isset($_POST['add_products'])) {
                             </div>
 
                             <div class="row mb-3">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Product Description</label>
+                                <div class="col-sm-10">
+                                    <textarea class="tinymce-editor" name="pdt_desc"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="price" class="form-control" required />
@@ -103,9 +109,10 @@ if (isset($_POST['add_products'])) {
 
                             <div class="row mb-3">
                                 <div class="col-sm-6">
-                                    <button type="submit" name="add_variants" class="btn btn-primary">Add Variant</button>
+                                    <button type="submit" name="add_products" class="btn btn-primary">Add Product</button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

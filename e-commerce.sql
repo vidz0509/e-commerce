@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2023 at 03:06 PM
+-- Generation Time: Sep 14, 2023 at 07:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,11 +31,11 @@ CREATE TABLE `attribute` (
   `id` int(20) NOT NULL,
   `category_id` int(20) NOT NULL,
   `attribute_name` varchar(20) NOT NULL,
-  `attribute_image` varchar(50) NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  `updated_by` varchar(20) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `attribute_image` varchar(50) DEFAULT NULL,
+  `created_by` int(20) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -44,7 +44,7 @@ CREATE TABLE `attribute` (
 --
 
 INSERT INTO `attribute` (`id`, `category_id`, `attribute_name`, `attribute_image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 1, 'test', '../attributes/images/aA6XvF.webp', '1', '', '2023-09-03 14:25:23', '0000-00-00 00:00:00', 1);
+(1, 1, 'test', '../attributes/images/aA6XvF.webp', 1, NULL, '2023-09-03 14:25:23', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,8 @@ CREATE TABLE `category` (
   `category_name` varchar(20) NOT NULL,
   `category_description` text NOT NULL,
   `image` varchar(50) NOT NULL,
-  `created_by` varchar(50) NOT NULL,
-  `updated_by` varchar(50) NOT NULL,
+  `created_by` int(50) NOT NULL,
+  `updated_by` int(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `is_active` tinyint(1) NOT NULL
@@ -69,7 +69,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'test 1', '<p>testing</p>', '../categories/images/cool-dark-wallpapers.jpg', '1', '1', '2023-09-02 20:29:24', '2023-09-02 20:50:58', 1);
+(1, 'test 1', '<p>testing</p>', '../categories/images/cool-dark-wallpapers.jpg', 1, 1, '2023-09-02 20:29:24', '2023-09-14 21:34:28', 1);
 
 -- --------------------------------------------------------
 
@@ -80,16 +80,23 @@ INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, 
 CREATE TABLE `product` (
   `id` int(20) NOT NULL,
   `p_name` varchar(20) NOT NULL,
-  `p_image` varchar(50) NOT NULL,
+  `p_image` varchar(50) DEFAULT NULL,
   `p_description` varchar(100) NOT NULL,
   `stock` int(50) NOT NULL,
   `price` int(50) NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  `updated_by` varchar(20) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_by` int(20) DEFAULT NULL,
+  `updated_by` int(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `p_name`, `p_image`, `p_description`, `stock`, `price`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 't-shirts', NULL, '<p>test</p>', 20, 300, 1, NULL, '2023-09-14 21:54:23', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -102,11 +109,11 @@ CREATE TABLE `product_attribute` (
   `p_id` int(20) NOT NULL,
   `attribute_id` int(20) NOT NULL,
   `price` int(20) NOT NULL,
-  `image` varchar(50) NOT NULL,
-  `created_by` varchar(20) NOT NULL,
-  `updated_by` varchar(20) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `created_by` int(20) DEFAULT NULL,
+  `updated_by` int(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -175,19 +182,25 @@ INSERT INTO `user_type` (`id`, `type_name`) VALUES
 --
 ALTER TABLE `attribute`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_category_id` (`category_id`);
+  ADD KEY `fk_category_id` (`category_id`),
+  ADD KEY `fk_att_updated_by` (`created_by`),
+  ADD KEY `fk_upd_by` (`updated_by`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cat_created_by` (`created_by`),
+  ADD KEY `fk_cat_updated_by` (`updated_by`);
 
 --
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_pdt_created_by` (`created_by`),
+  ADD KEY `fk_pdt_updated_by` (`updated_by`);
 
 --
 -- Indexes for table `product_attribute`
@@ -195,7 +208,9 @@ ALTER TABLE `product`
 ALTER TABLE `product_attribute`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_product_id` (`p_id`),
-  ADD KEY `fk_attribute_id` (`attribute_id`);
+  ADD KEY `fk_attribute_id` (`attribute_id`),
+  ADD KEY `fk_p_attr_created_by` (`created_by`),
+  ADD KEY `fk_p_attr_updated_by` (`updated_by`);
 
 --
 -- Indexes for table `users`
@@ -232,7 +247,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_attribute`
@@ -260,13 +275,31 @@ ALTER TABLE `user_type`
 -- Constraints for table `attribute`
 --
 ALTER TABLE `attribute`
-  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_att_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_upd_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `category`
+--
+ALTER TABLE `category`
+  ADD CONSTRAINT `fk_cat_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_cat_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `fk_pdt_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pdt_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product_attribute`
 --
 ALTER TABLE `product_attribute`
   ADD CONSTRAINT `fk_attribute_id` FOREIGN KEY (`attribute_id`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_p_attr_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_p_attr_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`p_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

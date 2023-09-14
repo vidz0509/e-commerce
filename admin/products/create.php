@@ -35,8 +35,6 @@ if (isset($_POST['add_products'])) {
 
     $variants = $_POST['variants'];
 
-    $attributes = $_POST['attributes'];
-
     $current_user_id = $_SESSION['id'];
     if ($is_uploaded == true) {
         $sql = "insert into products (p_name,price,stock,p_description,category,variant,attribute,p_image,created_at,created_on,is_active) values('$p_name','$price','$category','$stock','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
@@ -108,7 +106,6 @@ if (isset($_POST['add_products'])) {
                                     <button type="submit" name="add_variants" class="btn btn-primary">Add Variant</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

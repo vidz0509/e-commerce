@@ -83,12 +83,9 @@ $row = mysqli_fetch_assoc($result);
                                     <button type="submit" name="edit" class="btn btn-primary">edit Products</button>
                                 </div>
                             </div>
-
                         </form><!-- End General Form Elements -->
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

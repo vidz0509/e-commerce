@@ -13,8 +13,7 @@ require('../header.php');
                 <li class="breadcrumb-item active">Products</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
-
+    </div>
     </section>
     <section class="content">
         <div class="container-fluid">

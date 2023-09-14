@@ -39,10 +39,9 @@ if (isset($_POST['add_products'])) {
 
     $current_user_id = $_SESSION['id'];
     if ($is_uploaded == true) {
-    $sql = "insert into products (pdt_name,price,stock,category,variant,attribute,product_image,created_by,created_on,is_active) values('$p_name','$price','$stock','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
-    }
-    else{
-        $sql = "insert into products (pdt_name,price,stock,category,variant,attribute,created_by,created_on,is_active) values('$p_name','$price','$stock','$categories','$variants','$attributes',$current_user_id,now(),true)";
+        $sql = "insert into products (p_name,price,stock,p_description,category,variant,attribute,p_image,created_at,created_on,is_active) values('$p_name','$price','$category','$stock','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
+    } else {
+        $sql = "insert into products (p_name,price,stock,p_description,category,variant,attribute,created_at,created_on,is_active) values('$p_name','$price',,'$description','$stock','$categories','$variants','$attributes',$current_user_id,now(),true)";
     }
     if (mysqli_query($conn, $sql)) {
         $message = 'Product added successfully!';
@@ -67,7 +66,6 @@ if (isset($_POST['add_products'])) {
     <section class="section">
         <div class="row">
             <div class="col-lg-10">
-
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Add Products</h5>
@@ -76,7 +74,6 @@ if (isset($_POST['add_products'])) {
                             <div class="alert alert-success"><?php echo $message; ?></div>
                         <?php endif; ?>
 
-                        <!-- General Form Elements -->
                         <form method="post" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Product Name</label>
@@ -99,93 +96,22 @@ if (isset($_POST['add_products'])) {
                                 </div>
                             </div>
 
-
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Categories</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="categories" id="categories">
-                                        <?php
-                                        $query = "SELECT *  from categories";
-
-                                        if ($result = $conn->query($query)) {
-                                            $i = 0;
-                                            /* fetch associative array */
-                                            while ($row = $result->fetch_assoc()) {
-                                        ?> <option class="form-control" value="<?php echo $row['id']; ?>"><?php echo $row['cat_name']; ?></option>
-                                        <?php
-                                                $i++;
-                                            }
-                                            $result->free();
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="variants" id="variants">
-                                        <?php
-                                        $query = "SELECT *  from variants";
-
-                                        if ($result = $conn->query($query)) {
-                                            $i = 0;
-                                            /* fetch associative array */
-                                            while ($row = $result->fetch_assoc()) {
-                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
-                                        <?php
-                                                $i++;
-                                            }
-                                            $result->free();
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Attributes</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="attributes" id="attributes">
-                                        <?php
-                                        $query = "SELECT *  from attributes";
-
-                                        if ($result = $conn->query($query)) {
-                                            $i = 0;
-                                            /* fetch associative array */
-                                            while ($row = $result->fetch_assoc()) {
-                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['attribute_name']; ?></option>
-                                        <?php
-                                                $i++;
-                                            }
-                                            $result->free();
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Product Image</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
-                            </div>
-
+                            </div>  
 
                             <div class="row mb-3">
                                 <div class="col-sm-6">
-                                    <button type="submit" name="add_products" class="btn btn-primary">Add Products</button>
+                                    <button type="submit" name="add_variants" class="btn btn-primary">Add Variant</button>
                                 </div>
                             </div>
 
-                        </form><!-- End General Form Elements -->
-
+                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

@@ -27,7 +27,7 @@ require('../header.php');
                                 <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
                             </div>
 
-                            <table class="table table-bordered datatable"  id="table_id">
+                            <table class="table table-bordered datatable" id="table_id">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -40,7 +40,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,pdt_name,stock,price,created_on from products ORDER BY id DESC";
+                                    $query = "SELECT id,p_name,stock,price,created_at from product ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -50,7 +50,7 @@ require('../header.php');
                                     ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-                                                <td><?php echo $row['pdt_name']; ?></td>
+                                                <td><?php echo $row['p_name']; ?></td>
                                                 <td><?php echo $row['price']; ?></td>
                                                 <td><?php echo $row['stock']; ?></td>
                                                 <td><?php echo date('d-M-Y', strtotime($row['created_on'])); ?></td>

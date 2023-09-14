@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2023 at 12:49 PM
+-- Generation Time: Sep 14, 2023 at 03:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -82,6 +82,8 @@ CREATE TABLE `product` (
   `p_name` varchar(20) NOT NULL,
   `p_image` varchar(50) NOT NULL,
   `p_description` varchar(100) NOT NULL,
+  `stock` int(50) NOT NULL,
+  `price` int(50) NOT NULL,
   `created_by` varchar(20) NOT NULL,
   `updated_by` varchar(20) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -136,7 +138,13 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
 (1, 'vairag_bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-09-08 21:55:45', 1, 1, 1),
 (16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1),
-(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1);
+(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1),
+(32, '', '', '', '', 3, '', '2023-09-09 16:27:04', '2023-09-09 16:27:04', 32, 32, 1),
+(33, '', '', '', '', 3, '', '2023-09-09 16:27:17', '2023-09-09 16:27:17', 33, 33, 1),
+(34, '', '', '', '', 3, '', '2023-09-09 16:28:27', '2023-09-09 16:28:27', 34, 34, 1),
+(35, '', '', '', '', 3, '', '2023-09-09 16:28:43', '2023-09-09 16:28:43', 35, 35, 1),
+(36, '', '', '', '', 3, '', '2023-09-09 16:29:06', '2023-09-09 16:29:06', 36, 36, 1),
+(37, 'd', '', '', '', 3, '', '2023-09-09 16:29:24', '2023-09-09 16:29:24', 37, 37, 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +244,7 @@ ALTER TABLE `product_attribute`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_type`

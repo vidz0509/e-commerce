@@ -126,6 +126,5 @@ $row = mysqli_fetch_assoc($result);
             </div>
         </div>
     </section>
-
-</main><!-- End #main -->
+</main>
 <?php include("../footer.php"); ?>

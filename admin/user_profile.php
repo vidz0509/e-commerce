@@ -171,8 +171,8 @@ $row = mysqli_fetch_assoc($result);
                             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
 
-                                
-                            <form method="post" enctype="multipart/form-data">
+
+                                <form method="post" enctype="multipart/form-data">
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                             Image</label>

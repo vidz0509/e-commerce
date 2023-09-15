@@ -64,7 +64,7 @@ require('../functions.php');
                                                 </td>
                                                 <td><?php echo $row['category_name']; ?></td>
                                                 <!-- <td><?php echo limit_description($row['category_description'], 100); ?></td> -->
-                                                <td><?php echo date('d-M-Y', strtotime($row['created_at'])); ?></td>
+                                                <td><?php echo date('d-M-Y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

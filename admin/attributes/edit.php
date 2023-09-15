@@ -59,7 +59,7 @@ $row = mysqli_fetch_assoc($result);
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add Attribute</h5>
+                        <h5 class="card-title">Edit Attribute</h5>
 
                         <?php if (isset($message)) : ?>
                             <?php echo $message; ?>

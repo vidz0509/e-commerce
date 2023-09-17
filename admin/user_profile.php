@@ -105,7 +105,8 @@ $row = mysqli_fetch_assoc($result);
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
-                        <h2><?php echo $row['u_name']; ?></h2>
+                        <h2><?php echo $row['u_name']; ?><
+                        /h2>
                         <h3><?php echo $row['type_name']; ?></h3>
 
                     </div>

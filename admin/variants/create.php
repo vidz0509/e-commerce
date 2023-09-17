@@ -31,10 +31,10 @@ if (isset($_POST['add_variants'])) {
 
     if ($is_uploaded == true)
     {
-        $sql = "insert into variants (var_name,var_image,created_by,created_on,is_active) values('$var_name','$folder',$current_user_id,now(),true)"; 
+        $sql = "insert into variants (var_name,var_image,created_by,created_at,is_active) values('$var_name','$folder',$current_user_id,now(),true)"; 
     }
     else{
-        $sql = "insert into variants (var_name,created_by,created_on,is_active) values('$var_name'',$current_user_id,now(),true)";
+        $sql = "insert into variants (var_name,created_by,created_at,is_active) values('$var_name','$current_user_id',now(),true)";
     }
         
 
@@ -91,7 +91,7 @@ if (isset($_POST['add_variants'])) {
                                 </div>
                             </div>
 
-                        </form><!-- End General Form Elements -->
+                        </form>
 
                     </div>
                 </div>

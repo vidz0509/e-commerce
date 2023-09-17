@@ -57,7 +57,7 @@ require('../functions.php');
                                                     if ($row['image'] == "")
                                                         echo "-";
                                                     else { ?>
-                                                        <img height="120" width="120" src=" <?php echo $row['image']; ?>">
+                                                        <img height="150" width="120" src=" <?php echo $row['image']; ?>">
                                                     <?php
                                                     }
                                                     ?>

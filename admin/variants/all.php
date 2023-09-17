@@ -31,7 +31,6 @@ require('../header.php');
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Image</th>
                                         <th>variant Name</th>
                                         <th>Created on</th>
                                         <th>Action</th>
@@ -39,7 +38,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,var_name,var_image,price,created_at from variants ORDER BY id DESC";
+                                    $query = "SELECT id,var_name,created_at from variants ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -50,16 +49,6 @@ require('../header.php');
                                     ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
-
-                                                <td>
-                                                    <?php
-                                                    if ($row['var_image'] == "")
-                                                        echo "-";
-                                                    else { ?>
-                                                        <img height="120" width="120" src=" <?php echo $row['var_image']; ?>">
-                                                    <?php
-                                                    }
-                                                    ?>
                                                 </td>
                                                 <td><?php echo $row['var_name']; ?></td>
                                                 <td><?php echo date('d-m-y h:i A', strtotime($row['created_at'])); ?></td>

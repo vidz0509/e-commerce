@@ -27,22 +27,21 @@ if (isset($_POST['add_attributes'])) {
 
     $attribute_name =  $_POST['attribute_name'];
 
-    $price = $_POST['price'];
-
     $current_user_id = $_SESSION['id'];
 
-    $category_id = 1;
+    $variants_id = $_POST['variants'];
 
     if ($is_uploaded == true) {
-        $sql = "insert into attribute (attribute_name,category_id,created_by,attribute_image,created_at,is_active) values('$attribute_name','$category_id','$current_user_id','$folder',now(),true)";
+        $sql = "insert into attribute (attribute_name,attribute_image,variants_id,created_by,created_at,is_active) values('$attribute_name','$folder','$variants_id','$current_user_id',now(),true)";
+        echo $sql;
     } else {
-        $sql = "insert into attribute (attribute_name,category_id,created_by,created_at,is_active) values('$attribute_name','$category_id', '$current_user_id',now(),true)";
+        $sql = "insert into attribute (attribute_name,variants_id,created_by,created_at,is_active) values('$attribute_name','$variants_id','$current_user_id',now(),true)";
     }
 
     if (mysqli_query($conn, $sql)) {
         $message = 'Attribute added successfully!';
     } else {
-        $message = 'Something went wrong.' . $sql;
+        $message = 'Something went wrong.';
     }
 }
 ?>
@@ -81,24 +80,17 @@ if (isset($_POST['add_attributes'])) {
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Attribute Price</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="price" class="form-control" required />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">category</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="category" id="category">
+                                    <select class="form-select" name="variants" id="variants">
                                         <?php
-                                        $query = "SELECT *  from category";
+                                        $query = "SELECT *  from variants";
 
                                         if ($result = $conn->query($query)) {
                                             $i = 0;
                                             /* fetch associative array */
                                             while ($row = $result->fetch_assoc()) {
-                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['category_name']; ?></option>
+                                        ?> <option value="<?php echo $row['id']; ?>"><?php echo $row['var_name']; ?></option>
                                         <?php
                                                 $i++;
                                             }

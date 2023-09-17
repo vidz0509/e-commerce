@@ -19,13 +19,13 @@ if (isset($_POST['edit_variants'])) {
         $folder = "../variants/images/" . $filename;
         
         if (move_uploaded_file($tempname, $folder)) {
-            $var_query = "Update variants Set var_name='$var_name',var_image='$folder',price='$price',updated_by = $current_user_id,updated_at = now() where id='$id'";
+            $var_query = "Update variants Set var_name='$var_name',updated_by = $current_user_id,updated_at = now() where id='$id'";
             // echo "<h3>  Image uploaded successfully!</h3>";
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
     }else{
-        $var_query = "Update variants Set var_name='$var_name',price='$price',updated_by = $current_user_id,updated_at = now() where id='$id'";
+        $var_query = "Update variants Set var_name='$var_name',updated_by = $current_user_id,updated_at = now() where id='$id'";
     }
 
     if (mysqli_query($conn, $var_query)) {
@@ -69,21 +69,6 @@ $row = mysqli_fetch_assoc($result);
                                 <label for="inputText" class="col-sm-2 col-form-label">Variant Name</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="var_name" value="<?php echo $row['var_name']; ?>" class="form-control" required />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Variant Image</label>
-                                <div class="col-sm-10">
-                                    <img height="120" width="120" src=" <?php echo $row['var_image']; ?>">
-                                    <input class="form-control" name="file_upload" type="file" id="formFile" />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Price</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="price" value="<?php echo $row['price']; ?>" class="form-control" required />
                                 </div>
                             </div>
 

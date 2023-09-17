@@ -27,14 +27,16 @@ if (isset($_POST['add_variants'])) {
 
     $var_name =  $_POST['var_name'];
 
+    $price =  $_POST['price'];
+
     $current_user_id = $_SESSION['id'];
 
     if ($is_uploaded == true)
     {
-        $sql = "insert into variants (var_name,var_image,created_by,created_at,is_active) values('$var_name','$folder',$current_user_id,now(),true)"; 
+        $sql = "insert into variants (var_name,var_image,price,created_by,created_at,is_active) values('$var_name','$folder','$price',$current_user_id,now(),true)"; 
     }
     else{
-        $sql = "insert into variants (var_name,created_by,created_at,is_active) values('$var_name','$current_user_id',now(),true)";
+        $sql = "insert into variants (var_name,price,created_by,created_at,is_active) values('$var_name','$price','$current_user_id',now(),true)";
     }
         
 
@@ -53,7 +55,7 @@ if (isset($_POST['add_variants'])) {
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/variants/all.php">Variants</a></li>
-                <li class="breadcrumb-item active">Add New</li>
+                <li class="breadcrumb-item active">Add Variants</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -64,7 +66,7 @@ if (isset($_POST['add_variants'])) {
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add Variant</h5>
+                        <h5 class="card-title">Edit Variant</h5>
 
                         <?php if (isset($message)) : ?>
                             <div class="alert alert-success"><?php echo $message; ?></div>
@@ -85,9 +87,17 @@ if (isset($_POST['add_variants'])) {
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="price" class="form-control" required />
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
-                                    <button type="submit" name="add_variants" class="btn btn-primary">Add Variant</button>
+                                    <button type="submit" name="add_variants" class="btn btn-primary">Add variants</button>
                                 </div>
                             </div>
 

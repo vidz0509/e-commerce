@@ -39,7 +39,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,var_name,var_image,created_on from variants ORDER BY id DESC";
+                                    $query = "SELECT id,var_name,var_image,price,created_at from variants ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -62,7 +62,7 @@ require('../header.php');
                                                     ?>
                                                 </td>
                                                 <td><?php echo $row['var_name']; ?></td>
-                                                <td><?php echo date('d-m-y h:i A', strtotime($row['created_on'])); ?></td>
+                                                <td><?php echo date('d-m-y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
                                                     <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>

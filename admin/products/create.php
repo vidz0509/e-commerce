@@ -188,11 +188,24 @@ if (isset($_POST['add_products'])) {
 
 </main><!-- End #main -->
 <?php include("../footer.php"); ?>
-<script type="text/jaavscript">
-    $(document).ready(function(){
-        $(document).on("change",".section #variants",function(){
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on("change", ".section #variants", function() {
             var variant = $(this).val();
-            console.log(variant);
+            $.ajax({
+                url: "getAttributes.php",
+                dataType: 'json',
+                method: 'post',
+                data: {
+                    variant: variant
+                },
+                success: function(result) {
+                    console.log(result.content);
+                    if(result.content && result.content != ""){
+                       $(document).find(".section #attribute").empty().append(result.content); 
+                    }
+                }
+            })
         });
     });
 </script>

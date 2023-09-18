@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 06:27 PM
+-- Generation Time: Sep 18, 2023 at 08:30 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -99,6 +99,7 @@ INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, 
 CREATE TABLE `product` (
   `id` int(20) NOT NULL,
   `category_id` int(20) NOT NULL,
+  `variants_id` int(20) NOT NULL,
   `attribute_id` int(20) NOT NULL,
   `p_name` varchar(20) NOT NULL,
   `p_image` varchar(50) DEFAULT NULL,
@@ -111,6 +112,25 @@ CREATE TABLE `product` (
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_name`, `p_image`, `p_description`, `stock`, `price`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
+(9, 7, 6, 14, 't-shirts', '../products/images/cartoon-1.jpg', '<p>test</p>', 20, 350, 1, NULL, '2023-09-18 22:38:20', NULL, 1),
+(10, 7, 6, 15, 'Shirt', '../products/images/shirt.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 10, 400, 1, NULL, '2023-09-18 22:48:46', NULL, 1),
+(11, 7, 7, 18, 'Jeans For Men', '../products/images/jeans.jpg', '<h1 class=\"a-size-large a-spacing-none\"><span id=\"productTitle\" class=\"a-size-large product-title-wo', 20, 350, 1, NULL, '2023-09-18 23:12:06', NULL, 1),
+(12, 7, 7, 21, 'Boxer For Men', '../products/images/BOXER.jpg', '<ul class=\"a-unordered-list a-vertical a-spacing-mini\">\r\n<li class=\"a-spacing-mini\"><span class=\"a-l', 20, 525, 1, NULL, '2023-09-18 23:15:55', NULL, 1),
+(13, 7, 8, 25, 'Half Sleeves Shirt F', '../products/images/half sleeves shirt.jpg', '<p>Pump up your style statement with this slim-fit shirt in any formal or casual occasion. Shirts wi', 20, 380, 1, NULL, '2023-09-18 23:21:09', NULL, 1),
+(14, 7, 8, 27, 'Stripe Shirt For Men', '../products/images/stripe.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 20, 630, 1, NULL, '2023-09-18 23:26:44', NULL, 1),
+(15, 7, 6, 16, 'Full Sleeves Shirt F', '../products/images/full sleeves shirt.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 20, 500, 1, NULL, '2023-09-18 23:30:12', NULL, 1),
+(16, 7, 6, 14, 'Printed Shirt For Me', '../products/images/printed shirt_.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 20, 399, 1, NULL, '2023-09-18 23:32:28', NULL, 1),
+(17, 8, 6, 16, 'Traditional Dress Fo', '../products/images/traditional dresss_.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 10, 1500, 1, NULL, '2023-09-18 23:36:43', NULL, 1),
+(18, 8, 7, 21, 'Western Dress For Wo', '../products/images/western.jpg', '<p><strong><span class=\"a-list-item\">We loved every little detail with this crochet floral lace dres', 20, 599, 1, NULL, '2023-09-18 23:40:48', NULL, 1),
+(19, 8, 7, 23, 'Office Dress For Wom', '../products/images/office wear dressL.jpg', '<p><span class=\"a-list-item\">This Co-ord Set will give you a trendy look with its beautiful design o', 20, 850, 1, NULL, '2023-09-18 23:45:13', NULL, 1),
+(20, 8, 7, 22, 'Formal Dress For Wom', '../products/images/formal wear.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 20, 600, 1, NULL, '2023-09-18 23:51:31', NULL, 1),
+(21, 10, 7, 21, 'Boys wear Dress(7-8 ', '../products/images/kids dress for boy_.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 50, 500, 1, NULL, '2023-09-18 23:57:58', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +256,8 @@ ALTER TABLE `product`
   ADD KEY `fk_pdt_created_by` (`created_by`),
   ADD KEY `fk_pdt_updated_by` (`updated_by`),
   ADD KEY `fk_c_id` (`category_id`),
-  ADD KEY `fk_a_id` (`attribute_id`);
+  ADD KEY `fk_a_id` (`attribute_id`),
+  ADD KEY `fk_v_id` (`variants_id`);
 
 --
 -- Indexes for table `product_attribute`
@@ -291,7 +312,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `product_attribute`
@@ -343,7 +364,8 @@ ALTER TABLE `product`
   ADD CONSTRAINT `fk_a_id` FOREIGN KEY (`attribute_id`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_c_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pdt_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_pdt_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_pdt_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_v_id` FOREIGN KEY (`variants_id`) REFERENCES `variants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product_attribute`

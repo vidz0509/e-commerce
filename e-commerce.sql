@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2023 at 08:08 PM
+-- Generation Time: Sep 18, 2023 at 06:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `attribute` (
   `id` int(20) NOT NULL,
   `variants_id` int(20) NOT NULL,
-  `attribute_name` varchar(20) NOT NULL,
+  `attribute_name` varchar(50) NOT NULL,
   `attribute_image` varchar(150) DEFAULT NULL,
   `created_by` int(20) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -98,6 +98,8 @@ INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, 
 
 CREATE TABLE `product` (
   `id` int(20) NOT NULL,
+  `category_id` int(20) NOT NULL,
+  `attribute_id` int(20) NOT NULL,
   `p_name` varchar(20) NOT NULL,
   `p_image` varchar(50) DEFAULT NULL,
   `p_description` varchar(100) NOT NULL,
@@ -109,13 +111,6 @@ CREATE TABLE `product` (
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`id`, `p_name`, `p_image`, `p_description`, `stock`, `price`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 't-shirts', NULL, '<p>test</p>', 20, 300, 1, NULL, '2023-09-14 21:54:23', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -239,7 +234,9 @@ ALTER TABLE `category`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_pdt_created_by` (`created_by`),
-  ADD KEY `fk_pdt_updated_by` (`updated_by`);
+  ADD KEY `fk_pdt_updated_by` (`updated_by`),
+  ADD KEY `fk_c_id` (`category_id`),
+  ADD KEY `fk_a_id` (`attribute_id`);
 
 --
 -- Indexes for table `product_attribute`
@@ -343,6 +340,8 @@ ALTER TABLE `category`
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
+  ADD CONSTRAINT `fk_a_id` FOREIGN KEY (`attribute_id`) REFERENCES `attribute` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_c_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pdt_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pdt_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 

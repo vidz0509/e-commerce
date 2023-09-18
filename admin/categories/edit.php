@@ -85,6 +85,7 @@ $row = mysqli_fetch_assoc($result);
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
+                            
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="edit" class="btn btn-primary">edit Category</button>

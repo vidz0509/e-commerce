@@ -101,11 +101,77 @@ if (isset($_POST['add_products'])) {
                             </div>
 
                             <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Category</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="category" id="category">
+                                        <option value="">-- Select Variant --</option>
+                                        <?php
+                                        $query = "SELECT *  from category";
+                                        if ($var_result = $conn->query($query)) {
+                                            $i = 0;
+                                            while ($var_row = $var_result->fetch_assoc()) {
+                                        ?>
+                                                <option value="<?php echo $var_row['id']; ?>" <?php if ($var_row['id'] == $row['id']) echo "selected"; ?>><?php echo $var_row['category_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $var_result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="variants" id="variants">
+                                        <option value="">-- Select Variant --</option>
+                                        <?php
+                                        $query = "SELECT *  from variants";
+                                        if ($var_result = $conn->query($query)) {
+                                            $i = 0;
+                                            while ($var_row = $var_result->fetch_assoc()) {
+                                        ?>
+                                                <option value="<?php echo $var_row['id']; ?>" <?php if ($var_row['id'] == $row['id']) echo "selected"; ?>><?php echo $var_row['var_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $var_result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Attribute</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="attribute" id="attribute">
+                                        <option value="">-- Select Variant --</option>
+                                        <?php
+                                        $query = "SELECT *  from attribute";
+                                        if ($var_result = $conn->query($query)) {
+                                            $i = 0;
+                                            while ($var_row = $var_result->fetch_assoc()) {
+                                        ?>
+                                                <option value="<?php echo $var_row['id']; ?>" <?php if ($var_row['id'] == $row['id']) echo "selected"; ?>><?php echo $var_row['attribute_name']; ?></option>
+                                        <?php
+                                                $i++;
+                                            }
+                                            $var_result->free();
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Product Image</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
-                            </div>  
+                            </div>
 
                             <div class="row mb-3">
                                 <div class="col-sm-6">
@@ -122,3 +188,11 @@ if (isset($_POST['add_products'])) {
 
 </main><!-- End #main -->
 <?php include("../footer.php"); ?>
+<script type="text/jaavscript">
+    $(document).ready(function(){
+        $(document).on("change",".section #variants",function(){
+            var variant = $(this).val();
+            console.log(variant);
+        });
+    });
+</script>

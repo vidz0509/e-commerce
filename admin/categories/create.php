@@ -90,6 +90,7 @@ if (isset($_POST['add_category'])) {
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="add_category" class="btn btn-primary">Add Category</button>

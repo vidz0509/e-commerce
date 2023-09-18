@@ -8,8 +8,6 @@ if (isset($_POST['edit'])) {
 
     $attribute_name =  $_POST['attribute_name'];
 
-    $price =  $_POST['price'];
-
     $variants =  $_POST['variants'];
 
     if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
@@ -72,13 +70,7 @@ $row = mysqli_fetch_assoc($result);
                                     <input type="text" name="attribute_name" value="<?php echo $row['attribute_name']; ?>" class="form-control" required />
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Price</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="price" value="<?php echo $row['price']; ?>" class="form-control" required />
-                                </div>
-                            </div>
+                            
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
                                 <div class="col-sm-10">
@@ -107,7 +99,7 @@ $row = mysqli_fetch_assoc($result);
                                     <?php
                                     if (!is_null($row['att_image'])) {
                                     ?>
-                                        <img height="120" width="120" src=" <?php echo $row['att_image']; ?>">
+                                        <img height="120" width="120" src=" <?php echo $row['attribute_image']; ?>">
                                     <?php
                                     }
                                     ?>

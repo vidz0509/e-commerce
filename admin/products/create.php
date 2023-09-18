@@ -33,12 +33,18 @@ if (isset($_POST['add_products'])) {
 
     $pdt_desc = $_POST['pdt_desc'];
 
+    $category = $_POST['category'];
+
+    $attribute = $_POST['attribute'];
+
+    $variant = $_POST['variants'];
+
     $current_user_id = $_SESSION['id'];
 
     if ($is_uploaded == true) {
-        $sql = "insert into product (p_name,price,stock,p_description,p_image,created_at,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$categories','$variants','$attributes','$folder',$current_user_id,now(),true)";
+        $sql = "insert into product (p_name,price,stock,p_description,p_image,category_id,variants_id,attribute_id,created_by,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$folder','$category','$variant','$attribute','$current_user_id',now(),true)";
     } else {
-        $sql = "insert into product (p_name,price,stock,p_description,created_by,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$current_user_id',now(),true)";
+        $sql = "insert into product (p_name,price,stock,p_description,category_id,variants_id,attribute_id,created_by,created_at,is_active) values('$p_name','$price','$stock','$pdt_desc','$category','$variant','$attribute','$current_user_id',now(),true)";
     }
     if (mysqli_query($conn, $sql)) {
         $message = 'Product added successfully!';

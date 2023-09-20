@@ -4,6 +4,7 @@ include("../header.php");
 $id = $_GET['id'];
 
 if (isset($_POST['edit'])) {
+
     $current_user_id = $_SESSION['id'];
 
     $attribute_name =  $_POST['attribute_name'];
@@ -70,7 +71,7 @@ $row = mysqli_fetch_assoc($result);
                                     <input type="text" name="attribute_name" value="<?php echo $row['attribute_name']; ?>" class="form-control" required />
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Variants</label>
                                 <div class="col-sm-10">

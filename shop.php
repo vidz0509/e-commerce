@@ -26,37 +26,44 @@ require("header.php");
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form method="post">
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="price-all">
                         <label class="custom-control-label" for="price-all">All Price</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                        <label class="custom-control-label" for="price-1">₹0 - ₹100</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                        <label class="custom-control-label" for="price-2">₹100 - ₹200</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                        <label class="custom-control-label" for="price-3">₹200 - ₹300</label>
                         <span class="badge border font-weight-normal">246</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">$300 - $400</label>
+                        <label class="custom-control-label" for="price-4">₹300 - ₹400</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">$400 - $500</label>
+                        <label class="custom-control-label" for="price-5">₹400 - ₹500</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
+                    
                 </form>
             </div>
             <!-- Price End -->
@@ -64,37 +71,44 @@ require("header.php");
             <!-- Color Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form method="post">
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="color-all">
                         <label class="custom-control-label" for="price-all">All Color</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-1">
                         <label class="custom-control-label" for="color-1">Black</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-2">
                         <label class="custom-control-label" for="color-2">White</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-3">
                         <label class="custom-control-label" for="color-3">Red</label>
                         <span class="badge border font-weight-normal">246</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-4">
                         <label class="custom-control-label" for="color-4">Blue</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="color-5">
                         <label class="custom-control-label" for="color-5">Green</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
+
                 </form>
             </div>
             <!-- Color End -->
@@ -102,42 +116,42 @@ require("header.php");
             <!-- Size Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by size</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form method="post">
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="size-all">
                         <label class="custom-control-label" for="size-all">All Size</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="size-1">
-                        <label class="custom-control-label" for="size-1">XS</label>
+                        <label class="custom-control-label" for="size-1">M</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="size-2">
                         <label class="custom-control-label" for="size-2">S</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="size-3">
-                        <label class="custom-control-label" for="size-3">M</label>
+                        <label class="custom-control-label" for="size-3">XL</label>
                         <span class="badge border font-weight-normal">246</span>
                     </div>
+
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="size-4">
-                        <label class="custom-control-label" for="size-4">L</label>
+                        <label class="custom-control-label" for="size-4">XXL</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="size-5">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
+
                 </form>
+
             </div>
-            <!-- Size End -->
         </div>
-        <!-- Shop Sidebar End -->
 
 
         <!-- Shop Product Start -->
@@ -183,8 +197,8 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>₹123.00</h5>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -211,7 +225,7 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
+                                <h5>₹123.00</h5>
                                 <h6 class="text-muted ml-2"><del>$123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
@@ -240,7 +254,7 @@ require("header.php");
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -268,7 +282,7 @@ require("header.php");
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -295,7 +309,7 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
+                                <h5>₹123.00</h5>
                                 <h6 class="text-muted ml-2"><del>$123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
@@ -323,8 +337,8 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>₹123.00</h5>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -351,8 +365,8 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>₹123.00</h5>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -379,8 +393,8 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>₹123.00</h5>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -407,8 +421,8 @@ require("header.php");
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5>
-                                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h5>₹123.00</h5>
+                                <h6 class="text-muted ml-2"><del>₹123.00</del></h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>

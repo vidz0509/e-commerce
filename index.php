@@ -3,6 +3,8 @@ require("config.php");
 require("header.php");
 ?>
 
+
+
 <div class="container-fluid mb-3">
     <div class="row px-xl-5">
         <div class="col-lg-12">
@@ -84,12 +86,6 @@ require("header.php");
     </div>
 </div>
 
-<?php
-// $sql = "SELECT * from category where id = ". $_SESSION['id'];
-// $result = $conn->query($sql);
-// $row = mysqli_fetch_assoc($result);
-?>
-
 <div class="container-fluid pt-5">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
     <div class="row px-xl-5 pb-3">
@@ -148,6 +144,12 @@ require("header.php");
     </div>
 </div>
 
+<?php
+// $sql = "SELECT * from product where id = ". $_SESSION['id'];
+// $result = $conn->query($sql);
+// $row = mysqli_fetch_assoc($result);
+?>
+
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">
             Products</span></h2>
@@ -158,9 +160,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -168,14 +167,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -186,9 +177,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -196,14 +184,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -214,9 +194,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -224,14 +201,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -242,9 +211,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -252,14 +218,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -270,9 +228,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -280,14 +235,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -298,9 +245,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-6.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -308,14 +252,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -326,9 +262,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-7.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -336,14 +269,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>
@@ -354,9 +279,6 @@ require("header.php");
                     <img class="img-fluid w-100" src="img/product-8.jpg" alt="">
                     <div class="product-action">
                         <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <div class="text-center py-4">
@@ -364,14 +286,6 @@ require("header.php");
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>$123.00</h5>
                         <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center mb-1">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small class="far fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
                     </div>
                 </div>
             </div>

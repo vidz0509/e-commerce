@@ -6,8 +6,8 @@
                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor.
                    Rebum tempor no vero est magna amet no</p>
                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-               <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-               <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+               <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>brocode@gmail.com</p>
+               <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+1 9510935250</p>
            </div>
            <div class="col-lg-4 col-md-12">
                <div class="row">

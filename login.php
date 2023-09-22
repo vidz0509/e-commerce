@@ -1,5 +1,5 @@
 <?php
-require("../e-commerce/admin/config.php");
+require("config.php");
 require("session.php");
 $msg = "";
 

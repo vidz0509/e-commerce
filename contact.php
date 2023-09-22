@@ -1,5 +1,5 @@
 <?php
-require("../e-commerce/admin/config.php");
+require("config.php");
 require("header.php");
 ?>
 
@@ -55,7 +55,7 @@ require("header.php");
             </div>
             <div class="bg-light p-30 mb-3">
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>brocode@example.com</p>
                 <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
         </div>

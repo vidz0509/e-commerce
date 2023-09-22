@@ -139,7 +139,7 @@
                             </div>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                         </div>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="cart.php" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>

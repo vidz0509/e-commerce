@@ -31,9 +31,7 @@ if (isset($_POST['register'])) {
         mysqli_query($conn, $update_user);
         // var_dump($row);
         header("location:index.php");
-     
-    }
-    else {
+    } else {
         $msg = "please enter your user id and password current password";
     }
 }
@@ -49,7 +47,7 @@ if (isset($_POST['register'])) {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/e-commerce/img/brocode_logo.jpg" rel="icon">
+    <link href="/e-commerce/img/logo-color.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -64,6 +62,11 @@ if (isset($_POST['register'])) {
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .custom-dark-btn {
+            background-color: #063f6c;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,7 +80,7 @@ if (isset($_POST['register'])) {
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <img heigh="100px" width="100px" src="/e-commerce/img/brocode_logo.jpg" alt="">
+                                <img heigh="250px" width="350px" src="/e-commerce/img/logo-color.png" alt="">
                             </div>
 
                             <div class="card mb-3">
@@ -127,7 +130,7 @@ if (isset($_POST['register'])) {
                                         </div>
 
                                         <div class="col-12">
-                                            <br><button name="register" class="btn btn-primary w-100" type="submit">Sign In</button>
+                                            <br><button name="register" class="btn custom-dark-btn text-white w-100" type="submit">Sign In</button>
                                         </div>
 
                                         <div class="col-12">
@@ -144,7 +147,7 @@ if (isset($_POST['register'])) {
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">Virag Bavadiya</a>
+                                Designed by <a href="/e-commerce/">Virag Bavadiya</a>
                             </div>
                         </div>
                     </div>

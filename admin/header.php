@@ -32,6 +32,12 @@ require("config.php");
     <link href="/e-commerce/admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <link href="/e-commerce/admin/assets/css/style.css" rel="stylesheet">
+    <style>
+        .action-btn{ font-size: 24px; }
+        .action-btn-wrap{ display: flex; justify-content: space-between; width:50%}
+        .datatable td{ font-size: 14px; }
+        .td-img{ max-width:80px; border-radius: 50%; }
+    </style>
 
 </head>
 

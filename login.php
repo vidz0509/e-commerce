@@ -1,6 +1,6 @@
 <?php
-require("config.php");
 require("session.php");
+require("config.php");
 $msg = "";
 
 if (isset($_POST['login'])) {
@@ -14,7 +14,6 @@ if (isset($_POST['login'])) {
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     if ($row) {
-        // var_dump($row);
         $_SESSION['id'] = $row['id'];
         $_SESSION['u_type_id'] = $row['u_type_id'];
         header("location:index.php");
@@ -34,7 +33,7 @@ if (isset($_POST['login'])) {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/e-commerce/img/brocode_logo.jpg" rel="icon">
+    <link href="/e-commerce/img/logo-color.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -49,6 +48,11 @@ if (isset($_POST['login'])) {
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .custom-dark-btn {
+            background-color: #063f6c;
+        }
+    </style>
 </head>
 
 <body>
@@ -62,7 +66,7 @@ if (isset($_POST['login'])) {
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <img heigh="100px" width="100px" src="/e-commerce/img/brocode_logo.jpg" alt="">
+                                <img heigh="250px" width="350px" src="/e-commerce/img/logo-color.png" alt="">
                             </div>
 
                             <div class="card mb-3">
@@ -73,6 +77,7 @@ if (isset($_POST['login'])) {
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
+
                                     <form method="post" class="row g-3 needs-validation" validate>
 
                                         <div class="col-12">
@@ -85,22 +90,21 @@ if (isset($_POST['login'])) {
 
                                         <div class="col-12">
                                             <label for="password" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" id="password" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                            <div class="input-group has-validation">
+                                                <input type="password" name="password" class="form-control" id="password" required>
+                                                <div class="invalid-feedback">Please enter your password!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <button name="login" class="btn text-white custom-dark-btn w-100" type="submit">Log in</button>
                                         </div>
 
                                         <div class="col-12">
-                                            <button name="login" class="btn btn-primary w-100" type="submit">Login</button>
-                                            <?php if ($msg != "") : ?>
-                                                <div class="alert alert-danger mt-3"><?php echo $msg; ?>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="col-12">
+                                            <br>
                                             <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div>
-                                    </form>
 
+                                    </form>
                                 </div>
                             </div>
 

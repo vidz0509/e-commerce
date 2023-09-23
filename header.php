@@ -1,3 +1,12 @@
+<?php
+session_start();
+require('config.php');
+if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+    $sql = "SELECT * from users where id = " . $_SESSION['id'];
+    $result = $conn->query($sql);
+    $row = mysqli_fetch_assoc($result);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +34,18 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style type="text/css">
-        .site-logo{ max-width:200px; }
-        .navbar-expand-lg .navbar-nav .nav-link { padding-right: 1.5rem; padding-left: 1.5rem; }
+        .site-logo {
+            max-width: 200px;
+        }
+
+        .navbar-expand-lg .navbar-nav .nav-link {
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .custom-dark-btn {
+            background-color: #063f6c;
+        }
     </style>
 </head>
 
@@ -51,7 +70,15 @@
                             <a href="shop.php" class="nav-item nav-link text-dark">About Us</a>
                             <a href="shop.php" class="nav-item nav-link text-dark">Shop</a>
                             <a href="contact.php" class="nav-item nav-link text-dark">Contact Us</a>
-                            <a href="page.php" class="nav-link nav-item text-dark">Account</a>
+                            <?php
+                            if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+                            ?>
+                                <a href="/e-commerce/my_account.php" class="nav-link nav-item text-dark">Account</a>
+                            <?php } else { ?>
+                                <a href="/e-commerce/login.php" class="nav-link nav-item text-dark">Login</a>
+                            <?php }
+                            ?>
+
                         </div>
                         <a href="cart.php" class="btn btn-lg">
                             <i class="fas fa-shopping-cart text-primary"></i>

@@ -30,6 +30,7 @@ require('../header.php');
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Image</th>
                                         <th>Product Name</th>
                                         <th>Price</th>
                                         <th>Stock</th>
@@ -39,7 +40,7 @@ require('../header.php');
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT id,p_name,stock,price,created_at from product ORDER BY id DESC";
+                                    $query = "SELECT id,p_name,p_image,stock,price,created_at from product ORDER BY id DESC";
 
                                     if ($result = $conn->query($query)) {
                                         $i = 0;
@@ -49,13 +50,23 @@ require('../header.php');
                                     ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['p_image'])
+                                                        echo "<img class='td-img' src='/e-commerce/admin/" . $row['p_image'] . "'/>";
+                                                    else
+                                                        echo '-';
+                                                    ?>
+                                                </td>
                                                 <td><?php echo $row['p_name']; ?></td>
                                                 <td><?php echo $row['price']; ?></td>
                                                 <td><?php echo $row['stock']; ?></td>
                                                 <td><?php echo date('d-M-Y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
-                                                    <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    <div class="action-btn-wrap">
+                                                        <a class="text text-primary action-btn" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
+                                                        <a class="text text-danger action-btn" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                     <?php

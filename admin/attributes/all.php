@@ -58,11 +58,13 @@ require('../header.php');
                                                     }
                                                     ?>
                                                 </td>
-                                                <td><?php echo $row['attribute_name']; ?></td>                                              
+                                                <td><?php echo $row['attribute_name']; ?></td>
                                                 <td><?php echo Date('d-m-y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
-                                                    <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    <div class="action-btn-wrap">
+                                                        <a class="text text-primary action-btn" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
+                                                        <a class="text text-danger action-btn" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                     <?php

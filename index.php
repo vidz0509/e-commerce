@@ -1,9 +1,8 @@
 <?php
 require("config.php");
 require("header.php");
+// require("functions.php");
 ?>
-
-
 
 <div class="container-fluid mb-3">
     <div class="row px-xl-5">
@@ -86,68 +85,36 @@ require("header.php");
     </div>
 </div>
 
+
 <div class="container-fluid pt-5">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
     <div class="row px-xl-5 pb-3">
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-            <a class="text-decoration-none" href="">
-                <div class="cat-item d-flex align-items-center mb-4">
-                    <div class="overflow-hidden" style="width: 100px; height: 140px;">
-                        <img class="img-fluid" src="./admin/categories/images/61skoH0rMsL._UY741_.jpg" alt="">
-                    </div>
-                    <div class="flex-fill pl-3">
-                        <h6>Men's Wear</h6>
-                        <small class="text-body">All Men's Wears</small>
-                    </div>
+        <?php $sql = "SELECT * from category ORDER BY id DESC limit 4"; ?>
+        <?php if ($result = $conn->query($sql)) : ?>
+            <?php while ($row = $result->fetch_assoc()) : ?>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <a class="text-decoration-none" href="">
+                        <div class="cat-item d-flex align-items-center mb-4">
+                            <div class="overflow-hidden" style="width: 100px; height: 140px;">
+                                <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['image']; ?>" alt="">
+                            </div>
+                            <div class="flex-fill pl-3">
+                                <h6><?php echo $row['category_name']; ?></h6>
+                                <small class="text-body">All Men's Wears</small>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-            <a class="text-decoration-none" href="">
-                <div class="cat-item img-zoom d-flex align-items-center mb-4">
-                    <div class="overflow-hidden" style="width: 100px; height: 140px;">
-                        <img class="img-fluid" src="./admin/categories/images/71BMG8EorsL._UL1500_.jpg" alt="">
-                    </div>
-                    <div class="flex-fill pl-3">
-                        <h6>Women's Wear</h6>
-                        <small class="text-body">All Women's Wears</small>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-            <a class="text-decoration-none" href="">
-                <div class="cat-item img-zoom d-flex align-items-center mb-4">
-                    <div class="overflow-hidden" style="width: 100px; height: 140px;">
-                        <img class="img-fluid" src="./admin/categories/images/41Np040iagL._UY741_.jpg" alt="">
-                    </div>
-                    <div class="flex-fill pl-3">
-                        <h6>Boy's Wear</h6>
-                        <small class="text-body">All Boy's Wears</small>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-            <a class="text-decoration-none" href="">
-                <div class="cat-item img-zoom d-flex align-items-center mb-4">
-                    <div class="overflow-hidden" style="width: 100px; height: 140px;">
-                        <img class="img-fluid" src="./admin/categories/images/61OTdInzd9L._UY741_.jpg" alt="">
-                    </div>
-                    <div class="flex-fill pl-3">
-                        <h6>Girl's Wear</h6>
-                        <small class="text-body">All Girl's Wears</small>
-                    </div>
-                </div>
-            </a>
-        </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
     </div>
 </div>
+
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">
             Products</span></h2>
     <div class="row px-xl-5">
-        <?php $sql = "SELECT * from product ORDER BY id DESC limit 8"; ?>
+        <?php $sql = "SELECT * from product order by rand() limit 8"; ?>
         <?php if ($result = $conn->query($sql)) : ?>
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -155,11 +122,11 @@ require("header.php");
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href=""><?php echo $row['p_name']; ?></a>
+                            <a class="h6 text-decoration-none text-truncate" href="product.php?id=<?php echo $row["id"]; ?>"><?php echo $row['p_name']; ?></a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <h5>₹<?php echo $row['p_name']; ?></h5>
                             </div>
@@ -170,8 +137,6 @@ require("header.php");
         <?php endif; ?>
     </div>
 </div>
-
-
 
 <?php
 

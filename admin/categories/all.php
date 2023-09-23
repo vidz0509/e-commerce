@@ -57,7 +57,7 @@ require('../functions.php');
                                                     if ($row['image'] == "")
                                                         echo "-";
                                                     else { ?>
-                                                        <img height="150" width="120" src=" <?php echo $row['image']; ?>">
+                                                        <img height="150" width="120" src="/e-commerce/admin/<?php echo $row['image']; ?>">
                                                     <?php
                                                     }
                                                     ?>
@@ -66,8 +66,10 @@ require('../functions.php');
                                                 <!-- <td><?php echo limit_description($row['category_description'], 100); ?></td> -->
                                                 <td><?php echo date('d-M-Y h:i A', strtotime($row['created_at'])); ?></td>
                                                 <td>
-                                                    <a class="btn btn-info" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn-danger" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    <div class="action-btn-wrap">
+                                                        <a class="text text-primary action-btn" href="edit.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-edit"></i></a>
+                                                        <a class="text text-danger action-btn" href="delete.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                     <?php

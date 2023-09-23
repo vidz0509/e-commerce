@@ -24,6 +24,10 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .site-logo{ max-width:200px; }
+        .navbar-expand-lg .navbar-nav .nav-link { padding-right: 1.5rem; padding-left: 1.5rem; }
+    </style>
 </head>
 
 <body>
@@ -34,45 +38,28 @@
     <!-- Navbar Start -->
     <div class="container-fluid bg-white mb-30">
         <div class="row px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">brocode</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-3 ml-n1">Carting</span>
+            <div class="col-lg-4 d-flex align-items-center">
+                <a href="/e-commerce/">
+                    <img src="/e-commerce/img/logo-color.png" class="site-logo" />
                 </a>
-
             </div>
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <div class="col-lg-8">
+                <nav class="navbar navbar-expand-lg bg-white navbar-white py-3 py-lg-0 px-0">
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-3">
-                            <a href="index.php" class="nav-item nav-link">Home</a>
-                            <a href="shop.php" class="nav-item nav-link">Shop</a>
-                            <!-- <a href="detail.php" class="nav-item nav-link">Shop Detail</a> -->
-                            <a href="checkout.php" class="nav-item nav-link">Checkout</a>
-                            <a href="contact.php" class="nav-item nav-link">Contact</a>
-                            <div class="nav-item dropdown">
-                                <a href="page.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Account<i class="fa fa-angle-down mt-1"></i></a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="register.php" class="dropdown-item">Sign in</a>
-                                    <a href="login.php" class="dropdown-item">Log in</a>
-                                    <a href="logout.php" class="dropdown-item">Log out</a>
-                                </div>
-                            </div>
+                        <div class="navbar-nav mr-auto py-3 site-nav">
+                            <a href="index.php" class="nav-item nav-link text-dark">Home</a>
+                            <a href="shop.php" class="nav-item nav-link text-dark">About Us</a>
+                            <a href="shop.php" class="nav-item nav-link text-dark">Shop</a>
+                            <a href="contact.php" class="nav-item nav-link text-dark">Contact Us</a>
+                            <a href="page.php" class="nav-link nav-item text-dark">Account</a>
                         </div>
-                        <a href="cart.php" class="btn px-0 ml-3">
+                        <a href="cart.php" class="btn btn-lg">
                             <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            <span class="badge text-primary border border-primary rounded-circle" style="padding-bottom: 2px;">0</span>
                         </a>
                     </div>
+                </nav>
             </div>
-            </nav>
         </div>
     </div>
     </div>

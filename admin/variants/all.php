@@ -13,9 +13,7 @@ require('../header.php');
                 <li class="breadcrumb-item active">Varinats</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
-
-    </section>
+    </div>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -72,5 +70,5 @@ require('../header.php');
             </div>
         </div>
     </section>
-    </div>
-    <?php require('../footer.php'); ?>
+</main>
+<?php require('../footer.php'); ?>

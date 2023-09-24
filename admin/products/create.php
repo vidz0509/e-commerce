@@ -12,7 +12,7 @@ if (isset($_POST['add_products'])) {
 
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "/e-commerce/admin/products/images/" . $filename;
+        $folder = "images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
 

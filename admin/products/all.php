@@ -14,19 +14,16 @@ require('../header.php');
             </ol>
         </nav>
     </div>
-    </section>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <div style="margin-bottom: 45px;">
-                                <a href="/e-commerce/admin/products/create.php" class="btn btn-success" style="float: right; margin-left: 15px;">Add New</a>
-                                <!-- <input type="submit" class="btn btn-primary" value="Export as CSV" style="float: right;"> -->
+                            <div class="my-4 d-flex justify-content-end">
+                                <a href="/e-commerce/admin/products/create.php" class="btn btn-primary">Add New Product</a>
                             </div>
-
-                            <table class="table table-bordered datatable" id="table_id">
+                            <table class="table table-bordered datatable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -82,5 +79,5 @@ require('../header.php');
             </div>
         </div>
     </section>
-    </div>
-    <?php require('../footer.php'); ?>
+</main>
+<?php require('../footer.php'); ?>

@@ -45,7 +45,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 
         .custom-dark-btn {
             background-color: #063f6c;
-        }
+        }        
     </style>
 </head>
 

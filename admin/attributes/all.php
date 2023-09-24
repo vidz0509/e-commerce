@@ -13,9 +13,7 @@ require('../header.php');
                 <li class="breadcrumb-item active">Attributes</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
-
-    </section>
+    </div>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -53,7 +51,7 @@ require('../header.php');
                                                     if ($row['attribute_image'] == "")
                                                         echo "-";
                                                     else { ?>
-                                                        <img height="120" width="120" src=" <?php echo $row['attribute_image']; ?>">
+                                                        <img src=" <?php echo $row['attribute_image']; ?>">
                                                     <?php
                                                     }
                                                     ?>
@@ -80,5 +78,5 @@ require('../header.php');
             </div>
         </div>
     </section>
-    </div>
-    <?php require('../footer.php'); ?>
+</main>
+<?php require('../footer.php'); ?>

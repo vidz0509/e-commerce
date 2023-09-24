@@ -17,7 +17,7 @@ if (isset($_POST['edit'])) {
 
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "../categories/images/" . $filename;
+        $folder = "images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
             $cat_query = "Update category Set category_name='$cat_name', category_description='$cat_desc', image='$folder',updated_by = $current_user_id,updated_at = now() where id='$id'";
@@ -82,7 +82,7 @@ $row = mysqli_fetch_assoc($result);
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
-                                    <img height="120" width="120" src="/e-commerce/admin/<?php echo $row['image']; ?>">
+                                    <img src="/e-commerce/admin/categories/<?php echo $row['image']; ?>">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>

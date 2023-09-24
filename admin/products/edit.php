@@ -27,7 +27,7 @@ if (isset($_POST['edit'])) {
 $sql = "SELECT * FROM product where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
-var_dump($row);
+// var_dump($row);
 ?>
 <main id="main" class="main">
 

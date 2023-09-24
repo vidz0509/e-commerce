@@ -1,6 +1,7 @@
 <?php
 require("session.php");
 require("config.php");
+
 $msg = "";
 
 if (isset($_POST['login'])) {

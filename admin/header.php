@@ -33,10 +33,92 @@ require("config.php");
 
     <link href="/e-commerce/admin/assets/css/style.css" rel="stylesheet">
     <style>
-        .action-btn{ font-size: 24px; }
-        .action-btn-wrap{ display: flex; justify-content: space-between; width:50%}
-        .datatable td{ font-size: 14px; }
-        .td-img{ max-width:80px; border-radius: 50%; }
+        .action-btn {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        .sidebar-nav .nav-link i{ font-size: 20px; }
+        .action-btn-wrap {
+            display: flex;
+            justify-content: center;
+            /* width: 50%; */
+        }
+
+        .datatable td {
+            font-size: 14px;
+        }
+
+        .td-img {
+            max-width: 80px;
+            border-radius: 50%;
+        }
+
+        .logo img {
+            max-height: 50px;
+        }
+
+        .btn-primary {
+            background-color: #001F3F;
+            border-color: #001F3F;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #001F3F;
+            border-color: #001F3F;
+        }
+
+        .datatable-table {
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .datatable-table img {
+            max-width: 80px;
+            min-height: 50px;
+            object-fit: cover
+        }
+
+        .datatable-table>tbody>tr>td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .datatable-table>thead>tr>th {
+            text-align: center;
+        }
+
+        .datatable-selector {
+            padding: 10px 5px;
+            width: 80px;
+            text-align: center;
+            border-radius: 3px;
+            margin-right: 10px
+        }
+
+        .datatable-input {
+            border-radius: 3px;
+            border-width: 1px;
+        }
+
+        .datatable-dropdown label {
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+        .datatable-info {
+            font-size: 14px;
+        }
+
+        @media (min-width: 1200px) {
+            #footer {
+                /* margin: auto; */
+            }
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 
 </head>
@@ -46,9 +128,8 @@ require("config.php");
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="dashboard.php" class="logo d-flex align-items-center">
-                <img src="/e-commerce/admin/assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
+            <a href="/e-commerce/admin/dashboard.php" class="logo d-flex align-items-center">
+                <img src="/e-commerce/img/logo-color.png" alt="">
             </a>
         </div>
 
@@ -69,7 +150,7 @@ require("config.php");
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
-                        
+
                         <img src="/e-commerce/admin/<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">
@@ -116,15 +197,10 @@ require("config.php");
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/e-commerce/admin/dashboard.php">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-                    <i class="bi bi-menu-button-wide"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-menu-down"></i>
+                    <span>Categories</span>
+                    <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
@@ -142,12 +218,12 @@ require("config.php");
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#variants-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Variants</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-funnel"></i><span>Variants</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="variants-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="/e-commerce/admin/variants/all.php">
-                            <i class="bi bi-circle"></i><span>All variants</span>
+                            <i class="bi bi-circle"></i><span>All Variants</span>
                         </a>
                     </li>
                     <li>
@@ -160,7 +236,7 @@ require("config.php");
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#attributes-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Attributes</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-list-stars"></i><span>Attributes</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="attributes-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
@@ -178,7 +254,7 @@ require("config.php");
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-basket"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="products-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>

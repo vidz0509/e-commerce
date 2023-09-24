@@ -12,7 +12,7 @@ if (isset($_POST['add_category'])) {
 
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "e-commerce/admin/categories/images/" . $filename;
+        $folder = "images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
 

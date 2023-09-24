@@ -96,7 +96,7 @@ require("header.php");
                     <a class="text-decoration-none" href="">
                         <div class="cat-item d-flex align-items-center mb-4">
                             <div class="overflow-hidden" style="width: 100px; height: 140px;">
-                                <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['image']; ?>" alt="">
+                                <img class="img-fluid" src="/e-commerce/admin/categories/<?php echo $row['image']; ?>" alt="">
                             </div>
                             <div class="flex-fill pl-3">
                                 <h6><?php echo $row['category_name']; ?></h6>

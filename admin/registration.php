@@ -35,7 +35,7 @@ if (isset($_POST['registration'])) {
 
     $phoneno =  $_POST['phoneno'];
 
-    $u_type_id = 2;
+    $u_type_id = 3;
 
     if ($is_uploaded == true) {
         $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),now(),true)";

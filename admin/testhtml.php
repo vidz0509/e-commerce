@@ -92,7 +92,7 @@ if (isset($_POST['category'])) {
                             <div class="row mb-3">
                                 <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
                                 <div class="col-sm-10">
-                                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
+                                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#001F3F" title="Choose your color">
                                 </div>
                             </div>
                             <div class="row mb-3">

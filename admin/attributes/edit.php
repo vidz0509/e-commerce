@@ -98,9 +98,9 @@ $row = mysqli_fetch_assoc($result);
                                 <label class="col-sm-2 col-form-label">Attribute Image</label>
                                 <div class="col-sm-10">
                                     <?php
-                                    if (!is_null($row['att_image'])) {
+                                    if (!is_null($row['attribute_image'])) {
                                     ?>
-                                        <img height="120" width="120" src=" <?php echo $row['attribute_image']; ?>">
+                                        <img height="120" width="120" src="<?php echo $row['attribute_image']; ?>">
                                     <?php
                                     }
                                     ?>

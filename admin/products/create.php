@@ -12,7 +12,7 @@ if (isset($_POST['add_products'])) {
 
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "../products/images/" . $filename;
+        $folder = "/e-commerce/admin/products/images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
 
@@ -25,7 +25,7 @@ if (isset($_POST['add_products'])) {
         }
     }
 
-    $p_name =  $_POST['p_name'];
+    $p_name =  mysqli_real_escape_string($conn,$_POST['p_name']);
 
     $stock = $_POST['stock'];
 
@@ -33,7 +33,7 @@ if (isset($_POST['add_products'])) {
 
     $pdt_desc = $_POST['pdt_desc'];
 
-    $category = $_POST['category'];
+    $category = mysqli_real_escape_string($conn,$_POST['category']);
 
     $attribute = $_POST['attribute'];
 

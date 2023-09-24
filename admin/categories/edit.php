@@ -7,9 +7,9 @@ if (isset($_POST['edit'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $cat_name =  $_POST['cat_name'];
+    $cat_name =  mysqli_real_escape_string($conn,$_POST['cat_name']);
 
-    $cat_desc =  $_POST['cat_desc'];
+    $cat_desc =  mysqli_real_escape_string($conn,$_POST['category_description']);
 
     if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
 
@@ -78,14 +78,15 @@ $row = mysqli_fetch_assoc($result);
                                     <textarea class="tinymce-editor" name="cat_desc"><?php echo $row['category_description']; ?></textarea>
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
-                                    <img height="120" width="120" src=" <?php echo $row['image']; ?>">
+                                    <img height="120" width="120" src="/e-commerce/admin/<?php echo $row['image']; ?>">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <div class="col-sm-6">
                                     <button type="submit" name="edit" class="btn btn-primary">edit Category</button>

@@ -67,7 +67,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-3 site-nav">
                             <a href="index.php" class="nav-item nav-link text-dark">Home</a>
-                            <a href="shop.php" class="nav-item nav-link text-dark">About Us</a>
+                            <a href="about.php" class="nav-item nav-link text-dark">About Us</a>
                             <a href="shop.php" class="nav-item nav-link text-dark">Shop</a>
                             <a href="contact.php" class="nav-item nav-link text-dark">Contact Us</a>
                             <?php

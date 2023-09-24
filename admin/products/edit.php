@@ -7,21 +7,18 @@ if (isset($_POST['edit'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $p_name =  $_POST['p_name'];
+    $p_name =  mysqli_real_escape_string($conn,$_POST['p_name']);
 
     $price =  $_POST['price'];
 
     $stock =  $_POST['stock'];
 
-    $category =  $_POST['categories'];
+    $p_description = mysqli_real_escape_string($conn,$_POST['p_description']);
 
-    $variants =  $_POST['variants'];
+    $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),
+    is_active = true where id='$id'";
 
-    $attributes =  $_POST['attributes'];
-
-    $ptd_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$category',updated_by = $current_user_id,updated_at = now(),is_active = true where id='$id'";
-
-    if (mysqli_query($conn, $ptd_query)) {
+    if (mysqli_query($conn, $pdt_query)) {
         $message = '<div class="alert alert-success">Product updated successfully!</div>';
     } else {
         $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
@@ -30,6 +27,7 @@ if (isset($_POST['edit'])) {
 $sql = "SELECT * FROM product where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
+var_dump($row);
 ?>
 <main id="main" class="main">
 
@@ -65,6 +63,13 @@ $row = mysqli_fetch_assoc($result);
                             </div>
 
                             <div class="row mb-3">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Product Description</label>
+                                <div class="col-sm-10">
+                                    <textarea class="tinymce-editor" name="p_description"><?php echo $row['p_description']; ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Stock</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="stock" value="<?php echo $row['stock']; ?>" class="form-control" required />
@@ -83,7 +88,7 @@ $row = mysqli_fetch_assoc($result);
                                     <button type="submit" name="edit" class="btn btn-primary">edit Products</button>
                                 </div>
                             </div>
-                            
+
                         </form><!-- End General Form Elements -->
                     </div>
                 </div>

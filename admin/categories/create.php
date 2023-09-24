@@ -12,7 +12,7 @@ if (isset($_POST['add_category'])) {
 
         $tempname = $_FILES["file_upload"]["tmp_name"];
 
-        $folder = "../categories/images/" . $filename;
+        $folder = "e-commerce/admin/categories/images/" . $filename;
 
         if (move_uploaded_file($tempname, $folder)) {
 
@@ -24,9 +24,9 @@ if (isset($_POST['add_category'])) {
         }
     }
 
-    $cat_name =  $_POST['cat_name'];
+    $cat_name =  mysqli_real_escape_string($conn,$_POST['cat_name']);
 
-    $cat_desc =  $_POST['cat_desc'];
+    $cat_desc =  mysqli_real_escape_string($conn,$_POST['cat_desc']);
 
     $current_user_id = $_SESSION['id'];
 

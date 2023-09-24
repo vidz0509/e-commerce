@@ -122,7 +122,7 @@ require("header.php");
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="cart.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-shopping-cart"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">

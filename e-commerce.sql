@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2023 at 08:29 PM
+-- Generation Time: Sep 24, 2023 at 05:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,13 +65,27 @@ INSERT INTO `attribute` (`id`, `variants_id`, `attribute_name`, `attribute_image
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(20) NOT NULL,
+  `product_id` int(20) NOT NULL,
+  `quantity` int(20) NOT NULL,
+  `user_id` int(20) NOT NULL,
+  `total_amount` decimal(20,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
   `id` int(20) NOT NULL,
   `category_name` varchar(50) NOT NULL,
-  `category_description` text NOT NULL,
+  `category_description` longtext NOT NULL,
   `image` varchar(200) NOT NULL,
   `created_by` int(50) NOT NULL,
   `updated_by` int(50) NOT NULL,
@@ -103,7 +117,7 @@ CREATE TABLE `product` (
   `attribute_id` int(20) NOT NULL,
   `p_name` varchar(200) NOT NULL,
   `p_image` varchar(200) DEFAULT NULL,
-  `p_description` varchar(100) NOT NULL,
+  `p_description` longtext NOT NULL,
   `stock` int(50) NOT NULL,
   `price` int(50) NOT NULL,
   `created_by` int(20) DEFAULT NULL,
@@ -217,12 +231,12 @@ INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_na
 (105, 8, 6, 15, 'Formal Dress For Wom', 'products/images/formal  drees for women (s) 7.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 499, 1, NULL, '2023-09-20 22:15:33', NULL, 1),
 (106, 8, 6, 16, 'Full Sleeves Shirt F', 'products/images/formal  drees for women (xl) 8.', '<h1 class=\"a-size-large a-spacing-none\"><span id=\"productTitle\" class=\"a-size-large product-title-wo', 20, 499, 1, NULL, '2023-09-20 22:18:04', NULL, 1),
 (107, 8, 6, 17, 'Formal Dress For Wom', 'products/images/formal  drees for women (xlx) 9', '<p><strong><span class=\"a-list-item\">Women Solid Western Wear Bodycon Dress for women</span></strong', 20, 499, 1, NULL, '2023-09-20 22:19:50', NULL, 1),
-(108, 8, 8, 32, 'Formal Dress For Wom', 'products/images/formal  drees for women (being)', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 599, 1, NULL, '2023-09-20 22:52:32', NULL, 1),
+(108, 8, 8, 32, 'Formal Dress For Women', 'products/images/formal  drees for women (being)', '', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-24 13:56:30', 1),
 (109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe', 20, 399, 1, NULL, '2023-09-20 23:16:29', NULL, 1),
 (110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl', 80, 351, 1, NULL, '2023-09-20 23:30:27', NULL, 1),
-(111, 7, 7, 22, 'TIMEWEAR Analogue - ', 'products/images/watch (green) 3.jpg', '<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c', 110, 549, 1, NULL, '2023-09-20 23:35:21', NULL, 1),
-(112, 7, 7, 21, 'TIMEX Analog Blue Di', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 10, 999, 1, NULL, '2023-09-20 23:44:14', NULL, 1),
-(113, 7, 7, 21, 'TIMEX Analog Blue Di', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\" dat', 10, 899, 1, NULL, '2023-09-20 23:52:33', NULL, 1);
+(111, 7, 7, 22, 'TIMEWEAR Analogue - Digital Mens Watch (Green Color)', 'products/images/watch (green) 3.jpg', '<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c<=\"\">Analogue watches/clocks have a mechanism to indicate time by means of mechanical structures, such as a dial and hands (hand indication type), while digital watches/clocks have a mechanism to indicate time by means of electronic structures, such as a liquid crystal and LED (number display type).</div>', 110, 549, 1, 1, '2023-09-20 23:35:21', '2023-09-24 20:54:14', 1),
+(112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 16:15:12', 1),
+(113, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"></div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-24 16:14:46', 1);
 
 -- --------------------------------------------------------
 
@@ -333,6 +347,13 @@ ALTER TABLE `attribute`
   ADD KEY `fk_variants_id` (`variants_id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD KEY `fk_user_id` (`user_id`),
+  ADD KEY `fkk_p_idd` (`product_id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
@@ -441,6 +462,13 @@ ALTER TABLE `attribute`
   ADD CONSTRAINT `fk_att_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_upd_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_variants_id` FOREIGN KEY (`variants_id`) REFERENCES `variants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fkk_p_idd` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `category`

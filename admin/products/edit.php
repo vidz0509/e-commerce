@@ -48,7 +48,7 @@ $row = mysqli_fetch_assoc($result);
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edut Products</h5>
+                        <h5 class="card-title">Edit Products</h5>
 
                         <?php if (isset($message)) : ?>
                             <?php echo $message; ?>

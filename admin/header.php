@@ -37,7 +37,11 @@ require("config.php");
             font-size: 20px;
             margin: 0 5px;
         }
-        .sidebar-nav .nav-link i{ font-size: 20px; }
+
+        .sidebar-nav .nav-link i {
+            font-size: 20px;
+        }
+
         .action-btn-wrap {
             display: flex;
             justify-content: center;
@@ -57,9 +61,20 @@ require("config.php");
             max-height: 50px;
         }
 
-        .btn-primary {
+        .btn {
+            text-transform: capitalize;
+        }
+
+        .btn-primary,
+        .btn:focus-visible,
+        .btn-check:checked+.btn,
+        .btn.active,
+        .btn.show,
+        .btn:first-child:active,
+        :not(.btn-check)+.btn:active {
             background-color: #001F3F;
             border-color: #001F3F;
+            box-shadow: none;
         }
 
         .btn-primary:hover {

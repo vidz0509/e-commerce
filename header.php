@@ -106,6 +106,9 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
             padding: 10px;
         }
 
+        #place_order{ color: #fff !important; }
+        #place_order:hover{ background-color: #000 !important; border-color: #000 !important; }
+
         @keyframes rotation {
             0% {
                 transform: rotate(0deg);

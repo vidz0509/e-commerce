@@ -112,7 +112,7 @@ require("header.php");
                             <h5>Total</h5>
                             <h5>₹<?php echo $subtotal; ?></h5>
                         </div>
-                        <a class="btn btn-block btn-secondary font-weight-bold my-3 py-3" href="#">Proceed To Checkout</a>
+                        <a class="btn btn-block btn-secondary font-weight-bold my-3 py-3" href="/e-commerce/checkout.php">Proceed To Checkout</a>
                     </div>
                 </div>
             </div>

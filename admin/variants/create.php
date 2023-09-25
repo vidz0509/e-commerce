@@ -54,7 +54,7 @@ if (isset($_POST['add_variants'])) {
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/variants/all.php">Variants</a></li>
-                <li class="breadcrumb-item active">Add Variants</li>
+                <li class="breadcrumb-item active">Add New Variant</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

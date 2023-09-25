@@ -53,7 +53,7 @@ if (isset($_POST['add_attributes'])) {
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/attributes/all.php">Attributes</a></li>
-                <li class="breadcrumb-item active">Add New</li>
+                <li class="breadcrumb-item active">Add New Attribute</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -64,7 +64,7 @@ if (isset($_POST['add_attributes'])) {
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add Attributes</h5>
+                        <h5 class="card-title">Add Attribute</h5>
 
                         <?php if (isset($message)) : ?>
                             <div class="alert alert-success"><?php echo $message; ?></div>

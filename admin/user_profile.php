@@ -83,12 +83,12 @@ $row = mysqli_fetch_assoc($result);
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Profile</h1>
+        <h1>User Profile</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/e-commerce/admin/dashboard.php">Home</a></li>
                 <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
+                <li class="breadcrumb-item active">User Profile</li>
             </ol>
         </nav>
     </div>

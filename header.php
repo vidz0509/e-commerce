@@ -1,6 +1,16 @@
 <?php
-session_start();
+if (session_id() === "") session_start();
 require('config.php');
+
+$total = 0;
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    $total = count(($_SESSION['cart']));
+} else if ($_SESSION['id'] && $_SESSION['id'] != "") {
+    $cart_sql = "SELECT COUNT(id) as totalCartItems FROM `cart` where user_id=" . $_SESSION['id'];
+    $cart_result = $conn->query($cart_sql);
+    $cart_row = mysqli_fetch_assoc($cart_result);
+    $total = $cart_row['totalCartItems'];
+}
 if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
     $sql = "SELECT * from users where id = " . $_SESSION['id'];
     $result = $conn->query($sql);
@@ -22,11 +32,11 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -45,7 +55,66 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 
         .custom-dark-btn {
             background-color: #063f6c;
-        }        
+        }
+
+        .shop-row .product-img img {
+            max-width: 150px;
+        }
+
+        .img-wrap {
+            max-height: 200px;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+            top: 50%;
+            position: absolute;
+            left: 50%;
+        }
+
+        .loader-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(16, 16, 16, 0.26);
+            z-index: 9;
+            display: none;
+        }
+
+        .product-item {
+            border: 1px solid #e4e4e4;
+            border-radius: 5px;
+            min-height: 320px;
+        }
+
+        .alertify-notifier .ajs-message.ajs-success,
+        .alertify-notifier .ajs-message.ajs-error {
+            color: #fff;
+            font-size: 14px;
+            width: 300px;
+            right: 300px !important;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -82,7 +151,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
                         </div>
                         <a href="cart.php" class="btn btn-lg">
                             <i class="fas fa-shopping-cart text-primary"></i>
-                            <span class="badge text-primary border border-primary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            <span id="cart-text" class="badge text-primary border border-primary rounded-circle" style="padding-bottom: 2px;"><?php echo $total; ?></span>
                         </a>
                     </div>
                 </nav>

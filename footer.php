@@ -15,7 +15,6 @@
             <div class="d-flex flex-column justify-content-start">
                 <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
                 <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                <a class="text-secondary mb-2" href="product.php"><i class="fa fa-angle-right mr-2"></i>Product</a>
                 <a class="text-secondary mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping
                     Cart</a>
                 <a class="text-secondary mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
@@ -24,7 +23,7 @@
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>123 Street, New York, USA</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>123 Street,Gujarat,India</p>
             <p class="mb-2"><i class="fa fa-envelope text-white mr-3"></i>brocode@gmail.com</p>
             <p class="mb-0"><i class="fa fa-phone-alt text-white mr-3"></i>+91 9909409153</p>
         </div>
@@ -50,6 +49,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
 <!-- Contact Javascript File -->
 <script src="mail/jqBootstrapValidation.min.js"></script>

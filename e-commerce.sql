@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2023 at 05:27 PM
+-- Generation Time: Sep 25, 2023 at 09:20 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -69,12 +69,21 @@ INSERT INTO `attribute` (`id`, `variants_id`, `attribute_name`, `attribute_image
 --
 
 CREATE TABLE `cart` (
-  `id` int(20) NOT NULL,
+  `id` int(10) NOT NULL,
   `product_id` int(20) NOT NULL,
-  `quantity` int(20) NOT NULL,
+  `qty` int(20) NOT NULL,
   `user_id` int(20) NOT NULL,
-  `total_amount` decimal(20,0) NOT NULL
+  `amount` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `product_id`, `qty`, `user_id`, `amount`) VALUES
+(12, 31, 1, 38, '599.00'),
+(13, 10, 1, 38, '400.00'),
+(14, 16, 1, 38, '399.00');
 
 -- --------------------------------------------------------
 
@@ -99,10 +108,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
-(7, 'Men\'s Wear', '<p><strong>Well-dressed men understand that when they look like their most professional, put-together and capable selves, that the world relates to them accordingly and operates with them on a higher level. Clothing acts as the outward representation of their skills and personality, tying their positive attributes together into a comprehensive package. That&rsquo;s why regardless of whether or not they have an interest in fashion, attention is always paid to maintaining their image.</strong></p>', 'categories/images/81bEvE7vyLL._UX679_.jpgt', 1, 1, '2023-09-15 23:38:36', '2023-09-15 23:39:32', 1),
-(8, 'Women\'s Wear', '<p><em><strong>is a budget-friendly clothing store that has colorful and trendy pieces for women. Their selection of graphic tees, sweatpants and joggers, and sneakers...</strong></em></p>', 'categories/images/71BMG8EorsL._UL1500_.jpg', 1, 1, '2023-09-15 23:45:32', '2023-09-15 23:45:32', 1),
-(10, 'Boy\'s Wear', '<p><strong>Step up your Style Quotient by wearing this Casual Shirt from LEWEL. Team it up with your favourite pair of jeans, denim shorts and sneakers when you head out to work, party, vacation or anything your heart desires. It&rsquo;s your Life, your Rules and we will be all the way with you in style.</strong></p>', 'categories/images/61skoH0rMsL._UY741_.jpg', 1, 1, '2023-09-16 00:01:15', '2023-09-16 00:01:15', 1),
-(11, 'Girl\'s Wear', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"title\" data-csa-c-slot-id=\"title_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"ktanjj-9k2v96-xnmk0v-atgnb1\" data-cel-widget=\"title_feature_div\">\r\n<div id=\"titleSection\" class=\"a-section a-spacing-none\">\r\n<h1 class=\"a-size-large a-spacing-none\"><span style=\"font-size: 18pt;\"><strong><span id=\"productTitle\" class=\"a-size-large product-title-word-break\">luyk Girls Floral Printed Top with <span style=\"font-size: 14pt;\">Trousers...</span></span></strong></span></h1>\r\n</div>\r\n</div>\r\n<div id=\"qpeTitleTag_feature_div\" class=\"celwidget\" data-feature-name=\"qpeTitleTag\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"qpeTitleTag\" data-csa-c-slot-id=\"qpeTitleTag_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"f9408f-hapg7y-jfwjod-6m6qe8\" data-cel-widget=\"qpeTitleTag_feature_div\"></div>\r\n<div id=\"cmrsSummary_feature_div\" class=\"celwidget\" data-feature-name=\"cmrsSummary\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"cmrsSummary\" data-csa-c-slot-id=\"cmrsSummary_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"cwdiip-prctva-86s4ps-ap479t\" data-cel-widget=\"cmrsSummary_feature_div\"></div>', 'categories/images/61OTdInzd9L._UY741_.jpg', 1, 1, '2023-09-16 00:06:16', '2023-09-16 00:28:33', 1);
+(7, 'Men\'s Wear', '', 'images/717V-PPn8NL._SX679._SX._UX._SY._UY_.jpg', 1, 1, '2023-09-15 23:38:36', '2023-09-24 22:59:30', 1),
+(8, 'Women\'s Wear', '<p><em><strong>is a budget-friendly clothing store that has colorful and trendy pieces for women. Their selection of graphic tees, sweatpants and joggers, and sneakers...</strong></em></p>', 'images/71BMG8EorsL._UL1500_.jpg', 1, 1, '2023-09-15 23:45:32', '2023-09-15 23:45:32', 1),
+(10, 'Boy\'s Wear', '<p><strong>Step up your Style Quotient by wearing this Casual Shirt from LEWEL. Team it up with your favourite pair of jeans, denim shorts and sneakers when you head out to work, party, vacation or anything your heart desires. It&rsquo;s your Life, your Rules and we will be all the way with you in style.</strong></p>', 'images/61skoH0rMsL._UY741_.jpg', 1, 1, '2023-09-16 00:01:15', '2023-09-16 00:01:15', 1),
+(11, 'Girl\'s Wear', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"title\" data-csa-c-slot-id=\"title_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"ktanjj-9k2v96-xnmk0v-atgnb1\" data-cel-widget=\"title_feature_div\">\r\n<div id=\"titleSection\" class=\"a-section a-spacing-none\">\r\n<h1 class=\"a-size-large a-spacing-none\"><span style=\"font-size: 18pt;\"><strong><span id=\"productTitle\" class=\"a-size-large product-title-word-break\">luyk Girls Floral Printed Top with <span style=\"font-size: 14pt;\">Trousers...</span></span></strong></span></h1>\r\n</div>\r\n</div>\r\n<div id=\"qpeTitleTag_feature_div\" class=\"celwidget\" data-feature-name=\"qpeTitleTag\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"qpeTitleTag\" data-csa-c-slot-id=\"qpeTitleTag_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"f9408f-hapg7y-jfwjod-6m6qe8\" data-cel-widget=\"qpeTitleTag_feature_div\"></div>\r\n<div id=\"cmrsSummary_feature_div\" class=\"celwidget\" data-feature-name=\"cmrsSummary\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"cmrsSummary\" data-csa-c-slot-id=\"cmrsSummary_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"cwdiip-prctva-86s4ps-ap479t\" data-cel-widget=\"cmrsSummary_feature_div\"></div>', 'images/61OTdInzd9L._UY741_.jpg', 1, 1, '2023-09-16 00:06:16', '2023-09-16 00:28:33', 1);
 
 -- --------------------------------------------------------
 
@@ -230,13 +239,13 @@ INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_na
 (104, 8, 6, 14, 'Formal Dress For Wom', 'products/images/formal  drees for women (m) 6.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 699, 1, NULL, '2023-09-20 22:06:12', NULL, 1),
 (105, 8, 6, 15, 'Formal Dress For Wom', 'products/images/formal  drees for women (s) 7.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 499, 1, NULL, '2023-09-20 22:15:33', NULL, 1),
 (106, 8, 6, 16, 'Full Sleeves Shirt F', 'products/images/formal  drees for women (xl) 8.', '<h1 class=\"a-size-large a-spacing-none\"><span id=\"productTitle\" class=\"a-size-large product-title-wo', 20, 499, 1, NULL, '2023-09-20 22:18:04', NULL, 1),
-(107, 8, 6, 17, 'Formal Dress For Wom', 'products/images/formal  drees for women (xlx) 9', '<p><strong><span class=\"a-list-item\">Women Solid Western Wear Bodycon Dress for women</span></strong', 20, 499, 1, NULL, '2023-09-20 22:19:50', NULL, 1),
-(108, 8, 8, 32, 'Formal Dress For Women', 'products/images/formal  drees for women (being)', '', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-24 13:56:30', 1),
+(107, 8, 6, 17, 'Formal Dress For Women', 'products/images/formal  drees for women (xlx) 9', '<p><strong><span class=\"a-list-item\">Women Solid Western Wear Bodycon Dress for women</span></strong></p>', 20, 499, 1, 1, '2023-09-20 22:19:50', '2023-09-24 21:08:09', 1),
+(108, 8, 8, 32, 'Formal Dress For Women', 'products/images/formal  drees for women (being)', '<p><span class=\"a-list-item\">This Top &amp; Pant Set will give you a trendy look with its beautiful design on this Festival, Wedding Seasons, Use it as casual or formal wear for office, shopping, daily wear in home, college, family, meetings, etc.</span></p>', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-24 21:17:39', 1),
 (109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe', 20, 399, 1, NULL, '2023-09-20 23:16:29', NULL, 1),
-(110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl', 80, 351, 1, NULL, '2023-09-20 23:30:27', NULL, 1),
+(110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl</span></strong></p>', 80, 351, 1, 1, '2023-09-20 23:30:27', '2023-09-25 00:37:29', 1),
 (111, 7, 7, 22, 'TIMEWEAR Analogue - Digital Mens Watch (Green Color)', 'products/images/watch (green) 3.jpg', '<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c<=\"\">Analogue watches/clocks have a mechanism to indicate time by means of mechanical structures, such as a dial and hands (hand indication type), while digital watches/clocks have a mechanism to indicate time by means of electronic structures, such as a liquid crystal and LED (number display type).</div>', 110, 549, 1, 1, '2023-09-20 23:35:21', '2023-09-24 20:54:14', 1),
-(112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 16:15:12', 1),
-(113, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"></div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-24 16:14:46', 1);
+(112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><strong>One of the largest watch makers in the world</strong>, Timex Group companies include the Timex Business Unit (Timex, Timex Ironman, Nautica, Marc Ecko and Helix); Timex Group Luxury Watches (Salvatore Ferragamo); Sequel (Guess, Gc) and Vertime (Versace).<!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 21:01:13', 1),
+(113, 7, 7, 21, 'TIMEX Analog Blue Dial', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"><strong>with Timex you\'re getting a watch that\'s deep-rooted in brand history with significant contributions to watch design</strong>. It\'s important to know that Timex is not a luxury brand though &ndash; with Timex you\'re getting a watch that looks good and has great functionality at an affordable price.</div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-24 21:00:01', 1);
 
 -- --------------------------------------------------------
 
@@ -285,7 +294,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
 (1, 'Vairag Bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-09-08 21:55:45', 1, 1, 1),
 (16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1),
-(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1);
+(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1),
+(38, 'Kavita Bavadiya', 'kavitabavadiya@gmail.com', '9909409153', '0000', 3, '', '2023-09-26 00:10:43', '2023-09-26 00:10:43', 38, 38, 1);
 
 -- --------------------------------------------------------
 
@@ -350,6 +360,7 @@ ALTER TABLE `attribute`
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user_id` (`user_id`),
   ADD KEY `fkk_p_idd` (`product_id`);
 
@@ -416,6 +427,12 @@ ALTER TABLE `attribute`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -437,7 +454,7 @@ ALTER TABLE `product_attribute`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `user_type`

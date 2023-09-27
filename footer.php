@@ -23,9 +23,9 @@
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>123 Street,Gujarat,India</p>
-            <p class="mb-2"><i class="fa fa-envelope text-white mr-3"></i>brocode@gmail.com</p>
-            <p class="mb-0"><i class="fa fa-phone-alt text-white mr-3"></i>+91 9909409153</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Vidhyadeep University  Surat,Gujarat,India</p>
+            <p class="mb-2"><i class="fa fa-envelope text-white mr-3"></i>vairagbavadiya5@gmail.com</p>
+            <p class="mb-2"><i class="fa fa-phone-alt text-white mr-3"></i>+91 9909409153</p>
         </div>
     </div>
     <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">

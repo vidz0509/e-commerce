@@ -3,30 +3,39 @@ require("config.php");
 require("header.php");
 ?>
 
+<style>
+    .row {
+        padding-left: 50px;
+    }
+</style>
 
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
+                <a class="breadcrumb-item text-dark" href="index.php">Home</a>
                 <span class="breadcrumb-item active">About Us</span>
             </nav>
         </div>
     </div>
 </div>
 
-
-<div class="container-fluid">
-    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">About Us</span></h2>
-    <div class="row">
-        <div class="col-lg-5 mb-5">
-            <div class="bg-light p-30 mb-30">
-                <img style="width: 100%; height: 300px;" src="./sizeshoeshop_640x360.jpg" abindex="0"></img>
+<div class="about-box-main">
+    <div class="container-fluid">
+        <div class="row ps-3">
+            <div class="col-lg-6">
+                <h3 class="noo-sh-title">Shop Image</h3>
+                <div class="banner-frame"> <img class="img-fluid mt-4" src="./sizeshoeshop_640x360.jpg" alt="" />
+                </div>
             </div>
-            <div class="bg-light p-30 mb-3">
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>brocode@gmail.com</p>
-                <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+1 9510935250</p>
+            <div class="col-lg-5">
+                <h3 class="noo-sh-title mt-2">We Are Available..</h3>
+                
+                <p>"A cloth store is a retail establishment that sells clothing and other apparel. Cloth stores can vary in size and scope, from small boutiques that specialize in a particular type of clothing to large department stores that carry a wide range of apparel for all ages and occasions."</p>
+
+                <p>"Cloth stores offer a variety of benefits to shoppers. First, they provide a convenient place to find a wide selection of clothing in one location. Second, cloth stores often have knowledgeable staff who can help shoppers find the right clothes for their needs and style. Third, cloth stores may offer discounts and promotions, making it possible to find good deals on clothing."</p>
+
+                <p>"The cloth store is a vibrant and bustling place, full of color and energy. The racks are overflowing with clothes of all shapes, sizes, and styles, from casual to formal to everything in between. Shoppers wander through the aisles, browsing for the perfect outfit for their next special occasion or simply for everyday wear."</p>
             </div>
         </div>
     </div>

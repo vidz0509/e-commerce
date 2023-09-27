@@ -7,21 +7,36 @@ if (isset($_POST['edit'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $p_name =  mysqli_real_escape_string($conn,$_POST['p_name']);
+    $p_name =  mysqli_real_escape_string($conn, $_POST['p_name']);
 
     $price =  $_POST['price'];
 
     $stock =  $_POST['stock'];
 
-    $p_description = mysqli_real_escape_string($conn,$_POST['p_description']);
+    $p_description = mysqli_real_escape_string($conn, $_POST['p_description']);
 
-    $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),
+    if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
+
+        $filename = $_FILES["file_upload"]["name"];
+
+        $tempname = $_FILES["file_upload"]["tmp_name"];
+
+        $folder = "images/" . $filename;
+
+        if (move_uploaded_file($tempname, $folder)) {
+            $pdt_query = "Update product Set p_name='$p_name',p_image='$folder',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),is_active = true where id='$id'";
+        } else {
+            echo '<div class="alert alert-danger">Failed to upload image!</div>';
+        }
+
+        $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),
     is_active = true where id='$id'";
 
-    if (mysqli_query($conn, $pdt_query)) {
-        $message = '<div class="alert alert-success">Product updated successfully!</div>';
-    } else {
-        $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
+        if (mysqli_query($conn, $pdt_query)) {
+            $message = '<div class="alert alert-success">Product updated successfully!</div>';
+        } else {
+            $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
+        }
     }
 }
 $sql = "SELECT * FROM product where id = " . $id;
@@ -80,6 +95,14 @@ $row = mysqli_fetch_assoc($result);
                                 <label for="inputText" class="col-sm-2 col-form-label">Price</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="price" value="<?php echo $row['price']; ?>" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Product Image</label>
+                                <div class="col-sm-10">
+                                    <img src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>">
+                                    <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>
 

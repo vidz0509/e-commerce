@@ -59,7 +59,7 @@ require("header.php");
                                         </div>
                                     </td>
                                     <td class="align-middle"><?php echo '₹' . $item['price']; ?></td>
-                                    <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                                    <td class="align-middle"><button class="btn btn-sm btn-danger"><a href="deletecart.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-times"></i></button></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php elseif (isset($_SESSION['id']) && $_SESSION['id'] != "") : ?>

@@ -1,11 +1,10 @@
 <?php
 if (session_id() === "") session_start();
 require('config.php');
-
 $total = 0;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     $total = count(($_SESSION['cart']));
-} else if ($_SESSION['id'] && $_SESSION['id'] != "") {
+} else if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
     $cart_sql = "SELECT COUNT(id) as totalCartItems FROM `cart` where user_id=" . $_SESSION['id'];
     $cart_result = $conn->query($cart_sql);
     $cart_row = mysqli_fetch_assoc($cart_result);
@@ -19,7 +18,6 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Brocode - Carting</title>

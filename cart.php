@@ -1,6 +1,9 @@
 <?php
 require("config.php");
 require("header.php");
+
+var_dump($_SESSION['cart']);
+
 ?>
 
 <!-- Breadcrumb Start -->
@@ -59,11 +62,11 @@ require("header.php");
                                         </div>
                                     </td>
                                     <td class="align-middle"><?php echo '₹' . $item['price']; ?></td>
-                                    <td class="align-middle"><button class="btn btn-sm btn-danger"><a href="deletecart.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-times"></i></button></td>
+                                    <td class="align-middle"><button class="btn btn-sm btn-danger remove-cart-item" data-id="<?php echo $i; ?>"><i class="fa fa-times"></i></button></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php elseif (isset($_SESSION['id']) && $_SESSION['id'] != "") : ?>
-                            <?php $query = "SELECT c.id,c.amount,c.qty,p.id,p.p_image,p.p_name,p.price FROM product as p,cart as c where c.product_id = p.id and c.user_id=" . $_SESSION['id']; ?>
+                            <?php $query = "SELECT c.id as cart_key,c.amount,c.qty,p.id,p.p_image,p.p_name,p.price FROM product as p,cart as c where c.product_id = p.id and c.user_id=" . $_SESSION['id']; ?>
                             <?php if ($result = $conn->query($query)) : ?>
                                 <?php while ($row = $result->fetch_assoc()) : ?>
                                     <tr>
@@ -86,7 +89,11 @@ require("header.php");
                                             </div>
                                         </td>
                                         <td class="align-middle"><?php echo '₹' . $row['price']; ?></td>
-                                        <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                                        <td class="align-middle">
+                                            <button class="btn btn-sm btn-danger remove-cart-item" data-id="<?php echo $row['cart_key']; ?>">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 <?php endwhile; ?>
                             <?php endif; ?>

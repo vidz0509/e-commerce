@@ -28,6 +28,7 @@ if (isset($_POST['edit'])) {
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
+    }
 
         $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),
     is_active = true where id='$id'";
@@ -38,7 +39,6 @@ if (isset($_POST['edit'])) {
             $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
         }
     }
-}
 $sql = "SELECT * FROM product where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);

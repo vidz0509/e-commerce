@@ -114,7 +114,8 @@
         }, 1000);
     });
 
-    $(document).on('click', '.add-to-cart', function () {
+    $(document).on('click', '.add-to-cart', function (e) {
+        e.preventDefault();
         var product = $(this).attr('data-product');
         var product_price = $(this).closest('.product-action').find("[name=product_price]").val();
         var product_name = $(this).closest('.product-action').find("[name=product_name]").val();
@@ -139,6 +140,41 @@
                 if (response.success) {
                     $(document).find('#cart-text').text(response.total);
                     alertify.notify('Product added to cart!', 'success', 5);
+                }else{
+                    alertify.notify('Something went wrong', 'error', 5);
+                }
+                hideLoader();
+            },
+            error: function (error) {
+                console.log(error);
+                alertify.set('notifier','position', 'top-right');
+                alertify.notify('Something went wrong', 'error', 5);
+                hideLoader();
+            }
+        });
+
+    });
+
+    $(document).on('click', '.remove-cart-item', function (e) {
+        e.preventDefault();
+        var cart_key = $(this).attr('data-id');
+
+        // var product = {
+        //     id: product,
+        // }
+
+        $.ajax({
+            url: 'ajaxCallbacks/delete_from_cart.php',
+            dataType: 'json',
+            method: 'post',
+            data: {
+                cart_key: cart_key
+            },
+            success: function (response) {
+                alertify.set('notifier','position', 'top-right');
+                if (response.success) {
+                    alertify.notify('Product removed from cart!', 'error', 5);
+                    window.location.reload();
                 }else{
                     alertify.notify('Something went wrong', 'error', 5);
                 }

@@ -118,22 +118,27 @@ require("header.php");
         <?php if ($result = $conn->query($sql)) : ?>
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <div class="product-item bg-light mb-4 text-center">
-                        <div class="product-img position-relative overflow-hidden">
-                            <div class="img-wrap">
-                                <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="<?php echo $row['p_name']; ?>">
-                            </div>
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="cart.php?id=<?php echo $row["id"]; ?>"><i class="fa fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate text-capitalize" href="/e-commerce/product.php?id=<?php echo $row["id"]; ?>"><?php echo $row['p_name']; ?></a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>₹<?php echo $row['price']; ?></h5>
-                            </div>
-                        </div>
+                <div class="product-item bg-light mb-4 text-center">
+                <div class="product-img position-relative overflow-hidden">
+                    <div class="img-wrap">
+                        <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="<?php echo $row['p_name']; ?>">
                     </div>
+                    <div class="product-action">
+                        <button class="btn btn-outline-dark btn-square add-to-cart" data-product="<?php echo $row['id']; ?>">
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <input type="hidden" value="<?php echo $row['price']; ?>" name="product_price" />
+                        <input type="hidden" value="<?php echo $row['p_name']; ?>" name="product_name" />
+                        <input type="hidden" value="<?php echo $row['p_image']; ?>" name="product_image" />
+                    </div>
+                </div>
+                <div class="text-center py-4">
+                    <a class="h6 text-decoration-none text-truncate" href="/e-commerce/product.php?id=<?php echo $row["id"]; ?>"><?php echo $row['p_name']; ?></a>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <h5>₹<?php echo $row['price']; ?></h5>
+                    </div>
+                </div>
+            </div>
                 </div>
             <?php endwhile; ?>
         <?php endif; ?>

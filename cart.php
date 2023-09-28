@@ -2,7 +2,7 @@
 require("config.php");
 require("header.php");
 
-var_dump($_SESSION['cart']);
+// var_dump($_SESSION['cart']);
 
 ?>
 
@@ -29,7 +29,8 @@ var_dump($_SESSION['cart']);
                 <table class="table table-light table-borderless table-hover text-center mb-0">
                     <thead class="thead-dark">
                         <tr>
-                            <th colspan="2">Product</th>
+                            <th>Image</th>
+                            <th>Product</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
@@ -40,7 +41,7 @@ var_dump($_SESSION['cart']);
                         <?php $subtotal = 0; ?>
                         <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) : ?>
                             <?php $i = 0; ?>
-                            <?php foreach ($_SESSION['cart'] as $item) : ?>
+                            <?php foreach ($_SESSION['cart'] as $key => $item) : ?>
                                 <?php $subtotal += $item['total_amount']; ?>
                                 <tr>
                                     <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/<?php echo $item['product_image']; ?>"></td>
@@ -62,8 +63,13 @@ var_dump($_SESSION['cart']);
                                         </div>
                                     </td>
                                     <td class="align-middle"><?php echo '₹' . $item['price']; ?></td>
-                                    <td class="align-middle"><button class="btn btn-sm btn-danger remove-cart-item" data-id="<?php echo $i; ?>"><i class="fa fa-times"></i></button></td>
+                                    <td class="align-middle">
+                                        <button class="btn btn-sm btn-danger remove-cart-item" data-id="<?php echo $key; ?>">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
                                 </tr>
+                                <?php $i++; ?>
                             <?php endforeach; ?>
                         <?php elseif (isset($_SESSION['id']) && $_SESSION['id'] != "") : ?>
                             <?php $query = "SELECT c.id as cart_key,c.amount,c.qty,p.id,p.p_image,p.p_name,p.price FROM product as p,cart as c where c.product_id = p.id and c.user_id=" . $_SESSION['id']; ?>

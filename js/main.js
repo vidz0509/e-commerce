@@ -136,18 +136,18 @@
                 product: product
             },
             success: function (response) {
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier', 'position', 'top-right');
                 if (response.success) {
                     $(document).find('#cart-text').text(response.total);
                     alertify.notify('Product added to cart!', 'success', 5);
-                }else{
+                } else {
                     alertify.notify('Something went wrong', 'error', 5);
                 }
                 hideLoader();
             },
             error: function (error) {
                 console.log(error);
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier', 'position', 'top-right');
                 alertify.notify('Something went wrong', 'error', 5);
                 hideLoader();
             }
@@ -171,18 +171,20 @@
                 cart_key: cart_key
             },
             success: function (response) {
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier', 'position', 'top-right');
                 if (response.success) {
                     alertify.notify('Product removed from cart!', 'error', 5);
-                    window.location.reload();
-                }else{
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000)
+                } else {
                     alertify.notify('Something went wrong', 'error', 5);
                 }
                 hideLoader();
             },
             error: function (error) {
                 console.log(error);
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier', 'position', 'top-right');
                 alertify.notify('Something went wrong', 'error', 5);
                 hideLoader();
             }

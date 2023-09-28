@@ -20,7 +20,12 @@ else
                         <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="<?php echo $row['p_name']; ?>">
                     </div>
                     <div class="product-action">
-                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                        <button class="btn btn-outline-dark btn-square add-to-cart" data-product="<?php echo $row['id']; ?>">
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <input type="hidden" value="<?php echo $row['price']; ?>" name="product_price" />
+                        <input type="hidden" value="<?php echo $row['p_name']; ?>" name="product_name" />
+                        <input type="hidden" value="<?php echo $row['p_image']; ?>" name="product_image" />
                     </div>
                 </div>
                 <div class="text-center py-4">

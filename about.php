@@ -25,7 +25,7 @@ require("header.php");
         <div class="row ps-3">
             <div class="col-lg-6">
                 <h3 class="noo-sh-title">Shop Image</h3>
-                <div class="banner-frame"> <img class="img-fluid mt-4" src="./sizeshoeshop_640x360.jpg" alt="" />
+                <div class="banner-frame"> <img class="img-fluid mt-3" src="./sizeshoeshop_640x360.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-5">

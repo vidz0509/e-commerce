@@ -28,48 +28,45 @@ require("header.php");
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label>First Name</label>
-                        <input class="form-control" type="text" placeholder="John">
+                        <input class="form-control" type="text" placeholder="First name">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Last Name</label>
-                        <input class="form-control" type="text" placeholder="Doe">
+                        <input class="form-control" type="text" placeholder="Last name">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>E-mail</label>
-                        <input class="form-control" type="text" placeholder="example@email.com">
+                        <input class="form-control" type="text" placeholder="abc@email.com">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Mobile No</label>
-                        <input class="form-control" type="text" placeholder="+123 456 789">
+                        <input class="form-control" type="text" placeholder="+91 9909409153">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address Line 1</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
+                        <input class="form-control" type="text" placeholder="Address line 1">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Address Line 2</label>
-                        <input class="form-control" type="text" placeholder="123 Street">
+                        <input class="form-control" type="text" placeholder="Address line 2">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Country</label>
                         <select class="custom-select">
-                            <option selected>United States</option>
-                            <option>Afghanistan</option>
-                            <option>Albania</option>
-                            <option>Algeria</option>
+                            <option selected>INDIA</option>
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
                         <label>City</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" placeholder="Gujarat">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>State</label>
-                        <input class="form-control" type="text" placeholder="New York">
+                        <input class="form-control" type="text" placeholder="Surat">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>ZIP Code</label>
-                        <input class="form-control" type="text" placeholder="123">
+                        <input class="form-control" type="text" placeholder="394130">
                     </div>
                     <div class="col-md-12 form-group">
                         <div class="custom-control custom-checkbox">
@@ -91,48 +88,45 @@ require("header.php");
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" placeholder="First name">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
+                            <input class="form-control" type="text" placeholder="Last name">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" placeholder="abc@email.com">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" placeholder="+91 9909409153">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" placeholder="Address Line 1">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" placeholder="Address Line 2">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Country</label>
                             <select class="custom-select">
-                                <option selected>United States</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
+                                <option selected>INDIA</option>
                             </select>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" placeholder="Gujarat">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>State</label>
-                            <input class="form-control" type="text" placeholder="New York">
+                            <input class="form-control" type="text" placeholder="Surat">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
+                            <input class="form-control" type="text" placeholder="394130">
                         </div>
                     </div>
                 </div>

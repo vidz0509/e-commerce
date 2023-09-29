@@ -6,9 +6,8 @@
             </a>
         </div>
         <div class="col-md-3">
-            <h5 class="text-secondary text-uppercase mb-4">Who we are</h5>
-            <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor.
-                Rebum tempor no vero est magna amet no</p>
+            <h5 class="text-secondary text-uppercase mb-4">About us</h5>
+            <p class="mb-4">Discover our cloth store, where fashion meets quality. Immerse yourself in a world of style with our curated collection of trendy apparel. From luxurious silks to cozy cottons, we offer a range of fabrics for every occasion. Explore timeless classics and contemporary designs in our boutique. Elevate your wardrobe today!</p>
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>

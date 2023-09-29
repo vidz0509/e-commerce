@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 09:20 PM
+-- Generation Time: Sep 29, 2023 at 05:54 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -83,7 +83,8 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `product_id`, `qty`, `user_id`, `amount`) VALUES
 (12, 31, 1, 38, '599.00'),
 (13, 10, 1, 38, '400.00'),
-(14, 16, 1, 38, '399.00');
+(14, 16, 1, 38, '399.00'),
+(19, 32, 1, 1, '699.00');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ CREATE TABLE `product` (
   `variants_id` int(20) NOT NULL,
   `attribute_id` int(20) NOT NULL,
   `p_name` varchar(200) NOT NULL,
-  `p_image` varchar(200) DEFAULT NULL,
+  `p_image` longtext DEFAULT NULL,
   `p_description` longtext NOT NULL,
   `stock` int(50) NOT NULL,
   `price` int(50) NOT NULL,
@@ -239,13 +240,13 @@ INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_na
 (104, 8, 6, 14, 'Formal Dress For Wom', 'products/images/formal  drees for women (m) 6.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 699, 1, NULL, '2023-09-20 22:06:12', NULL, 1),
 (105, 8, 6, 15, 'Formal Dress For Wom', 'products/images/formal  drees for women (s) 7.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 499, 1, NULL, '2023-09-20 22:15:33', NULL, 1),
 (106, 8, 6, 16, 'Full Sleeves Shirt F', 'products/images/formal  drees for women (xl) 8.', '<h1 class=\"a-size-large a-spacing-none\"><span id=\"productTitle\" class=\"a-size-large product-title-wo', 20, 499, 1, NULL, '2023-09-20 22:18:04', NULL, 1),
-(107, 8, 6, 17, 'Formal Dress For Women', 'products/images/formal  drees for women (xlx) 9', '<p><strong><span class=\"a-list-item\">Women Solid Western Wear Bodycon Dress for women</span></strong></p>', 20, 499, 1, 1, '2023-09-20 22:19:50', '2023-09-24 21:08:09', 1),
-(108, 8, 8, 32, 'Formal Dress For Women', 'products/images/formal  drees for women (being)', '<p><span class=\"a-list-item\">This Top &amp; Pant Set will give you a trendy look with its beautiful design on this Festival, Wedding Seasons, Use it as casual or formal wear for office, shopping, daily wear in home, college, family, meetings, etc.</span></p>', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-24 21:17:39', 1),
-(109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe', 20, 399, 1, NULL, '2023-09-20 23:16:29', NULL, 1),
+(107, 8, 6, 17, 'Selvia Women\'s Green Lycra Solid Piece Blazer Co-Ord Set', 'images/formal  drees for women (blackl) 1.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"productDescription\" data-csa-c-slot-id=\"productDescription_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"clwnnh-d9jlb4-x4atpn-od2tb4\" data-cel-widget=\"productDescription_feature_div\">\r\n<div>\r\n<div id=\"productDescription_feature_div\" class=\"a-row feature\" data-feature-name=\"productDescription\" data-template-name=\"productDescription\" data-cel-widget=\"productDescription_feature_div\">\r\n<div id=\"productDescription\" class=\"a-section a-spacing-small\">\r\n<p><strong>This Co-Ords Set Is Made Of Lycra Fabric,Crafted For Every Comfort. This Knitted &amp; Dyed Dress To Make It Suitable For Daily Party Or Evening Wear.</strong></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div id=\"aplusBrandStory_feature_div\" class=\"celwidget\" data-feature-name=\"aplusBrandStory\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"aplusBrandStory\" data-csa-c-slot-id=\"aplusBrandStory_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"kqf7py-21ekej-1xhraj-ze16gz\" data-cel-widget=\"aplusBrandStory_feature_div\"></div>\r\n<div id=\"aplus_feature_div\" class=\"celwidget\" data-feature-name=\"aplus\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"aplus\" data-csa-c-slot-id=\"aplus_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"dqnsdr-7mcbiu-pc63fo-ps0gmx\" data-cel-widget=\"aplus_feature_div\">\r\n<div id=\"aplus\" class=\"a-section a-spacing-large bucket\"></div>\r\n</div>', 20, 499, 1, 1, '2023-09-20 22:19:50', '2023-09-29 21:22:17', 1),
+(108, 8, 8, 32, 'SIRIL Lycra Long Puff Sleeve Sweetheart Neck Co-Ords Set for Women\'s | Suit Set|Two Piece Dress', 'images/formal  drees for women (blackl) 1.jpg', '<p><span class=\"a-list-item\">This Top &amp; Pant Set will give you a trendy look with its beautiful design on this Festival, Wedding Seasons, Use it as casual or formal wear for office, shopping, daily wear in home, college, family, meetings, etc.</span></p>', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-29 21:15:13', 1),
+(109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe</strong></p>', 20, 399, 1, 1, '2023-09-20 23:16:29', '2023-09-29 21:05:32', 1),
 (110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl</span></strong></p>', 80, 351, 1, 1, '2023-09-20 23:30:27', '2023-09-25 00:37:29', 1),
 (111, 7, 7, 22, 'TIMEWEAR Analogue - Digital Mens Watch (Green Color)', 'products/images/watch (green) 3.jpg', '<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c<=\"\">Analogue watches/clocks have a mechanism to indicate time by means of mechanical structures, such as a dial and hands (hand indication type), while digital watches/clocks have a mechanism to indicate time by means of electronic structures, such as a liquid crystal and LED (number display type).</div>', 110, 549, 1, 1, '2023-09-20 23:35:21', '2023-09-24 20:54:14', 1),
 (112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><strong>One of the largest watch makers in the world</strong>, Timex Group companies include the Timex Business Unit (Timex, Timex Ironman, Nautica, Marc Ecko and Helix); Timex Group Luxury Watches (Salvatore Ferragamo); Sequel (Guess, Gc) and Vertime (Versace).<!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 21:01:13', 1),
-(113, 7, 7, 21, 'TIMEX Analog Blue Dial', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"><strong>with Timex you\'re getting a watch that\'s deep-rooted in brand history with significant contributions to watch design</strong>. It\'s important to know that Timex is not a luxury brand though &ndash; with Timex you\'re getting a watch that looks good and has great functionality at an affordable price.</div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-24 21:00:01', 1);
+(113, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"><strong>with Timex you\'re getting a watch that\'s deep-rooted in brand history with significant contributions to watch design</strong>. It\'s important to know that Timex is not a luxury brand though &ndash; with Timex you\'re getting a watch that looks good and has great functionality at an affordable price.</div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-28 14:14:40', 1);
 
 -- --------------------------------------------------------
 
@@ -430,7 +431,7 @@ ALTER TABLE `attribute`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `category`

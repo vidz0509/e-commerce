@@ -28,17 +28,17 @@ if (isset($_POST['edit'])) {
         } else {
             echo '<div class="alert alert-danger">Failed to upload image!</div>';
         }
+    } else {
+        $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),is_active = true where id='$id'";
     }
 
-        $pdt_query = "Update product Set p_name='$p_name',stock='$stock',price='$price',p_description='$p_description',updated_by = $current_user_id,updated_at = now(),
-    is_active = true where id='$id'";
 
-        if (mysqli_query($conn, $pdt_query)) {
-            $message = '<div class="alert alert-success">Product updated successfully!</div>';
-        } else {
-            $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
-        }
+    if (mysqli_query($conn, $pdt_query)) {
+        $message = '<div class="alert alert-success">Product updated successfully!</div>';
+    } else {
+        $message = '<div class="alert alert-danger">Something went wrong.' . $sql . '</div>';
     }
+}
 $sql = "SELECT * FROM product where id = " . $id;
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
@@ -112,12 +112,12 @@ $row = mysqli_fetch_assoc($result);
                                 </div>
                             </div>
 
-                        </form><!-- End General Form Elements -->
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>
 <?php include("../footer.php"); ?>

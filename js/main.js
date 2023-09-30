@@ -71,16 +71,20 @@
             }
         }
     });
-    $('.quantity button').on('click', function () {
+    $('.quantity button').on('click', function (e) {
+        e.preventDefault();
         var button = $(this);
-        var oldValue = button.parent().parent().find('input').val();
+        var oldValue = button.closest('.quantity').find('input.qty').val();
         if (button.hasClass('btn-plus')) {
-            var newVal = parseFloat(oldValue) + 1;
+            if (oldValue < 5)
+                var newVal = parseFloat(oldValue) + 1;
+            else
+                newVal = oldValue
         } else {
-            if (oldValue > 0) {
+            if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
             } else {
-                newVal = 0;
+                newVal = 1;
             }
         }
         button.parent().parent().find('input').val(newVal);
@@ -117,15 +121,19 @@
     $(document).on('click', '.add-to-cart', function (e) {
         e.preventDefault();
         var product = $(this).attr('data-product');
-        var product_price = $(this).closest('.product-action').find("[name=product_price]").val();
-        var product_name = $(this).closest('.product-action').find("[name=product_name]").val();
-        var product_image = $(this).closest('.product-action').find("[name=product_image]").val();
+        var product_price = $(this).closest('.product-cart-action').find("[name=product_price]").val();
+        var product_name = $(this).closest('.product-cart-action').find("[name=product_name]").val();
+        var product_image = $(this).closest('.product-cart-action').find("[name=product_image]").val();
+        var product_qty = $(this).closest('.product-cart-action').find("[name=product_qty]").val();
+        if (!product_qty)
+            product_qty = 1;
 
         var product = {
             id: product,
             price: product_price,
             name: product_name,
-            image: product_image
+            image: product_image,
+            qty: product_qty
         }
 
         $.ajax({
@@ -199,6 +207,16 @@
     function showLoader() {
         $(document).find('.loader-wrap').show();
     }
+
+    $(function () {
+        var url = window.location.pathname,
+            urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
+        $('.site-nav a').each(function () {
+            if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+                $(this).addClass('active');
+            }
+        });
+    });
 
 })(jQuery);
 

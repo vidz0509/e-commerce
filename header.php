@@ -3,9 +3,12 @@ if (session_id() === "") session_start();
 require('config.php');
 $total = 0;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-    $total = count(($_SESSION['cart']));
+    foreach($_SESSION['cart'] as $item){
+        $total += $item['qty'];
+    }
+    // $total = count(($_SESSION['cart']));
 } else if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-    $cart_sql = "SELECT COUNT(id) as totalCartItems FROM `cart` where user_id=" . $_SESSION['id'];
+    $cart_sql = "SELECT sum(qty) as totalCartItems FROM `cart` where user_id=" . $_SESSION['id'];
     $cart_result = $conn->query($cart_sql);
     $cart_row = mysqli_fetch_assoc($cart_result);
     $total = $cart_row['totalCartItems'];
@@ -60,7 +63,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
         }
 
         .img-wrap {
-            max-height: 200px;
+            height: 200px;
+            padding:10px;
         }
 
         .loader {
@@ -91,8 +95,9 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
         .product-item {
             border: 1px solid #e4e4e4;
             border-radius: 5px;
-            min-height: 320px;
+            height: 350px;
         }
+        .single-product .carousel-item img{ max-width: 400px; }
 
         .alertify-notifier .ajs-message.ajs-success,
         .alertify-notifier .ajs-message.ajs-error {
@@ -106,6 +111,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 
         #place_order{ color: #fff !important; }
         #place_order:hover{ background-color: #000 !important; border-color: #000 !important; }
+        .product-content{ padding: 10px; }
+        .navbar-expand-lg .navbar-nav .nav-link.active{ color: #001F3F !important; font-weight: 700; }
 
         @keyframes rotation {
             0% {
@@ -136,10 +143,10 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
                 <nav class="navbar navbar-expand-lg bg-white navbar-white py-3 py-lg-0 px-0">
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-3 site-nav">
-                            <a href="index.php" class="nav-item nav-link text-dark">Home</a>
-                            <a href="about.php" class="nav-item nav-link text-dark">About Us</a>
-                            <a href="shop.php" class="nav-item nav-link text-dark">Shop</a>
-                            <a href="contact.php" class="nav-item nav-link text-dark">Contact Us</a>
+                            <a href="/e-commerce/" class="nav-item nav-link text-dark">Home</a>
+                            <a href="/e-commerce/about.php" class="nav-item nav-link text-dark">About Us</a>
+                            <a href="/e-commerce/shop.php" class="nav-item nav-link text-dark">Shop</a>
+                            <a href="/e-commerce/contact.php" class="nav-item nav-link text-dark">Contact Us</a>
                             <?php
                             if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
                             ?>

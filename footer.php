@@ -7,22 +7,21 @@
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">About us</h5>
-            <p class="mb-4">Discover our cloth store, where fashion meets quality. Immerse yourself in a world of style with our curated collection of trendy apparel. From luxurious silks to cozy cottons, we offer a range of fabrics for every occasion. Explore timeless classics and contemporary designs in our boutique. Elevate your wardrobe today!</p>
+            <p class="mb-4">Discover our cloth store, where fashion meets quality. Immerse yourself in a world of style with our curated collection of trendy apparel.</p>
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
             <div class="d-flex flex-column justify-content-start">
-                <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                <a class="text-secondary mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping
+                <a class="text-secondary mb-2" href="/e-commerce/"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                <a class="text-secondary mb-2" href="/e-commerce/shop.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                <a class="text-secondary mb-2" href="/e-commerce/cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping
                     Cart</a>
-                <a class="text-secondary mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                <a class="text-secondary" href="/e-commerce/contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
             </div>
         </div>
         <div class="col-md-3">
             <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Vidhyadeep University  Surat,Gujarat,India</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Vidhyadeep University Surat,Gujarat,India</p>
             <p class="mb-2"><i class="fa fa-envelope text-white mr-3"></i>vairagbavadiya5@gmail.com</p>
             <p class="mb-2"><i class="fa fa-phone-alt text-white mr-3"></i>+91 9909409153</p>
         </div>

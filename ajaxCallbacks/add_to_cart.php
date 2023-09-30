@@ -10,7 +10,7 @@ if (isset($_POST['product'])) {
     if (isset($_SESSION['id'])) {
         $current_user_id = $_SESSION['id'];
     }
-    $qty = 1;
+    $qty = isset($product['qty']) ? $product['qty']  : 1;
     $product_id = $product['id'];
     $product_name = $product['name'];
     $product_image = $product['image'];
@@ -20,7 +20,7 @@ if (isset($_POST['product'])) {
         $sql = "insert into cart (user_id,product_id,qty,amount) values ('$current_user_id','$product_id',$qty,$total)";
         if (mysqli_query($conn, $sql)) {
 
-            $sql = "SELECT COUNT(id) as totalCartItems FROM `cart` where user_id=" . $current_user_id;
+            $sql = "SELECT sum(qty) as totalCartItems FROM `cart` where user_id=" . $current_user_id;
             $result = $conn->query($sql);
             $row = mysqli_fetch_assoc($result);
             $total = $row['totalCartItems'];
@@ -31,6 +31,7 @@ if (isset($_POST['product'])) {
             $message = "<div class='alert alert-danger'>Something went wrong!</div>";
         }
     } else {
+        $count = 0;
         $_SESSION['cart'][] = array(
             'product_id' => $product_id,
             'product_name' => $product_name,
@@ -40,7 +41,10 @@ if (isset($_POST['product'])) {
             'total_amount' => $total,
         );
         $json['success'] = true;
-        $json['total'] = count($_SESSION['cart']);
+        foreach($_SESSION['cart'] as $item){
+            $count += $item['qty'];
+        }
+        $json['total'] = $count;
     }
     echo json_encode($json);
     exit;

@@ -17,9 +17,9 @@ else
             <div class="product-item bg-light mb-4 text-center">
                 <div class="product-img position-relative overflow-hidden">
                     <div class="img-wrap">
-                        <img class="img-fluid" src="/e-commerce/admin/<?php echo $row['p_image']; ?>" alt="<?php echo $row['p_name']; ?>">
+                        <img class="img-fluid" src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>" alt="<?php echo $row['p_name']; ?>">
                     </div>
-                    <div class="product-action">
+                    <div class="product-action product-cart-action">
                         <button class="btn btn-outline-dark btn-square add-to-cart" data-product="<?php echo $row['id']; ?>">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
@@ -28,8 +28,8 @@ else
                         <input type="hidden" value="<?php echo $row['p_image']; ?>" name="product_image" />
                     </div>
                 </div>
-                <div class="text-center py-4">
-                    <a class="h6 text-decoration-none text-truncate" href="/e-commerce/product.php?id=<?php echo $row["id"]; ?>"><?php echo $row['p_name']; ?></a>
+                <div class="text-center py-4 product-content">
+                    <a class="h6 text-decoration-none" href="/e-commerce/product.php?id=<?php echo $row["id"]; ?>"><?php echo $row['p_name']; ?></a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
                         <h5>₹<?php echo $row['price']; ?></h5>
                     </div>

@@ -50,7 +50,7 @@ require('../header.php');
                                                 <td>
                                                     <?php
                                                     if ($row['p_image'])
-                                                        echo "<img class='td-img' src='/e-commerce/admin/products/" . $row['p_image'] . "'/>";
+                                                        echo "<img class='td-img' src='/e-commerce/admin/" . $row['p_image'] . "'/>";
                                                     else
                                                         echo '-';
                                                     ?>

@@ -1,7 +1,6 @@
 <?php
 require("config.php");
 require("header.php");
-
 if (isset($_POST['update_cart'])) {
     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         unset($_SESSION['cart']);
@@ -51,10 +50,6 @@ if (isset($_POST['update_cart'])) {
         </div>
     </div>
 </div>
-<!-- Breadcrumb End -->
-
-
-<!-- Cart Start -->
 <?php if ($total > 0) : ?>
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -115,6 +110,7 @@ if (isset($_POST['update_cart'])) {
                                 <?php if ($result = $conn->query($query)) : ?>
                                     <?php $i = 0; ?>
                                     <?php while ($row = $result->fetch_assoc()) : ?>
+                                        <?php $subtotal += $row['amount']; ?>
                                         <tr>
                                             <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/<?php echo $row['p_image']; ?>"></td>
                                             <td class="align-middle"><?php echo $row['p_name']; ?></td>

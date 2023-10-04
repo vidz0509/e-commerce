@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 05:54 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 04, 2023 at 06:33 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,7 @@ CREATE TABLE `attribute` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute`
@@ -65,26 +65,32 @@ INSERT INTO `attribute` (`id`, `variants_id`, `attribute_name`, `attribute_image
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `billing_address`
+--
+
+CREATE TABLE `billing_address` (
+  `id` int(20) NOT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `street_address` varchar(150) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `zipcode` varchar(6) NOT NULL,
+  `country` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
-  `id` int(10) NOT NULL,
+  `id` int(20) NOT NULL,
   `product_id` int(20) NOT NULL,
-  `qty` int(20) NOT NULL,
+  `quantity` int(20) NOT NULL,
   `user_id` int(20) NOT NULL,
-  `amount` decimal(6,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `product_id`, `qty`, `user_id`, `amount`) VALUES
-(12, 31, 1, 38, '599.00'),
-(13, 10, 1, 38, '400.00'),
-(14, 16, 1, 38, '399.00'),
-(19, 32, 1, 1, '699.00');
+  `total_amount` decimal(20,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -102,17 +108,47 @@ CREATE TABLE `category` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, `created_by`, `updated_by`, `created_at`, `updated_at`, `is_active`) VALUES
-(7, 'Men\'s Wear', '', 'images/717V-PPn8NL._SX679._SX._UX._SY._UY_.jpg', 1, 1, '2023-09-15 23:38:36', '2023-09-24 22:59:30', 1),
-(8, 'Women\'s Wear', '<p><em><strong>is a budget-friendly clothing store that has colorful and trendy pieces for women. Their selection of graphic tees, sweatpants and joggers, and sneakers...</strong></em></p>', 'images/71BMG8EorsL._UL1500_.jpg', 1, 1, '2023-09-15 23:45:32', '2023-09-15 23:45:32', 1),
-(10, 'Boy\'s Wear', '<p><strong>Step up your Style Quotient by wearing this Casual Shirt from LEWEL. Team it up with your favourite pair of jeans, denim shorts and sneakers when you head out to work, party, vacation or anything your heart desires. It&rsquo;s your Life, your Rules and we will be all the way with you in style.</strong></p>', 'images/61skoH0rMsL._UY741_.jpg', 1, 1, '2023-09-16 00:01:15', '2023-09-16 00:01:15', 1),
-(11, 'Girl\'s Wear', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"title\" data-csa-c-slot-id=\"title_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"ktanjj-9k2v96-xnmk0v-atgnb1\" data-cel-widget=\"title_feature_div\">\r\n<div id=\"titleSection\" class=\"a-section a-spacing-none\">\r\n<h1 class=\"a-size-large a-spacing-none\"><span style=\"font-size: 18pt;\"><strong><span id=\"productTitle\" class=\"a-size-large product-title-word-break\">luyk Girls Floral Printed Top with <span style=\"font-size: 14pt;\">Trousers...</span></span></strong></span></h1>\r\n</div>\r\n</div>\r\n<div id=\"qpeTitleTag_feature_div\" class=\"celwidget\" data-feature-name=\"qpeTitleTag\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"qpeTitleTag\" data-csa-c-slot-id=\"qpeTitleTag_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"f9408f-hapg7y-jfwjod-6m6qe8\" data-cel-widget=\"qpeTitleTag_feature_div\"></div>\r\n<div id=\"cmrsSummary_feature_div\" class=\"celwidget\" data-feature-name=\"cmrsSummary\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"cmrsSummary\" data-csa-c-slot-id=\"cmrsSummary_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"cwdiip-prctva-86s4ps-ap479t\" data-cel-widget=\"cmrsSummary_feature_div\"></div>', 'images/61OTdInzd9L._UY741_.jpg', 1, 1, '2023-09-16 00:06:16', '2023-09-16 00:28:33', 1);
+(7, 'Men\'s Wear', '<p><strong>Well-dressed men understand that when they look like their most professional, put-together and capable selves, that the world relates to them accordingly and operates with them on a higher level. Clothing acts as the outward representation of their skills and personality, tying their positive attributes together into a comprehensive package. That&rsquo;s why regardless of whether or not they have an interest in fashion, attention is always paid to maintaining their image.</strong></p>', 'categories/images/81bEvE7vyLL._UX679_.jpgt', 1, 1, '2023-09-15 23:38:36', '2023-09-15 23:39:32', 1),
+(8, 'Women\'s Wear', '<p><em><strong>is a budget-friendly clothing store that has colorful and trendy pieces for women. Their selection of graphic tees, sweatpants and joggers, and sneakers...</strong></em></p>', 'categories/images/71BMG8EorsL._UL1500_.jpg', 1, 1, '2023-09-15 23:45:32', '2023-09-15 23:45:32', 1),
+(10, 'Boy\'s Wear', '<p><strong>Step up your Style Quotient by wearing this Casual Shirt from LEWEL. Team it up with your favourite pair of jeans, denim shorts and sneakers when you head out to work, party, vacation or anything your heart desires. It&rsquo;s your Life, your Rules and we will be all the way with you in style.</strong></p>', 'categories/images/61skoH0rMsL._UY741_.jpg', 1, 1, '2023-09-16 00:01:15', '2023-09-16 00:01:15', 1),
+(11, 'Girl\'s Wear', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"title\" data-csa-c-slot-id=\"title_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"ktanjj-9k2v96-xnmk0v-atgnb1\" data-cel-widget=\"title_feature_div\">\r\n<div id=\"titleSection\" class=\"a-section a-spacing-none\">\r\n<h1 class=\"a-size-large a-spacing-none\"><span style=\"font-size: 18pt;\"><strong><span id=\"productTitle\" class=\"a-size-large product-title-word-break\">luyk Girls Floral Printed Top with <span style=\"font-size: 14pt;\">Trousers...</span></span></strong></span></h1>\r\n</div>\r\n</div>\r\n<div id=\"qpeTitleTag_feature_div\" class=\"celwidget\" data-feature-name=\"qpeTitleTag\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"qpeTitleTag\" data-csa-c-slot-id=\"qpeTitleTag_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"f9408f-hapg7y-jfwjod-6m6qe8\" data-cel-widget=\"qpeTitleTag_feature_div\"></div>\r\n<div id=\"cmrsSummary_feature_div\" class=\"celwidget\" data-feature-name=\"cmrsSummary\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"cmrsSummary\" data-csa-c-slot-id=\"cmrsSummary_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"cwdiip-prctva-86s4ps-ap479t\" data-cel-widget=\"cmrsSummary_feature_div\"></div>', 'categories/images/61OTdInzd9L._UY741_.jpg', 1, 1, '2023-09-16 00:06:16', '2023-09-16 00:28:33', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(20) NOT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `order_date` date NOT NULL,
+  `payment_status` varchar(100) NOT NULL,
+  `total_amount` decimal(6,2) NOT NULL,
+  `address_id` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(20) NOT NULL,
+  `order_id` int(20) DEFAULT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `product_id` int(20) DEFAULT NULL,
+  `amount` decimal(6,2) NOT NULL,
+  `qty` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -126,7 +162,7 @@ CREATE TABLE `product` (
   `variants_id` int(20) NOT NULL,
   `attribute_id` int(20) NOT NULL,
   `p_name` varchar(200) NOT NULL,
-  `p_image` longtext DEFAULT NULL,
+  `p_image` varchar(200) DEFAULT NULL,
   `p_description` longtext NOT NULL,
   `stock` int(50) NOT NULL,
   `price` int(50) NOT NULL,
@@ -135,7 +171,7 @@ CREATE TABLE `product` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
@@ -240,13 +276,13 @@ INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_na
 (104, 8, 6, 14, 'Formal Dress For Wom', 'products/images/formal  drees for women (m) 6.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 699, 1, NULL, '2023-09-20 22:06:12', NULL, 1),
 (105, 8, 6, 15, 'Formal Dress For Wom', 'products/images/formal  drees for women (s) 7.j', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" da', 25, 499, 1, NULL, '2023-09-20 22:15:33', NULL, 1),
 (106, 8, 6, 16, 'Full Sleeves Shirt F', 'products/images/formal  drees for women (xl) 8.', '<h1 class=\"a-size-large a-spacing-none\"><span id=\"productTitle\" class=\"a-size-large product-title-wo', 20, 499, 1, NULL, '2023-09-20 22:18:04', NULL, 1),
-(107, 8, 6, 17, 'Selvia Women\'s Green Lycra Solid Piece Blazer Co-Ord Set', 'images/formal  drees for women (blackl) 1.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"productDescription\" data-csa-c-slot-id=\"productDescription_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"clwnnh-d9jlb4-x4atpn-od2tb4\" data-cel-widget=\"productDescription_feature_div\">\r\n<div>\r\n<div id=\"productDescription_feature_div\" class=\"a-row feature\" data-feature-name=\"productDescription\" data-template-name=\"productDescription\" data-cel-widget=\"productDescription_feature_div\">\r\n<div id=\"productDescription\" class=\"a-section a-spacing-small\">\r\n<p><strong>This Co-Ords Set Is Made Of Lycra Fabric,Crafted For Every Comfort. This Knitted &amp; Dyed Dress To Make It Suitable For Daily Party Or Evening Wear.</strong></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<div id=\"aplusBrandStory_feature_div\" class=\"celwidget\" data-feature-name=\"aplusBrandStory\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"aplusBrandStory\" data-csa-c-slot-id=\"aplusBrandStory_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"kqf7py-21ekej-1xhraj-ze16gz\" data-cel-widget=\"aplusBrandStory_feature_div\"></div>\r\n<div id=\"aplus_feature_div\" class=\"celwidget\" data-feature-name=\"aplus\" data-csa-c-type=\"widget\" data-csa-c-content-id=\"aplus\" data-csa-c-slot-id=\"aplus_feature_div\" data-csa-c-asin=\"\" data-csa-c-is-in-initial-active-row=\"false\" data-csa-c-id=\"dqnsdr-7mcbiu-pc63fo-ps0gmx\" data-cel-widget=\"aplus_feature_div\">\r\n<div id=\"aplus\" class=\"a-section a-spacing-large bucket\"></div>\r\n</div>', 20, 499, 1, 1, '2023-09-20 22:19:50', '2023-09-29 21:22:17', 1),
-(108, 8, 8, 32, 'SIRIL Lycra Long Puff Sleeve Sweetheart Neck Co-Ords Set for Women\'s | Suit Set|Two Piece Dress', 'images/formal  drees for women (blackl) 1.jpg', '<p><span class=\"a-list-item\">This Top &amp; Pant Set will give you a trendy look with its beautiful design on this Festival, Wedding Seasons, Use it as casual or formal wear for office, shopping, daily wear in home, college, family, meetings, etc.</span></p>', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-29 21:15:13', 1),
-(109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe</strong></p>', 20, 399, 1, 1, '2023-09-20 23:16:29', '2023-09-29 21:05:32', 1),
-(110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl</span></strong></p>', 80, 351, 1, 1, '2023-09-20 23:30:27', '2023-09-25 00:37:29', 1),
+(107, 8, 6, 17, 'Formal Dress For Wom', 'products/images/formal  drees for women (xlx) 9', '<p><strong><span class=\"a-list-item\">Women Solid Western Wear Bodycon Dress for women</span></strong', 20, 499, 1, NULL, '2023-09-20 22:19:50', NULL, 1),
+(108, 8, 8, 32, 'Formal Dress For Women', 'products/images/formal  drees for women (being)', '', 25, 599, 1, 1, '2023-09-20 22:52:32', '2023-09-24 13:56:30', 1),
+(109, 7, 7, 23, 'LOUIS DEVIN Silicone', 'products/images/watch (black) 1.jpg', '<p><strong>A watch is a portable timepiece intended to be carried or worn by a person. It is designe', 20, 399, 1, NULL, '2023-09-20 23:16:29', NULL, 1),
+(110, 7, 7, 21, 'ASGARD Analog Mens &', 'products/images/watch (blue) 2.jpg', '<p><strong><span class=\"a-list-item\">Suitable for party wedding, formal and casual occasion(Color-Bl', 80, 351, 1, NULL, '2023-09-20 23:30:27', NULL, 1),
 (111, 7, 7, 22, 'TIMEWEAR Analogue - Digital Mens Watch (Green Color)', 'products/images/watch (green) 3.jpg', '<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c<=\"\">Analogue watches/clocks have a mechanism to indicate time by means of mechanical structures, such as a dial and hands (hand indication type), while digital watches/clocks have a mechanism to indicate time by means of electronic structures, such as a liquid crystal and LED (number display type).</div>', 110, 549, 1, 1, '2023-09-20 23:35:21', '2023-09-24 20:54:14', 1),
-(112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><strong>One of the largest watch makers in the world</strong>, Timex Group companies include the Timex Business Unit (Timex, Timex Ironman, Nautica, Marc Ecko and Helix); Timex Group Luxury Watches (Salvatore Ferragamo); Sequel (Guess, Gc) and Vertime (Versace).<!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 21:01:13', 1),
-(113, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"><strong>with Timex you\'re getting a watch that\'s deep-rooted in brand history with significant contributions to watch design</strong>. It\'s important to know that Timex is not a luxury brand though &ndash; with Timex you\'re getting a watch that looks good and has great functionality at an affordable price.</div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-28 14:14:40', 1);
+(112, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (timex-blue) 4.jpg', '<div id=\"productDescription_feature_div\" class=\"celwidget\" data-feature-name=\"productDescription\"><!--</body--></div>', 10, 999, 1, 1, '2023-09-20 23:44:14', '2023-09-24 16:15:12', 1),
+(113, 7, 7, 21, 'TIMEX Analog Blue Dial Men\'s Watch-TW000T310', 'products/images/watch (-blue) 5.jpg', '<div id=\"title_feature_div\" class=\"celwidget\" data-feature-name=\"title\" data-csa-c-type=\"widget\"></div>', 10, 899, 1, 1, '2023-09-20 23:52:33', '2023-09-24 16:14:46', 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +301,7 @@ CREATE TABLE `product_attribute` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -286,17 +322,16 @@ CREATE TABLE `users` (
   `created_by` int(20) DEFAULT NULL,
   `updated_by` int(20) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`) VALUES
-(1, 'Vairag Bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-09-08 21:55:45', 1, 1, 1),
+(1, 'Vairag Bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '7607', 1, './user_images/user.jpg', '2023-09-02 16:43:07', '2023-09-24 21:22:43', 1, 1, 1),
 (16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1),
-(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1),
-(38, 'Kavita Bavadiya', 'kavitabavadiya@gmail.com', '9909409153', '0000', 3, '', '2023-09-26 00:10:43', '2023-09-26 00:10:43', 38, 38, 1);
+(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -307,7 +342,7 @@ INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id
 CREATE TABLE `user_type` (
   `id` int(20) NOT NULL,
   `type_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_type`
@@ -332,7 +367,7 @@ CREATE TABLE `variants` (
   `created_by` int(20) DEFAULT NULL,
   `updated_by` int(20) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `variants`
@@ -358,10 +393,16 @@ ALTER TABLE `attribute`
   ADD KEY `fk_variants_id` (`variants_id`);
 
 --
+-- Indexes for table `billing_address`
+--
+ALTER TABLE `billing_address`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user_id` (`user_id`),
   ADD KEY `fkk_p_idd` (`product_id`);
 
@@ -372,6 +413,23 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_cat_created_by` (`created_by`),
   ADD KEY `fk_cat_updated_by` (`updated_by`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `address_id` (`address_id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `product`
@@ -428,16 +486,28 @@ ALTER TABLE `attribute`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT for table `billing_address`
 --
-ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+ALTER TABLE `billing_address`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -455,7 +525,7 @@ ALTER TABLE `product_attribute`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_type`
@@ -482,6 +552,12 @@ ALTER TABLE `attribute`
   ADD CONSTRAINT `fk_variants_id` FOREIGN KEY (`variants_id`) REFERENCES `variants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `billing_address`
+--
+ALTER TABLE `billing_address`
+  ADD CONSTRAINT `fk_bill_add_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
@@ -494,6 +570,21 @@ ALTER TABLE `cart`
 ALTER TABLE `category`
   ADD CONSTRAINT `fk_cat_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cat_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_address_id` FOREIGN KEY (`address_id`) REFERENCES `billing_address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_orders_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `fk_deitalis_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalis_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalis_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`

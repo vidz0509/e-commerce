@@ -3,7 +3,7 @@ if (session_id() === "") session_start();
 require('config.php');
 $total = 0;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-    foreach($_SESSION['cart'] as $item){
+    foreach ($_SESSION['cart'] as $item) {
         $total += $item['qty'];
     }
     // $total = count(($_SESSION['cart']));
@@ -21,6 +21,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Brocode - Carting</title>
@@ -64,7 +65,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
 
         .img-wrap {
             height: 200px;
-            padding:10px;
+            padding: 10px;
         }
 
         .loader {
@@ -97,7 +98,10 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
             border-radius: 5px;
             height: 350px;
         }
-        .single-product .carousel-item img{ max-width: 400px; }
+
+        .single-product .carousel-item img {
+            max-width: 400px;
+        }
 
         .alertify-notifier .ajs-message.ajs-success,
         .alertify-notifier .ajs-message.ajs-error {
@@ -109,10 +113,45 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
             padding: 10px;
         }
 
-        #place_order{ color: #fff !important; }
-        #place_order:hover{ background-color: #000 !important; border-color: #000 !important; }
-        .product-content{ padding: 10px; }
-        .navbar-expand-lg .navbar-nav .nav-link.active{ color: #001F3F !important; font-weight: 700; }
+        #place_order {
+            color: #fff !important;
+        }
+
+        #place_order:hover {
+            background-color: #000 !important;
+            border-color: #000 !important;
+        }
+
+        .product-content {
+            padding: 10px;
+        }
+
+        .navbar-expand-lg .navbar-nav .nav-link.active {
+            color: #001F3F !important;
+            font-weight: 700;
+        }
+
+        .tab-links li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .tab-links li.active {
+            font-weight: 700;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.show {
+            display: block;
+        }
+
+        .table .thead-dark th {
+            background-color: #001F3F;
+            border-color: #001F3F;
+        }
 
         @keyframes rotation {
             0% {

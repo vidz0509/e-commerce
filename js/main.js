@@ -218,5 +218,14 @@
         });
     });
 
+    $(document).on('click', '.tab-links .link', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        $('.tab-links li').removeClass('active');
+        $(this).parent().addClass('active');
+        $('.tab-content').removeClass('show');
+        $("#"+id).addClass('show');
+    });
+
 })(jQuery);
 

@@ -93,7 +93,7 @@ require("header.php");
         <?php if ($result = $conn->query($sql)) : ?>
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <a class="text-decoration-none" href="">
+                    <a class="text-decoration-none" href="shop.php">
                         <div class="cat-item d-flex align-items-center mb-4">
                             <div class="overflow-hidden" style="width: 100px; height: 140px;">
                                 <img class="img-fluid" src="/e-commerce/admin/categories/<?php echo $row['image']; ?>" alt="">

@@ -7,9 +7,9 @@ if (isset($_POST['edit'])) {
 
     $current_user_id = $_SESSION['id'];
 
-    $cat_name =  mysqli_real_escape_string($conn,$_POST['cat_name']);
+    $cat_name =  mysqli_real_escape_string($conn, $_POST['cat_name']);
 
-    $cat_desc =  mysqli_real_escape_string($conn,$_POST['category_description']);
+    $cat_desc =  mysqli_real_escape_string($conn, $_POST['category_description']);
 
     if (isset($_FILES["file_upload"]) && $_FILES["file_upload"]["name"] != "") {
 
@@ -28,6 +28,8 @@ if (isset($_POST['edit'])) {
     } else {
         $cat_query = "Update category Set category_name='$cat_name', category_description='$cat_desc',updated_by = $current_user_id,updated_at = now() where id='$id'";
     }
+
+    echo $cat_query;
 
     if (mysqli_query($conn, $cat_query)) {
         $message = '<div class="alert alert-success">Category updated successfully!</div>';
@@ -75,14 +77,14 @@ $row = mysqli_fetch_assoc($result);
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Category Description</label>
                                 <div class="col-sm-10">
-                                    <textarea class="tinymce-editor" name="cat_desc"><?php echo $row['category_description']; ?></textarea>
+                                    <textarea class="tinymce-editor" name="category_description"><?php echo $row['category_description']; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Category Image</label>
                                 <div class="col-sm-10">
-                                    <img src="/e-commerce/admin/categories/<?php echo $row['image']; ?>">
+                                    <img width="150px" src="/e-commerce/admin/categories/<?php echo $row['image']; ?>">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>

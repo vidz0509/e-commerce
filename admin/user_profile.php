@@ -53,7 +53,7 @@ if (isset($_POST['edit_pass'])) {
 
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    echo $row['password'];
+    // echo $row['password'];
 
     if ($curpass == $renewpass) {
         $message = '<div class="alert alert-secondary">Current password and new password cannot be same!</div>';

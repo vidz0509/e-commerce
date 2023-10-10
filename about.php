@@ -24,14 +24,14 @@ require("header.php");
     <div class="container-fluid">
         <div class="row ps-3">
             <div class="col-lg-6">
-                <h3 class="noo-sh-title">Shop Image</h3>
                 <div class="banner-frame"> <img class="img-fluid mt-3" src="./sizeshoeshop_640x360.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-5">
                 <h3 class="noo-sh-title mt-2">We Are Available..</h3>
                 
-                <p>"A cloth store is a retail establishment that sells clothing and other apparel. Cloth stores can vary in size and scope, from small boutiques that specialize in a particular type of clothing to large department stores that carry a wide range of apparel for all ages and occasions."</p>
+                <p>"A cloth store is a retail establishment that sells clothing and other apparel. Cloth stores can vary in size and scope, from small boutiques that specialize in a particular type of clothing to large department stores that carry a wide range of apparel for all age
+                    s and occasions."</p>
 
                 <p>"Cloth stores offer a variety of benefits to shoppers. First, they provide a convenient place to find a wide selection of clothing in one location. Second, cloth stores often have knowledgeable staff who can help shoppers find the right clothes for their needs and style. Third, cloth stores may offer discounts and promotions, making it possible to find good deals on clothing."</p>
 

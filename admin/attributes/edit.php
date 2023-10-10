@@ -100,7 +100,7 @@ $row = mysqli_fetch_assoc($result);
                                     <?php
                                     if (!is_null($row['attribute_image'])) {
                                     ?>
-                                        <img src="<?php echo $row['attribute_image']; ?>">
+                                        <img width="150px" src="<?php echo $row['attribute_image']; ?>">
                                     <?php
                                     }
                                     ?>

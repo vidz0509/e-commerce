@@ -13,11 +13,11 @@ require("config.php");
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Dashboard - NiceAdmin</title>
+    <title>Brocode - Carting(admin)</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="/e-commerce/admin/assets/img/favicon.png" rel="icon">
+    <link href="/e-commerce/img/brocode_logo.jpg" rel="icon">
     <link href="/e-commerce/admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <link href="https:/fonts.gstatic.com" rel="preconnect">
@@ -165,8 +165,11 @@ require("config.php");
                         $result = $conn->query($sql);
                         $row = mysqli_fetch_assoc($result);
                         ?>
-
-                        <img src="/e-commerce/admin/<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
+                        <?php if ($row['u_profile']) : ?>
+                            <img src="/e-commerce/admin/<?php echo $row['u_profile']; ?>" alt="Profile" class="rounded-circle">
+                            <?php else: ?>
+                            <img src="/e-commerce/admin/user_images/default.avif" alt="" width="35" height="35" class="rounded-circle">
+                        <?php endif; ?>
 
                         <span class="d-none d-md-block dropdown-toggle ps-2">
                             <?php echo $row['u_name']; ?> </span>
@@ -210,6 +213,13 @@ require("config.php");
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#users-nav" href="/e-commerce/admin/allusers.php" aria-expanded="false">
+                    <i class="bi bi-person"></i>
+                    <span>All Users</span>
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">

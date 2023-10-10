@@ -19,7 +19,6 @@ if (isset($_POST['update_cart'])) {
     } elseif (isset($_SESSION['id']) && $_SESSION['id'] != "") {
         $user_id = $_SESSION['id'];
         if (isset($_POST['cart_item'])) {
-
             $delete_query = "delete from cart where user_id= " . $_SESSION['id'];
             $result = mysqli_query($conn, $delete_query);
             foreach ($_POST['cart_item'] as $item) {
@@ -73,7 +72,7 @@ if (isset($_POST['update_cart'])) {
                                 <?php foreach ($_SESSION['cart'] as $key => $item) : ?>
                                     <?php $subtotal += $item['total_amount']; ?>
                                     <tr>
-                                        <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/<?php echo $item['product_image']; ?>"></td>
+                                        <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/products/<?php echo $item['product_image']; ?>"></td>
                                         <td class="align-middle"><?php echo $item['product_name']; ?></td>
                                         <td class="align-middle"><?php echo '₹' . $item['price']; ?></td>
                                         <td class="align-middle quantity">
@@ -106,15 +105,15 @@ if (isset($_POST['update_cart'])) {
                                     <?php $i++; ?>
                                 <?php endforeach; ?>
                             <?php elseif (isset($_SESSION['id']) && $_SESSION['id'] != "") : ?>
-                                <?php $query = "SELECT c.id as cart_key,c.amount,c.qty,p.id,p.p_image,p.p_name,p.price FROM product as p,cart as c where c.product_id = p.id and c.user_id=" . $_SESSION['id']; ?>
+                                <?php $query = "SELECT c.id as cart_key,c.amount,c.qty,p.id as product_id,p.p_image,p.p_name,p.price FROM product as p,cart as c where c.product_id = p.id and c.user_id=" . $_SESSION['id']; ?>
                                 <?php if ($result = $conn->query($query)) : ?>
                                     <?php $i = 0; ?>
                                     <?php while ($row = $result->fetch_assoc()) : ?>
                                         <?php $subtotal += $row['amount']; ?>
                                         <tr>
-                                            <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/<?php echo $row['p_image']; ?>"></td>
+                                            <td class="align-middle"><img alt="" style="width: 50px;" src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>"></td>
                                             <td class="align-middle"><?php echo $row['p_name']; ?></td>
-                                            <td class="align-middle"><?php echo '₹' . $row['qty'] * $row['price']; ?></td>
+                                            <td class="align-middle"><?php echo '₹' . $row['price']; ?></td>
                                             <td class="align-middle quantity">
                                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                                     <div class="input-group-btn">
@@ -130,16 +129,16 @@ if (isset($_POST['update_cart'])) {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle"><?php echo '₹' . $row['price']; ?></td>
+                                            <td class="align-middle"><?php echo '₹' . $row['qty'] * $row['price']; ?></td>
                                             <td class="align-middle">
                                                 <button class="btn btn-sm btn-danger remove-cart-item" data-id="<?php echo $row['cart_key']; ?>">
                                                     <i class="fa fa-times"></i>
                                                 </button>
-                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][key]" value="<?php echo $row['id']; ?>" />
+                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][key]" value="<?php echo $row['cart_key']; ?>" />
                                                 <input type="hidden" name="cart_item[<?php echo $i; ?>][price]" value="<?php echo $row['price']; ?>" />
                                                 <input type="hidden" name="cart_item[<?php echo $i; ?>][product_id]" value="<?php echo $row['product_id']; ?>" />
-                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][product_image]" value="<?php echo $row['product_image']; ?>" />
-                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][product_name]" value="<?php echo $row['product_name']; ?>" />
+                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][product_image]" value="<?php echo $row['p_image']; ?>" />
+                                                <input type="hidden" name="cart_item[<?php echo $i; ?>][product_name]" value="<?php echo $row['p_name']; ?>" />
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -149,7 +148,7 @@ if (isset($_POST['update_cart'])) {
                         </tbody>
                     </table>
                     <div class="cart-bottom">
-                        <button type="submit" name="update_cart" class="btn btn-block btn-secondary font-weight-bold my-2 py-2">
+                        <button type="submit" name="update_cart" class="btn btn-block btn-primary my-2 py-2 font-weight-bold" style="color: #fff !important;">
                             <span>UPDATE CART</span>
                             <i class="icon-refresh"></i>
                         </button>

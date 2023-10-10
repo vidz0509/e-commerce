@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="/e-commerce/img/brocode_logo.jpg" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -74,12 +74,9 @@ if (isset($_POST['login'])) {
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.php" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">NiceAdmin</span>
-                                </a>
-                            </div><!-- End Logo -->
+                        <div class="d-flex justify-content-center py-4">
+                                <img heigh="250px" width="350px" src="/e-commerce/img/logo-color.png" alt="">
+                            </div>
 
                             <div class="card mb-3">
 
@@ -127,7 +124,7 @@ if (isset($_POST['login'])) {
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">Virag Bavadiya</a>
+                                Designed by <a href="index.php">Virag Bavadiya</a>
                             </div>
 
                         </div>

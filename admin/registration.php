@@ -3,6 +3,8 @@ require("session.php");
 
 $msg = "";
 
+$msgmail = "";
+
 if (isset($_POST['registration'])) {
 
     $is_uploaded = false;
@@ -37,25 +39,30 @@ if (isset($_POST['registration'])) {
 
     $u_type_id = 3;
 
-    if ($is_uploaded == true) {
-        $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),now(),true)";
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+        $msg = "Email already exist";
     } else {
-        $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),now(),true)";
-    }
-    mysqli_query($conn, $sql);
+        $msg = "";
+        if ($is_uploaded == true) {
+            $sql = "insert into users (u_name,email,u_profile,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$folder','$pass','$phoneno','$u_type_id',now(),now(),true)";
+        } else {
+            $sql = "insert into users (u_name,email,password,phone_no,u_type_id,created_at,updated_at,is_active) values ('$uname','$email','$pass','$phoneno','$u_type_id',now(),now(),true)";
+        }
+        mysqli_query($conn, $sql);
 
-    if ($pass === $cpass) {
+        if ($pass === $cpass) {
 
-        $last_id = mysqli_insert_id($conn);
-        $_SESSION['id'] = $last_id;
-        $update_user = "update users set created_by = $last_id, updated_by = $last_id where id= $last_id";
-        mysqli_query($conn, $update_user);
-        // var_dump($row);
-        header("location:dashboard.php");
-     
-    }
-    else {
-        $msg = "please enter your user id and password current password";
+            $last_id = mysqli_insert_id($conn);
+            $_SESSION['id'] = $last_id;
+            $update_user = "update users set created_by = $last_id, updated_by = $last_id where id= $last_id";
+            mysqli_query($conn, $update_user);
+            // var_dump($row);
+            header("location:dashboard.php");
+        } else {
+            $msg = "please enter your user id and password current password";
+        }
     }
 }
 ?>
@@ -72,7 +79,7 @@ if (isset($_POST['registration'])) {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="/e-commerce/img/brocode_logo.jpg" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -111,11 +118,8 @@ if (isset($_POST['registration'])) {
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="index.php" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">NiceAdmin</span>
-                                </a>
-                            </div><!-- End Logo -->
+                                <img heigh="250px" width="350px" src="/e-commerce/img/logo-color.png" alt="">
+                            </div>
 
                             <div class="card mb-3">
 
@@ -173,9 +177,9 @@ if (isset($_POST['registration'])) {
                                                 <option value="Vendor">Vendor</option>
                                             </select>
                                         </div> -->
-                                        <?php if($msg != "") : ?>
-                                            <div class="alert alert-danger"><?php echo $msg ; ?></div>
-                                            <?php endif; ?>
+                                        <?php if ($msg != "") : ?>
+                                            <div class="alert alert-danger"><?php echo $msg; ?></div>
+                                        <?php endif; ?>
 
                                         <div class="col-12">
                                             <button name="registration" class="btn btn-primary w-100" type="submit">Create Account</button>
@@ -193,7 +197,7 @@ if (isset($_POST['registration'])) {
                                 <!-- You can delete the links only if you purchased the pro version. -->
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">Virag Bavadiya</a>
+                                Designed by <a href="registration.php">Virag Bavadiya</a>
                             </div>
 
                         </div>

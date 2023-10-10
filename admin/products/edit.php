@@ -101,7 +101,7 @@ $row = mysqli_fetch_assoc($result);
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Product Image</label>
                                 <div class="col-sm-10">
-                                    <img src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>">
+                                    <img width="150px" src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>">
                                     <input class="form-control" name="file_upload" type="file" id="formFile" />
                                 </div>
                             </div>

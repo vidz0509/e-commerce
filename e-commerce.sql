@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Oct 11, 2023 at 07:21 PM
+-- Generation Time: Oct 11, 2023 at 08:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -84,7 +84,8 @@ CREATE TABLE `billing_address` (
 --
 
 INSERT INTO `billing_address` (`id`, `user_id`, `street_address`, `city`, `state`, `zipcode`, `country`) VALUES
-(3, 38, '65, Millennium Residency,', 'SURAT', 'GUJARAT', '394130', 'India');
+(3, 38, '65, Millennium Residency,', 'SURAT', 'GUJARAT', '394130', 'India'),
+(4, 38, '65, Millennium Residency,', 'SURAT', 'GUJARAT', '394130', 'India');
 
 -- --------------------------------------------------------
 
@@ -161,7 +162,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `payment_status`, `transaction_id`, `total_amount`, `address_id`) VALUES
-(1, 38, '2023-10-11', 'completed', 'e61c511d-b7bc-4012-8a58-0bb095cb4d9d', 2098.00, 3);
+(1, 38, '2023-10-11', 'completed', 'e61c511d-b7bc-4012-8a58-0bb095cb4d9d', 2098.00, 3),
+(2, 38, '2023-10-11', 'completed', '7c318e7a-ebd4-46ff-8652-c7ffac2ee453', 1598.00, 4);
 
 -- --------------------------------------------------------
 
@@ -186,7 +188,9 @@ INSERT INTO `order_details` (`id`, `order_id`, `user_id`, `product_id`, `amount`
 (1, 1, 38, 9, 350.00, 1),
 (2, 1, 38, 16, 399.00, 1),
 (3, 1, 38, 28, 299.00, 1),
-(4, 1, 38, 9, 1050.00, 3);
+(4, 1, 38, 9, 1050.00, 3),
+(5, 2, 38, 18, 1198.00, 2),
+(6, 2, 38, 10, 400.00, 1);
 
 -- --------------------------------------------------------
 
@@ -535,13 +539,13 @@ ALTER TABLE `attribute`
 -- AUTO_INCREMENT for table `billing_address`
 --
 ALTER TABLE `billing_address`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -553,13 +557,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `product`

@@ -224,7 +224,104 @@
         $('.tab-links li').removeClass('active');
         $(this).parent().addClass('active');
         $('.tab-content').removeClass('show');
-        $("#"+id).addClass('show');
+        $("#" + id).addClass('show');
+    });
+
+    $(document).on('click', "#place_order", function (e) {
+        e.preventDefault();
+        var __this = $(this);
+        var __form = __this.closest('.order-form');
+        var fullname = __form.find("#fullname").val();
+        var email = __form.find("#emailid").val();
+        var phone_no = __form.find("#phone").val();
+        var final_amount = __form.find("#final_amount").val();
+
+        var address = __form.find("#address").val();
+        var city = __form.find("#city").val();
+        var zip = __form.find("#zipcode").val();
+        var state = __form.find("#state").val();
+        var country = __form.find("#country").val();
+
+        console.log('Creating Customer...');
+
+        $.ajax({
+            url: "ajaxCallbacks/revioPayCreateClient.php",
+            method: "post",
+            dataType: "json",
+            data: {
+                customerData: {
+                    full_name: fullname,
+                    email: email,
+                    phone: phone_no,
+                }
+            },
+            success: function (result) {
+                let response = result.response;
+                console.log(response);
+                if (response.isSuccess) {
+                    let customer = response.data
+                    console.log('Customer is created.');
+                    console.log('Creating Purchase...');
+                    $.ajax({
+                        url: "ajaxCallbacks/revioPayCreatePurchase.php",
+                        method: "post",
+                        dataType: "json",
+                        data: {
+                            client_id: customer.id,
+                            brand_id: 'd85e524d-19b8-48ca-aef3-3aa1ab54b32d',
+                            total_amount: final_amount,
+                        },
+                        success: function (result) {
+                            let response = result.response;
+                            console.log(response);
+                            if (response.isSuccess) {
+                                let purchase = response.data
+                                console.log('Purchase is created...');
+                                $.ajax({
+                                    url: "ajaxCallbacks/revioPayCallback.php",
+                                    method: "post",
+                                    dataType: "json",
+                                    data: {
+                                        address: address,
+                                        city: city,
+                                        zipcode: zip,
+                                        state: state,
+                                        country: country,
+                                        total_amount: final_amount,
+                                        transaction_id: purchase.id
+                                    },
+                                    success: function (res) {
+                                        if (res.success) {
+                                            console.log(purchase.checkout_url);
+                                            if (purchase.checkout_url) {
+                                                window.location.replace(purchase.checkout_url);
+                                            }
+                                        }
+                                    }
+                                });
+                            } else {
+                                showError(response.errorMessage);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                } else {
+                    showError(response.errorMessage);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        })
+
+        function showError(errorMessage) {
+            alertify.set('notifier', 'delay', 5);
+            alertify.error(errorMessage);
+            alertify.set('notifier', 'position', 'top-right');
+        }
     });
 
 })(jQuery);

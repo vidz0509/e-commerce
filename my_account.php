@@ -57,8 +57,12 @@ $sql = "SELECT * FROM users where id = " . $_SESSION['id'];
 $result = $conn->query($sql);
 $user_row = mysqli_fetch_assoc($result);
 
-?>
+$order_sql = "select * from orders  where user_id = " . $_SESSION['id'];
 
+?>
+<style type="text/css">
+    .table th, .table td{ line-height: 1.2; text-align: left; }
+</style>
 
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
@@ -138,7 +142,60 @@ $user_row = mysqli_fetch_assoc($result);
                 </form>
             </div>
             <div id="orders" class="tab-content contact-form p-30">
-                <h3>No Orders...</h3>
+                <?php if ($order_result = $conn->query($order_sql)) : ?>
+                    <table class="table table-light table-borderless table-hover text-center mb-0">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Products</th>
+                                <th>Order Date</th>
+                                <th>Total Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Payment Status</th>
+                                <!-- <th>Address</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i = 0; ?>
+                            <?php while ($order_row = $order_result->fetch_assoc()) : ?>
+                                <?php $order_items = "select od.product_id,p.p_name from order_details as od, product as p, orders as o where od.order_id = o.id and od.product_id = p.id and od.user_id ='" . $_SESSION['id'] . "' and od.order_id = '" . $order_row['id'] . "'";
+
+                                ?>
+                                <tr>
+                                    <?php $i++; ?>
+                                    <td>
+                                        <?php echo $i; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($item_result = $conn->query($order_items)) : ?>
+                                            <?php while ($item_row = $item_result->fetch_assoc()) : ?>
+                                                <p>
+                                                    <a href="/e-commerce/product.php?id=<?php echo $item_row['product_id']; ?>">
+                                                        <?php echo $item_row['p_name']; ?>
+                                                    </a>
+                                                </p>
+                                            <?php endwhile; ?>
+                                        <?php endif; ?>
+                                    </td>
+
+                                    <td>
+                                        <?php echo date('d-m-Y', strtotime($order_row['order_date'])); ?>
+                                    </td>
+                                    <td>
+                                        ₹
+                                        <?php echo $order_row['total_amount']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $order_row['transaction_id']; ?>
+                                    </td>
+                                    <td class="text text-success" style="font-weight:700">
+                                        <?php echo ucwords($order_row['payment_status']); ?>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -1,6 +1,23 @@
 <?php
 require("config.php");
 require("header.php");
+
+$user_sql = "SELECT * from users where id = " . $_SESSION['id'];
+$user_result = $conn->query($user_sql);
+$user_data = mysqli_fetch_assoc($user_result);
+
+$total_amount = 0;
+// var_dump($_SESSION['cart']);
+if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $item)
+        $total_amount += $item['total_amount'];
+} else if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+    $total_query = "SELECT  sum(amount) as amount from cart where user_id=" . $_SESSION['id'];
+    $total_result = $conn->query($total_query);
+    $cart_row = mysqli_fetch_assoc($total_result);
+    $total_amount = $cart_row['amount'];
+}
+
 ?>
 
 
@@ -21,166 +38,77 @@ require("header.php");
 
 <!-- Checkout Start -->
 <div class="container-fluid">
-    <div class="row px-xl-5">
-        <div class="col-lg-8">
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
-            <div class="bg-light p-30 mb-5">
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>First Name</label>
-                        <input class="form-control" type="text" placeholder="First name">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Last Name</label>
-                        <input class="form-control" type="text" placeholder="Last name">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>E-mail</label>
-                        <input class="form-control" type="text" placeholder="abc@email.com">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Mobile No</label>
-                        <input class="form-control" type="text" placeholder="+91 9909409153">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Address Line 1</label>
-                        <input class="form-control" type="text" placeholder="Address line 1">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Address Line 2</label>
-                        <input class="form-control" type="text" placeholder="Address line 2">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Country</label>
-                        <select class="custom-select">
-                            <option selected>INDIA</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>City</label>
-                        <input class="form-control" type="text" placeholder="Gujarat">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>State</label>
-                        <input class="form-control" type="text" placeholder="Surat">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>ZIP Code</label>
-                        <input class="form-control" type="text" placeholder="394130">
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                            <label class="custom-control-label" for="newaccount">Create an account</label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="shipto">
-                            <label class="custom-control-label" for="shipto" data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="collapse mb-5" id="shipping-address">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
-                <div class="bg-light p-30">
+    <form method="post" class="order-form">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+                <div class="bg-light p-30 mb-5">
                     <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="First name">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Last name">
+                        <div class="col-md-12 form-group">
+                            <label>Full Name</label>
+                            <input class="form-control" id="fullname" type="text" placeholder="First name" value="<?php echo $user_data['u_name']; ?>" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="abc@email.com">
+                            <input class="form-control" id="emailid" type="text" placeholder="abc@email.com" value="<?php echo $user_data['email']; ?>" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+91 9909409153">
+                            <input class="form-control" id="phone" type="text" placeholder="+91 9909409153" value="<?php echo $user_data['phone_no']; ?>" readonly>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="Address Line 1">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="Address Line 2">
+                            <label>Address</label>
+                            <input class="form-control" id="address" type="text" placeholder="Address">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Country</label>
-                            <select class="custom-select">
-                                <option selected>INDIA</option>
-                            </select>
+                            <input class="form-control" id="country" type="text" placeholder="Country">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>City</label>
-                            <input class="form-control" type="text" placeholder="Gujarat">
+                            <input class="form-control" id="city" type="text" placeholder="Surat">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>State</label>
-                            <input class="form-control" type="text" placeholder="Surat">
+                            <input class="form-control" id="state" type="text" placeholder="Gujrat">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="394130">
+                            <input class="form-control" id="zipcode" placeholder="394130">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
-            <div class="bg-light p-30 mb-5">
-                <div class="border-bottom">
-                    <h6 class="mb-3">Products</h6>
-                    <div class="d-flex justify-content-between">
-                        <p>Product Name 1</p>
-                        <p>$150</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p>Product Name 2</p>
-                        <p>$150</p>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <p>Product Name 3</p>
-                        <p>$150</p>
-                    </div>
-                </div>
-                <div class="border-bottom pt-3 pb-2">
-                    <div class="d-flex justify-content-between mb-3">
-                        <h6>Subtotal</h6>
-                        <h6>$150</h6>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
-                        <h6 class="font-weight-medium">$10</h6>
-                    </div>
-                </div>
-                <div class="pt-2">
-                    <div class="d-flex justify-content-between mt-2">
-                        <h5>Total</h5>
-                        <h5>$160</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-5">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment</span></h5>
-                <div class="bg-light p-30">
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="cashfree" checked>
-                            <label class="custom-control-label" for="paypal">Cashfree</label>
+            <div class="col-lg-4">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom pt-3 pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Subtotal</h6>
+                            <h6>₹<?php echo $total_amount; ?></h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Shipping</h6>
+                            <h6 class="font-weight-medium">Free</h6>
                         </div>
                     </div>
-                    <button id="place_order" type="submit" class="btn btn-block btn-primary text-light font-weight-bold py-3">Place Order</button>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5>₹<?php echo $total_amount; ?></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment</span></h5>
+                    <div class="bg-light p-30">
+                        <input type="hidden" id="final_amount" value="<?php echo $total_amount; ?>" />
+                        <button id="place_order" type="submit" class="btn btn-block btn-primary text-light font-weight-bold py-3">Place Order</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <!-- Checkout End -->
 

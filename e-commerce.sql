@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 06:36 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 11, 2023 at 07:21 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE `attribute` (
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_delete` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute`
@@ -66,6 +66,29 @@ INSERT INTO `attribute` (`id`, `variants_id`, `attribute_name`, `attribute_image
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `billing_address`
+--
+
+CREATE TABLE `billing_address` (
+  `id` int(20) NOT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `street_address` varchar(150) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `zipcode` varchar(6) NOT NULL,
+  `country` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `billing_address`
+--
+
+INSERT INTO `billing_address` (`id`, `user_id`, `street_address`, `city`, `state`, `zipcode`, `country`) VALUES
+(3, 38, '65, Millennium Residency,', 'SURAT', 'GUJARAT', '394130', 'India');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart`
 --
 
@@ -75,18 +98,18 @@ CREATE TABLE `cart` (
   `qty` int(20) NOT NULL,
   `user_id` int(20) DEFAULT NULL,
   `amount` decimal(6,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`id`, `product_id`, `qty`, `user_id`, `amount`) VALUES
-(156, 13, 2, 1, '760.00'),
-(157, 10, 1, 1, '400.00'),
-(158, 105, 1, 1, '499.00'),
-(159, 32, 2, 1, '1398.00'),
-(160, 26, 2, 1, '1998.00');
+(156, 13, 2, 1, 760.00),
+(157, 10, 1, 1, 400.00),
+(158, 105, 1, 1, 499.00),
+(159, 32, 2, 1, 1398.00),
+(160, 26, 2, 1, 1998.00);
 
 -- --------------------------------------------------------
 
@@ -105,7 +128,7 @@ CREATE TABLE `category` (
   `updated_at` datetime NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_delete` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
@@ -116,6 +139,54 @@ INSERT INTO `category` (`id`, `category_name`, `category_description`, `image`, 
 (8, 'Women\'s Wear', '<p><em><strong>is a budget-friendly clothing store that has colorful and trendy pieces for women. Their selection of graphic tees, sweatpants and joggers, and sneakers...</strong></em></p>', 'images/71BMG8EorsL._UL1500_.jpg', 1, 1, '2023-09-15 23:45:32', '2023-09-15 23:45:32', 1, NULL),
 (10, 'Boy\'s Wear', '<p><strong>Step up your Style Quotient by wearing this Casual Shirt from LEWEL. Team it up with your favourite pair of jeans, denim shorts and sneakers when you head out to work, party, vacation or anything your heart desires. It&rsquo;s your Life, your Rules and we will be all the way with you in style.</strong></p>', 'images/61skoH0rMsL._UY741_.jpg', 1, 1, '2023-09-16 00:01:15', '2023-09-16 00:01:15', 1, NULL),
 (11, 'Girl\'s Wear', '<p>girl\'s wear is <strong>outfits made specifically for and worn by girls</strong>. Salwar suits, saaris, lehnga etc. in Indian tradition and Skirts, shirts, sweaters, trousers, coats, chemises, and jeans, etc</p>', 'images/61OTdInzd9L._UY741_.jpg', 1, 1, '2023-09-16 00:06:16', '2023-10-03 01:27:33', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(20) NOT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `order_date` date NOT NULL,
+  `payment_status` varchar(100) NOT NULL,
+  `transaction_id` varchar(100) DEFAULT NULL,
+  `total_amount` decimal(6,2) NOT NULL,
+  `address_id` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `order_date`, `payment_status`, `transaction_id`, `total_amount`, `address_id`) VALUES
+(1, 38, '2023-10-11', 'completed', 'e61c511d-b7bc-4012-8a58-0bb095cb4d9d', 2098.00, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` int(20) NOT NULL,
+  `order_id` int(20) DEFAULT NULL,
+  `user_id` int(20) DEFAULT NULL,
+  `product_id` int(20) DEFAULT NULL,
+  `amount` decimal(6,2) NOT NULL,
+  `qty` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `user_id`, `product_id`, `amount`, `qty`) VALUES
+(1, 1, 38, 9, 350.00, 1),
+(2, 1, 38, 16, 399.00, 1),
+(3, 1, 38, 28, 299.00, 1),
+(4, 1, 38, 9, 1050.00, 3);
 
 -- --------------------------------------------------------
 
@@ -139,7 +210,7 @@ CREATE TABLE `product` (
   `updated_at` datetime DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_delete` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
@@ -256,6 +327,25 @@ INSERT INTO `product` (`id`, `category_id`, `variants_id`, `attribute_id`, `p_na
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_attribute`
+--
+
+CREATE TABLE `product_attribute` (
+  `id` int(20) NOT NULL,
+  `p_id` int(20) NOT NULL,
+  `attribute_id` int(20) NOT NULL,
+  `price` int(20) NOT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `created_by` int(20) DEFAULT NULL,
+  `updated_by` int(20) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -264,6 +354,7 @@ CREATE TABLE `users` (
   `u_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone_no` varchar(10) NOT NULL,
+  `client_id` varchar(100) DEFAULT NULL,
   `password` varchar(10) NOT NULL,
   `u_type_id` int(20) NOT NULL,
   `u_profile` varchar(200) NOT NULL,
@@ -273,18 +364,18 @@ CREATE TABLE `users` (
   `updated_by` int(20) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_delete` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`, `is_delete`) VALUES
-(1, 'Vairag Bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', '0509', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-10-03 13:40:47', 1, 1, 1, NULL),
-(16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1, NULL),
-(23, 'test', 'df@gmail.com', '11', '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1, NULL),
-(38, 'Kavita Bavadiya', 'kavitabavadiya@gmail.com', '9909409153', '1234', 3, '', '2023-09-26 00:10:43', '2023-09-26 00:10:43', 38, 38, 1, NULL),
-(39, 'Swami', 'Swami@gmail.com', '852741963', '55', 3, '', '2023-10-05 22:49:54', '2023-10-05 22:49:54', 39, 39, 1, NULL);
+INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `client_id`, `password`, `u_type_id`, `u_profile`, `created_at`, `updated_at`, `created_by`, `updated_by`, `is_active`, `is_delete`) VALUES
+(1, 'Vairag Bavadiya', 'vairagbavadiya5@gmail.com', '9909409153', NULL, '0509', 1, './user_images/cartoon-3.png', '2023-09-02 16:43:07', '2023-10-03 13:40:47', 1, 1, 1, NULL),
+(16, 'kaushik_gorasiya', 'kaushikgorasiya@gmail.com', '7383415839', NULL, '8733', 2, './user_images/cartoon-4.jpg', '2023-09-02 18:16:36', '2023-09-03 16:44:45', 16, 16, 1, NULL),
+(23, 'test', 'df@gmail.com', '11', NULL, '11', 2, '', '2023-09-03 22:22:34', '2023-09-03 22:22:34', 23, 23, 1, NULL),
+(38, 'Kavita Bavadiya', 'kavitabavadiya0509@gmail.com', '9909409153', '2ff02981-0b94-4263-97f0-7ae7e26aca1d', '1234', 3, '', '2023-09-26 00:10:43', '2023-09-26 00:10:43', 38, 38, 1, NULL),
+(39, 'Swami', 'Swami@gmail.com', '852741963', NULL, '55', 3, '', '2023-10-05 22:49:54', '2023-10-05 22:49:54', 39, 39, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +386,7 @@ INSERT INTO `users` (`id`, `u_name`, `email`, `phone_no`, `password`, `u_type_id
 CREATE TABLE `user_type` (
   `id` int(20) NOT NULL,
   `type_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_type`
@@ -321,7 +412,7 @@ CREATE TABLE `variants` (
   `updated_by` int(20) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL,
   `is_delete` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `variants`
@@ -347,6 +438,13 @@ ALTER TABLE `attribute`
   ADD KEY `fk_variants_id` (`variants_id`);
 
 --
+-- Indexes for table `billing_address`
+--
+ALTER TABLE `billing_address`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`) USING BTREE;
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -363,6 +461,23 @@ ALTER TABLE `category`
   ADD KEY `fk_cat_updated_by` (`updated_by`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `address_id` (`address_id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -372,6 +487,16 @@ ALTER TABLE `product`
   ADD KEY `fk_c_id` (`category_id`),
   ADD KEY `fk_a_id` (`attribute_id`),
   ADD KEY `fk_v_id` (`variants_id`);
+
+--
+-- Indexes for table `product_attribute`
+--
+ALTER TABLE `product_attribute`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_product_id` (`p_id`),
+  ADD KEY `fk_attribute_id` (`attribute_id`),
+  ADD KEY `fk_p_attr_created_by` (`created_by`),
+  ADD KEY `fk_p_attr_updated_by` (`updated_by`);
 
 --
 -- Indexes for table `users`
@@ -407,22 +532,46 @@ ALTER TABLE `attribute`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
+-- AUTO_INCREMENT for table `billing_address`
+--
+ALTER TABLE `billing_address`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+
+--
+-- AUTO_INCREMENT for table `product_attribute`
+--
+ALTER TABLE `product_attribute`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -455,6 +604,12 @@ ALTER TABLE `attribute`
   ADD CONSTRAINT `fk_variants_id` FOREIGN KEY (`variants_id`) REFERENCES `variants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `billing_address`
+--
+ALTER TABLE `billing_address`
+  ADD CONSTRAINT `fk_bill_add_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
@@ -467,6 +622,21 @@ ALTER TABLE `cart`
 ALTER TABLE `category`
   ADD CONSTRAINT `fk_cat_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cat_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `fk_orders_address_id` FOREIGN KEY (`address_id`) REFERENCES `billing_address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_orders_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `fk_deitalis_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalis_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_detalis_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`

@@ -31,7 +31,7 @@ $row = mysqli_fetch_assoc($result);
             <div id="product-carousel single-product" class="carousel" data-ride="carousel">
                 <div class="carousel-inner bg-light">
                     <div class="carousel-item active text-center">
-                        <img class="" src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>" alt="Image">
+                        <img  style="max-width:400px;" class="" src="/e-commerce/admin/products/<?php echo $row['p_image']; ?>" alt="Image">
                     </div>
                 </div>
             </div>
